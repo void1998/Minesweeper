@@ -57,7 +57,7 @@ public class SquareStatus {
                     setStatus(Constants.OPENED_EMPTY);
                     break;
                 case 9:
-                    setStatus(Constants.OPEND_MINE);
+                    setStatus(Constants.OPENED_MINE);
                     break;
                 default:
                     setStatus(Constants.OPENED_NUMBER);
