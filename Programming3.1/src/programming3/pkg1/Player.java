@@ -1,18 +1,25 @@
 package programming3.pkg1;
 
-public class Player {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    private String name;
+/**
+ *
+ * @author void
+ */
+public abstract class Player {
 
-    private int currentScore;
-
-    public int getCurrentScore() {
-        return currentScore;
-    }
+    protected String name;
+    protected Score currentScore;
     
-    
-
-    public PlayerMove GetPlayerMove() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    Player()
+    {
+        this.name = "Player";
+        this.currentScore = new NumiricScore();
     }
+    public abstract PlayerMove GetPlayerMove();
+    
 }
+
