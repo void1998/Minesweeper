@@ -47,7 +47,7 @@ public class NormalGame extends Game {
         @Override
      public String ChangePlayerStatus(PlayerMove move)
      {
-         if(move.getPlayer().getCurrentScore()<0)
+         if(move.getPlayer().getCurrentScore().getScore()<0)
          {
              return Constants.LOSER;
          }
@@ -71,7 +71,9 @@ public class NormalGame extends Game {
     public void initGame()
     {
        setCurrentRules(new DefaultRules());
-       setCurrentPlayer(new ConsolPlayer());
+       Score score = new NumiricScore();
+       PlayerStatue playerStatue = new PlayerStatue();
+       setCurrentPlayer(new ConsolPlayer(score, playerStatue));
        setPlayers(new ArrayList<>());
        setMoves(new ArrayList<>());
        setGameStatus(Constants.NOT_STARTED);
