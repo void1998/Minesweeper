@@ -6,7 +6,7 @@ public class Square {
 
     private int x;
     private int y;
-    private SquareStatus squareStatus;
+    SquareStatus squareStatus;
 
     public Square() {
         this.x=0;

@@ -1,5 +1,7 @@
 package programming3.pkg1;
 
+import java.util.List;
+
 public class GameRules {
 
     public int GetScoreChange(List<PlayerMove> moves) {

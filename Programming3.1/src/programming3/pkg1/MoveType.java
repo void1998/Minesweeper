@@ -4,6 +4,14 @@ public class MoveType {
 
     private String type;
 
+    public MoveType() {
+    }
+
+    public MoveType(String type) {
+        this.type = type;
+    }
+
+    
     public String getType() {
         return type;
     }
