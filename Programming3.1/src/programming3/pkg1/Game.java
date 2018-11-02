@@ -10,6 +10,7 @@ public abstract class Game {
     private List<PlayerMove> moves;
 
     private GameRules CurrentRules;
+    
 
     public abstract class GameRules 
     {
@@ -18,7 +19,7 @@ public abstract class Game {
         //public abstract Player DecideNextPlayer(List<PlayerMove> moves);
         public abstract String ChangePlayerStatus(PlayerMove move);
     }
-    //public abstract void initGame();
+    public abstract void initGame();
 
     public abstract boolean AcceptMove(PlayerMove move);
 
