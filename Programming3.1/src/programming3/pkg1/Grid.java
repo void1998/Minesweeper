@@ -47,7 +47,11 @@ public class Grid {
     public void AcceptMove(PlayerMove move) {
         if(currentGame.AcceptMove(move))
         {
+            int scoreChange;
+            int score=move.getPlayer().getCurrentScore().getRealScore();
             currentGame.ApplyPlayerMove(move);
+            scoreChange = GetScoreChange(move);
+            
         }
         else 
             gameException.handleEx();
