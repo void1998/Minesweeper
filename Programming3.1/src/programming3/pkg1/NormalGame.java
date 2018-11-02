@@ -7,6 +7,7 @@ public class NormalGame extends Game {
     public class DefaultRules extends GameRules 
     {
 
+        @Override
         public int GetScoreChange(List<PlayerMove> moves) {
             PlayerMove move=moves.get(moves.size()-1);
             String status = move.getSquare().getSquareStatus().getStatus();
@@ -43,6 +44,7 @@ public class NormalGame extends Game {
      /*public Player DecideNextPlayer(List<PlayerMove> moves) {
          throw new UnsupportedOperationException("Not supported yet.");
      }*/
+        @Override
      public String ChangePlayerStatus(PlayerMove move)
      {
          if(move.getPlayer().getCurrentScore()<0)
@@ -65,15 +67,17 @@ public class NormalGame extends Game {
         }
     }
     
+    @Override
     public void initGame()
     {
        setCurrentRules(new DefaultRules());
-       setCurrentPlayer(new Player());
+       setCurrentPlayer(new ConsolPlayer());
        setPlayers(new ArrayList<>());
        setMoves(new ArrayList<>());
        setGameStatus(Constants.NOT_STARTED);
     }
     
+    @Override
     public boolean AcceptMove(PlayerMove move) 
     {
         if(move.getSquare().getX()>=1 && move.getSquare().getX()<=19)
@@ -97,6 +101,7 @@ public class NormalGame extends Game {
         }
         return false;
     }
+    @Override
     public void ApplyPlayerMove(PlayerMove move)
     {
         String state = move.getSquare().getSquareStatus().getStatus();

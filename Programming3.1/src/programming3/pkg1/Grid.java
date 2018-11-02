@@ -46,7 +46,9 @@ public class Grid {
 
     public void AcceptMove(PlayerMove move) {
         if(currentGame.AcceptMove(move))
+        {
             currentGame.ApplyPlayerMove(move);
+        }
         else 
             gameException.handleEx();
             
@@ -114,21 +116,37 @@ public class Grid {
     public void fillUpNumbers()
     {
         Integer[][] coordinator=new Integer[][]{{0,1},{0,-1},{1,0},{-1,0},{-1,-1},{-1,1},{1,-1},{1,1}};
-         for(int i=1;i<squares.length-1;i++)
-           {
-               for(int j=1;j<squares.length-1;j++)
-               {
-                   if(squares[i][j].IsMine())
-                   {
+        for(int i=1;i<squares.length-1;i++)
+        {
+            for(int j=1;j<squares.length-1;j++)
+            {
+                if(squares[i][j].IsMine())
+                {
                    for(int coordinat=0;coordinat<8;coordinat++)
                    {
                        int tempX=i+coordinator[coordinat][0];
                        int tempY=j+coordinator[coordinat][1];
-                               squares[tempX][tempY].getSquareStatus().setValue(squares[tempX][tempY].getSquareStatus().getValue()+1);
+                       squares[tempX][tempY].getSquareStatus().setValue(squares[tempX][tempY].getSquareStatus().getValue()+1);
                    }
-                   }
-               }
-           }
-        
+                }
+            }
+        }
+    }
+    
+    public boolean checkGame()
+    {
+        String state;
+        for(int i=1;i<squares.length-1;i++)
+        {
+            for(int j=1;j<squares.length-1;j++)
+            {
+                state = squares[i][j].getSquareStatus().getStatus();
+                if(state.equals(Constants.CLOSED) || state.equals(Constants.OPENED_MINE))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
