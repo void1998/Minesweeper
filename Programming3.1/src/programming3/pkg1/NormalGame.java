@@ -47,15 +47,15 @@ public class NormalGame extends Game {
      {
          if(move.getPlayer().getCurrentScore()<0)
          {
-             return "Loser";
+             return Constants.LOSER;
          }
          else if(move.getPlayer().getCurrentScore()>=0 && move.getPlayer().getCurrentScore()<10)
          {
-             return "in danger";
+             return Constants.IN_DANGER;
          }
          else if(move.getPlayer().getCurrentScore()>10)
          {
-              return "currently playing";
+              return Constants.PLAYING;
          }
          /*else
          {
@@ -67,10 +67,11 @@ public class NormalGame extends Game {
     
     public void initGame()
     {
-       GameRules currentRules = new DefaultRules();
-       Player currentPlayer = new Player();
-       List <Player> players = new ArrayList<Player>();
-       List <PlayerMove> moves = new ArrayList<PlayerMove>();
+       setCurrentRules(new DefaultRules());
+       setCurrentPlayer(new Player());
+       setPlayers(new ArrayList<>());
+       setMoves(new ArrayList<>());
+       setGameStatus(Constants.NOT_STARTED);
     }
     
     public boolean AcceptMove(PlayerMove move) 
