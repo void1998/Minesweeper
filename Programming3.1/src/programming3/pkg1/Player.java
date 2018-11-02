@@ -1,14 +1,4 @@
 package programming3.pkg1;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-/**
- *
- * @author void
- */
 public abstract class Player {
 
     protected String name;
@@ -19,6 +9,11 @@ public abstract class Player {
         this.name = "Player";
         this.currentScore = new NumiricScore();
     }
+
+    public Score getCurrentScore() {
+        return currentScore;
+    }
+    
     public abstract PlayerMove GetPlayerMove();
     
 }
