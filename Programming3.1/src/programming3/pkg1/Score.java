@@ -18,7 +18,7 @@ public abstract class Score {
      * author: void;
      * Date:2/11/2018
      * controlling the way of setting the score:(numeric way, alphabetical way.....)
-     * /
+     */
  
     public abstract Object scoreType();
 }
