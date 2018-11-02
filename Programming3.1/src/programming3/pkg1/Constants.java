@@ -9,4 +9,9 @@ public class Constants {
     
     public static final String REVEAL="reveal";
     public static final String MARK="marke";
+    
+    public static final String PLAYING="playing";
+    public static final String LOSER="loser";
+    public static final String WINNER="winner";
+    public static final String IN_DANGER="inDanger";
 }
