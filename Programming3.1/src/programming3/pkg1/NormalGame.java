@@ -8,8 +8,8 @@ public class NormalGame extends Game {
 
         public int GetScoreChange(List<PlayerMove> moves) {
             PlayerMove move=moves.get(moves.size()-1);
-            String status = move.square.squareStatus.GetStatus();
-            int value = move.square.squareStatus.value;
+            String status = move.getSquare().getSquareStatus().getStatus();
+            int value = move.getSquare().getSquareStatus().getValue();
             if(status == "Marked")
             {
                 if(value == 9)
@@ -36,6 +36,7 @@ public class NormalGame extends Game {
                     return 0;
                 }
             }
+            return 0;
         }
     
      /*public Player DecideNextPlayer(List<PlayerMove> moves) {
@@ -43,15 +44,15 @@ public class NormalGame extends Game {
      }*/
      public String ChangePlayerStatus(PlayerMove move)
      {
-         if(move.player.currentScore.GetScore()<0)
+         if(move.getPlayer().getCurrentScore()<0)
          {
              return "Loser";
          }
-         else if(move.player.currentScore.GetScore()>=0 && move.player.currentScore.GetScore()<10)
+         else if(move.getPlayer().getCurrentScore()>=0 && move.getPlayer().getCurrentScore()<10)
          {
              return "in danger";
          }
-         else if(move.player.currentScore.GetScore()>10)
+         else if(move.getPlayer().getCurrentScore()>10)
          {
               return "currently playing";
          }
@@ -59,24 +60,25 @@ public class NormalGame extends Game {
          {
              return "winner";
             }*/
+         return "Playing";
         }
     }
     
     public boolean AcceptMove(PlayerMove move) 
     {
-        if(move.square.getX()>=1 && move.square.getX()<=19)
+        if(move.getSquare().getX()>=1 && move.getSquare().getX()<=19)
         {
-            if(move.square.getY()>=1 && move.square.getY()<=19)
+            if(move.getSquare().getY()>=1 && move.getSquare().getY()<=19)
             {
-                String state = move.square.squareStatus.getStatus();
-                if(move.move.getType() == Constants.MARK)
+                String state = move.getSquare().getSquareStatus().getStatus();
+                if(move.getMove().getType() == Constants.MARK)
                 {
                     if(state == Constants.CLOSED)
                     {
                         return true;
                     }
                 }
-                else if(move.move.getType() == Constants.OPEN)
+                else if(move.getMove().getType() == Constants.OPEN)
                 {
                     if(state == Constants.CLOSED)
                     {
@@ -91,7 +93,7 @@ public class NormalGame extends Game {
     public void ApplyPlayerMove(PlayerMove move)
     {
         String state = move.square.squareStatus.getStatus();
-        switch(move.move.getType())
+        switch(move.getMove().getType())
         {
             case Constants.MARK:
             {    
