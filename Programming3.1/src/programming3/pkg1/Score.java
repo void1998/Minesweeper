@@ -1,10 +1,18 @@
 package programming3.pkg1;
 
 public abstract class Score {
+    int realScore;
     Object score;
     Score()
     {
-        
+        this.realScore = 0;
+        this.score = 0;
+    }
+    public int getRealScore() {
+        return realScore;
+    }
+    public void setRealScore(int realScore) {
+        this.realScore = realScore;
     }
     public Object getScore()
     {
@@ -13,12 +21,6 @@ public abstract class Score {
     public void setScore(Object score)
     {
         this.score = score;
-    }
-    /**
-     * author: void;
-     * Date:2/11/2018
-     * controlling the way of setting the score:(numeric way, alphabetical way.....)
-     */
- 
+    } 
     public abstract Object scoreType();
 }
