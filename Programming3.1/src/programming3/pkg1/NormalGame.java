@@ -10,32 +10,32 @@ public class NormalGame extends Game {
             PlayerMove move=moves.get(moves.size()-1);
             String status = move.getSquare().getSquareStatus().getStatus();
             int value = move.getSquare().getSquareStatus().getValue();
-            if(status == "Marked")
-            {
-                if(value == 9)
+                if(status .equals(Constants.MARK))
                 {
-                    return 5;
+                    if(value == 9)
+                    {
+                        return 5;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
                 }
-                else
+                else if(!status.equals(Constants.CLOSED) && !status.equals(Constants.MARKED))
                 {
-                    return -1;
+                    if(value==0)
+                    {
+                        return 10;
+                    }
+                    else if(value>=1 && value<=8)
+                    {
+                        return value;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
-            }
-            else if(status == "Opened")
-            {
-                if(value==0)
-                {
-                    return 10;
-                }
-                else if(value>=1 && value<=8)
-                {
-                    return value;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
             return 0;
         }
     
@@ -71,50 +71,47 @@ public class NormalGame extends Game {
             if(move.getSquare().getY()>=1 && move.getSquare().getY()<=19)
             {
                 String state = move.getSquare().getSquareStatus().getStatus();
-                if(move.getMove().getType() == Constants.MARK)
-                {
-                    if(state == Constants.CLOSED)
-                    {
-                        return true;
-                    }
-                }
-                else if(move.getMove().getType() == Constants.OPEN)
-                {
-                    if(state == Constants.CLOSED)
-                    {
-                        return true;
-                    }
+                switch (move.getMove().getType()) {
+                    case Constants.MARK:
+                        if(state .equals(Constants.CLOSED))
+                        {
+                            return true;
+                        }   break;
+                    case Constants.REVEAL:
+                        if(state .equals(Constants.CLOSED))
+                        {
+                            return true;
+                        }   break;
                 }
             }
         }
-        else
-            return false;
+        return false;
     }
     public void ApplyPlayerMove(PlayerMove move)
     {
-        String state = move.square.squareStatus.getStatus();
+        String state = move.getSquare().getSquareStatus().getStatus();
         switch(move.getMove().getType())
         {
             case Constants.MARK:
             {    
-                move.square.squareStatus.setStatus(Constants.MARK);
+                move.getSquare().getSquareStatus().setStatus(Constants.MARK);
             }
-            case Constants.OPEN:
+            case Constants.REVEAL:
             {
                 /*if(state == Constants.CLOSED)
                 {*/
-                    int value = move.square.squareStatus.getValue();
+                    int value = move.getSquare().getSquareStatus().getValue();
                     if(value == 0)
                     {
-                        move.square.squareStatus.setStatus(Constants.OPENEDEMPTY);
+                        move.getSquare().getSquareStatus().setStatus(Constants.OPENED_EMPTY);
                     }
                     else if(value>=1 && value<=8)
                     {
-                        move.square.squareStatus.setStatus(Constants.OPENEDNUMBER);
+                        move.getSquare().getSquareStatus().setStatus(Constants.OPENED_NUMBER);
                     }
                     else if(value == 9)
                     {
-                        move.square.squareStatus.setStatus(Constants.OPENEDMINE);
+                        move.getSquare().getSquareStatus().setStatus(Constants.OPENED_MINE);
                     }
                 /*}
                 else
