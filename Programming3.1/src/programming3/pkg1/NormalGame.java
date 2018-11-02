@@ -1,5 +1,6 @@
 package programming3.pkg1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NormalGame extends Game {
@@ -62,6 +63,14 @@ public class NormalGame extends Game {
             }*/
          return "Playing";
         }
+    }
+    
+    public void initGame()
+    {
+       GameRules currentRules = new DefaultRules();
+       Player currentPlayer = new Player();
+       List <Player> players = new ArrayList<Player>();
+       List <PlayerMove> moves = new ArrayList<PlayerMove>();
     }
     
     public boolean AcceptMove(PlayerMove move) 
