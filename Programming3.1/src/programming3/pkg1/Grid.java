@@ -51,6 +51,7 @@ public class Grid {
             int score=move.getPlayer().getCurrentScore().getRealScore();
             currentGame.ApplyPlayerMove(move);
             scoreChange = GetScoreChange(move);
+            move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
             
         }
         else 
