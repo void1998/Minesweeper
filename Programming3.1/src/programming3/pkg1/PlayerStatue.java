@@ -10,5 +10,17 @@ package programming3.pkg1;
  * @author void
  */
 public class PlayerStatue  {
-    
+    private String status;
+    PlayerStatue()
+    {
+        this.status = Constants.PLAYING;
+    }
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+    public String getStatus()
+    {
+        return this.status;
+    }
 }
