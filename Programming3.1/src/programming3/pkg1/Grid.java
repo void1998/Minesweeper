@@ -49,10 +49,12 @@ public class Grid {
         {
             int scoreChange;
             int score=move.getPlayer().getCurrentScore().getRealScore();
+            String status;
             currentGame.ApplyPlayerMove(move);
-            scoreChange = GetScoreChange(move);
+            scoreChange = currentGame.getCurrentRules().GetScoreChange(move);
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
-            
+            status = currentGame.getCurrentRules().ChangePlayerStatus(move);
+            move.getPlayer().getCurrentStatue().setStatus(status);
         }
         else 
             gameException.handleEx();

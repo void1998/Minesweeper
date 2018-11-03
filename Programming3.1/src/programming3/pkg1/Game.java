@@ -3,7 +3,7 @@ package programming3.pkg1;
 import java.util.List;
 public abstract class Game {
 
-    private List<Player> players;
+    protected List<Player> players;
 
     private Player currentPlayer;
 
@@ -16,11 +16,11 @@ public abstract class Game {
     public abstract class GameRules 
     {
 
-        public abstract int GetScoreChange(List<PlayerMove> moves);
+        public abstract int GetScoreChange(PlayerMove move);
         //public abstract Player DecideNextPlayer(List<PlayerMove> moves);
         public abstract String ChangePlayerStatus(PlayerMove move);
     }
-    public abstract void initGame();
+    public abstract void initGame(int playersNumber);
 
     public abstract boolean AcceptMove(PlayerMove move);
 
