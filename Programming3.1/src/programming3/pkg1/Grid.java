@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Grid {
 
-    private Square[][] squares=new Square[21][21];
+    private Square[][] squares/*=new Square[21][21]*/;
 
     private Game currentGame;
     
@@ -17,6 +17,18 @@ public class Grid {
     public Grid(Square[][] squares, Game currentGame) {
         this.squares = squares;
         this.currentGame = currentGame;
+    }
+    
+    public Grid(int hieght, int width, Game currentGame)
+    {
+        squares = new Square[hieght][width];
+        for(int i=0;i<hieght;i++)
+        {
+            for(int j=0;j<width;j++)
+            {
+                squares[i][j] = new Square();
+            }
+        }
     }
 
     public Square[][] getSquares() {
@@ -62,7 +74,6 @@ public class Grid {
             gameException.handleEx();
             
     }
-    
     
     /*helper methods*/
     public void setBorder()
