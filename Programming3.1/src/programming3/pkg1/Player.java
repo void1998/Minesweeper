@@ -1,9 +1,9 @@
 package programming3.pkg1;
 public abstract class Player {
 
-    private String name;
-    private Score currentScore;
-    private PlayerStatue currentStatue;
+    protected String name;
+    protected Score currentScore;
+    protected PlayerStatue currentStatue;
     
     Player()
     {
@@ -42,6 +42,9 @@ public abstract class Player {
     }
     
     public abstract PlayerMove GetPlayerMove();
-    
+
+
+
+   
 }
 

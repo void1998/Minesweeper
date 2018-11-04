@@ -16,6 +16,12 @@ import java.util.logging.Logger;
  * @author void
  */
 public class ConsolePlayer extends Player {
+
+    ConsolePlayer(Score score, PlayerStatue playerStatue) {
+        this.currentScore = score;
+        this.currentStatue = playerStatue;
+    }
+    @Override
     public PlayerMove GetPlayerMove()
     {
         PlayerMove currentMove = new PlayerMove();

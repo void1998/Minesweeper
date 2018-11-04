@@ -7,7 +7,7 @@ public abstract class Game {
 
     private Player currentPlayer;
 
-    private List<PlayerMove> moves;
+    protected List<PlayerMove> moves;
 
     private GameRules CurrentRules;
     
@@ -25,6 +25,8 @@ public abstract class Game {
     public abstract boolean AcceptMove(PlayerMove move);
 
     public abstract void ApplyPlayerMove(PlayerMove move);
+    
+    //public abstract void Winner();
 
     public void setPlayers(List<Player> players) {
         this.players = players;

@@ -1,6 +1,7 @@
 package programming3.pkg1;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class NormalGame extends Game {
@@ -78,7 +79,7 @@ public class NormalGame extends Game {
         {
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
-            current = new ConsolPlayer(score, playerStatue);
+            current = new ConsolePlayer(score, playerStatue);
             setCurrentPlayer(current);
             players.add(current);
         }
@@ -153,4 +154,27 @@ public class NormalGame extends Game {
             }
         }
     }
+    
+    /*@Override
+    public void Winner()
+    {
+        Player thePlayer;
+        if(players.size()==1)
+        {
+            thePlayer=players.get(0);
+            thePlayer.getCurrentStatue().setStatus(Constants.WINNER);
+        }
+        else
+        {
+            players.sort(this.currentStatue.realScore);
+            for(int i=0;i<players.size();i++)
+            {
+                thePlayer = players.get(i);
+                if(thePlayer.getCurrentScore().getRealScore()>winScore)
+                {
+                    
+                }
+            }
+        }
+    }*/
 }
