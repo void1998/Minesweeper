@@ -90,13 +90,13 @@ public class NormalGame extends Game {
     }
     
     @Override
-    public boolean AcceptMove(PlayerMove move) 
+    public boolean AcceptMove(PlayerMove move, Grid myGrid) 
     {
         if(move.getSquare().getX()>=1 && move.getSquare().getX()<=19)
         {
             if(move.getSquare().getY()>=1 && move.getSquare().getY()<=19)
             {
-                String state = move.getSquare().getSquareStatus().getStatus();
+                String state = myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().getStatus();
                 switch (move.getMove().getType()) {
                     case Constants.MARK:
                         if(state .equals(Constants.CLOSED) || state .equals(Constants.MARKED))

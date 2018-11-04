@@ -10,6 +10,20 @@ public class Programming31 extends Application  {
      */
     public static void main(String[] args)
     {
+        Game myGame = new NormalGame();
+        myGame.initGame(1);
+        Grid myGrid = new Grid(19,19,myGame);
+        View myView = new ConsoleView();
+        myView.Draw(myGrid.getSquares());
+        PlayerMove temp = new PlayerMove();
+        while(!myGrid.checkGame())
+        {
+           temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
+           myGrid.AcceptMove(temp);
+           myGrid.getSquares()[temp.getSquare().getX()][temp.getSquare().getY()] = temp.getSquare();
+           myView.Draw(myGrid.getSquares());
+          
+        }
         
     }
 

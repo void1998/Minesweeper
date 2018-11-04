@@ -31,7 +31,13 @@ public class ConsolePlayer extends Player {
         try {
             System.out.println("to mark square please enter 1, to reveal square please enter 2 ");
             String Insert = reader.readLine();
-            currentType.setType(Insert);
+            int insert = Integer.parseInt(Insert);
+            if(insert == 1)
+            currentType.setType(Constants.MARK);
+            else if(insert == 2)
+            currentType.setType(Constants.REVEAL);
+            else
+                System.out.println("not available please try again");
         } catch (IOException ex) {
             Logger.getLogger(ConsolePlayer.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -22,7 +22,7 @@ public abstract class Game {
     }
     public abstract void initGame(int playersNumber);
 
-    public abstract boolean AcceptMove(PlayerMove move);
+    public abstract boolean AcceptMove(PlayerMove move, Grid myGrid);
 
     public abstract void ApplyPlayerMove(PlayerMove move);
     

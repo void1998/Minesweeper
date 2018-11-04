@@ -11,6 +11,9 @@ public class PlayerMove {
     private MoveResult result;
 
     public PlayerMove() {
+       move = new MoveType();
+       result = new MoveResult();
+        
     }
 
     public PlayerMove(Player player, Square square, MoveType move, MoveResult result) {

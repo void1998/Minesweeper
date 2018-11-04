@@ -36,8 +36,8 @@ public class ConsoleView implements View {
                     default:
                         break;
                 }
-                     System.out.println("");
             }
+            System.out.println("");
         }
     }
 }

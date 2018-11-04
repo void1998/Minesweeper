@@ -7,6 +7,7 @@ public class MoveResult {
     private SquareStatus newStatus;
 
     public MoveResult() {
+        newStatus = new SquareStatus();
     }
 
     public MoveResult(int scoreChange, SquareStatus newStatus) {

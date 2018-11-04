@@ -27,6 +27,8 @@ public class Grid {
             for(int j=0;j<width;j++)
             {
                 squares[i][j] = new Square();
+                squares[i][j].setX(i);
+                squares[i][j].setY(j);
             }
         }
         this.currentGame = currentGame;
@@ -58,7 +60,7 @@ public class Grid {
     }
 
     public void AcceptMove(PlayerMove move) {
-        if(currentGame.AcceptMove(move))
+        if(currentGame.AcceptMove(move,this))
         {
             int scoreChange;
             int score=move.getPlayer().getCurrentScore().getRealScore();
@@ -71,8 +73,8 @@ public class Grid {
             move.getPlayer().getCurrentStatue().setStatus(status);
             currentGame.moves.add(move);
         }
-        else 
-            gameException.handleEx();
+        /*else 
+            gameException.handleEx();*/
             
     }
     
@@ -98,7 +100,7 @@ public class Grid {
       int count=0;
        Random random=new Random();
        //generat 19 mines
-       for(int mineNumber=0;mineNumber<19;mineNumber++)
+       for(int mineNumber=0;mineNumber<250;mineNumber++)
       {
        while(true)
        {
