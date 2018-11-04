@@ -1,6 +1,7 @@
 package programming3.pkg1;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class NormalGame extends Game {
@@ -8,8 +9,7 @@ public class NormalGame extends Game {
     {
 
         @Override
-        public int GetScoreChange(List<PlayerMove> moves) {
-            PlayerMove move=moves.get(moves.size()-1);
+        public int GetScoreChange(PlayerMove move) {
             String status = move.getSquare().getSquareStatus().getStatus();
             int value = move.getSquare().getSquareStatus().getValue();
                 if(status .equals(Constants.MARK))
@@ -47,15 +47,15 @@ public class NormalGame extends Game {
         @Override
      public String ChangePlayerStatus(PlayerMove move)
      {
-         if(move.getPlayer().getCurrentScore().getScore()<0)
+         if(move.getPlayer().getCurrentScore().getRealScore()<0)
          {
              return Constants.LOSER;
          }
-         else if(move.getPlayer().getCurrentScore()>=0 && move.getPlayer().getCurrentScore()<10)
+         else if(move.getPlayer().getCurrentScore().getRealScore()>=0 && move.getPlayer().getCurrentScore().getRealScore()<10)
          {
              return Constants.IN_DANGER;
          }
-         else if(move.getPlayer().getCurrentScore()>10)
+         else if(move.getPlayer().getCurrentScore().getRealScore()>10)
          {
               return Constants.PLAYING;
          }
@@ -68,15 +68,25 @@ public class NormalGame extends Game {
     }
     
     @Override
-    public void initGame()
+    public void initGame(int playersNumber)
     {
-       setCurrentRules(new DefaultRules());
-       Score score = new NumiricScore();
-       PlayerStatue playerStatue = new PlayerStatue();
-       setCurrentPlayer(new ConsolPlayer(score, playerStatue));
-       setPlayers(new ArrayList<>());
-       setMoves(new ArrayList<>());
-       setGameStatus(Constants.NOT_STARTED);
+        // doing the new players list
+        players = new ArrayList<>();
+        Score score;
+        PlayerStatue playerStatue;
+        Player current;
+        for(int i=0;i<playersNumber;i++)
+        {
+            score = new NumiricScore();
+            playerStatue = new PlayerStatue();
+            current = new ConsolePlayer(score, playerStatue);
+            setCurrentPlayer(current);
+            players.add(current);
+        }
+        setCurrentRules(new DefaultRules());
+        setMoves(new ArrayList<>());
+        setGameStatus(Constants.NOT_STARTED);
+        setCurrentPlayer(players.get(0));
     }
     
     @Override
@@ -89,7 +99,7 @@ public class NormalGame extends Game {
                 String state = move.getSquare().getSquareStatus().getStatus();
                 switch (move.getMove().getType()) {
                     case Constants.MARK:
-                        if(state .equals(Constants.CLOSED))
+                        if(state .equals(Constants.CLOSED) || state .equals(Constants.MARKED))
                         {
                             return true;
                         }   break;
@@ -110,8 +120,13 @@ public class NormalGame extends Game {
         switch(move.getMove().getType())
         {
             case Constants.MARK:
-            {    
-                move.getSquare().getSquareStatus().setStatus(Constants.MARK);
+            {
+                if(state .equals(Constants.CLOSED))
+                    move.getSquare().getSquareStatus().setStatus(Constants.MARKED);
+                else if(state .equals(Constants.MARKED))
+                    move.getSquare().getSquareStatus().setStatus(Constants.CLOSED);
+                break;
+                
             }
             case Constants.REVEAL:
             {
@@ -130,6 +145,7 @@ public class NormalGame extends Game {
                     {
                         move.getSquare().getSquareStatus().setStatus(Constants.OPENED_MINE);
                     }
+                    break;
                 /*}
                 else
                 {
@@ -138,4 +154,27 @@ public class NormalGame extends Game {
             }
         }
     }
+    
+    /*@Override
+    public void Winner()
+    {
+        Player thePlayer;
+        if(players.size()==1)
+        {
+            thePlayer=players.get(0);
+            thePlayer.getCurrentStatue().setStatus(Constants.WINNER);
+        }
+        else
+        {
+            players.sort(this.currentStatue.realScore);
+            for(int i=0;i<players.size();i++)
+            {
+                thePlayer = players.get(i);
+                if(thePlayer.getCurrentScore().getRealScore()>winScore)
+                {
+                    
+                }
+            }
+        }
+    }*/
 }

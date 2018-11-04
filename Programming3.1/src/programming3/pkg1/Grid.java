@@ -49,10 +49,14 @@ public class Grid {
         {
             int scoreChange;
             int score=move.getPlayer().getCurrentScore().getRealScore();
+            String status;
             currentGame.ApplyPlayerMove(move);
-            scoreChange = GetScoreChange(move);
+            scoreChange = currentGame.getCurrentRules().GetScoreChange(move);
+            move.getResult().setScoreChange(scoreChange);
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
-            
+            status = currentGame.getCurrentRules().ChangePlayerStatus(move);
+            move.getPlayer().getCurrentStatue().setStatus(status);
+            currentGame.moves.add(move);
         }
         else 
             gameException.handleEx();
@@ -152,6 +156,7 @@ public class Grid {
                 }
             }
         }
+        currentGame.setGameStatus(Constants.FINISHED);
         return true;
     }
 }
