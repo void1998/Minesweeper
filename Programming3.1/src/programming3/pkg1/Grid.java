@@ -29,6 +29,7 @@ public class Grid {
                 squares[i][j] = new Square();
             }
         }
+        this.currentGame = currentGame;
     }
 
     public Square[][] getSquares() {
