@@ -1,6 +1,7 @@
 package programming3.pkg1;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
@@ -143,6 +144,7 @@ public class NormalGame extends Game {
                     {
                         move.getSquare().getSquareStatus().setStatus(Constants.OPENED_EMPTY);
                         myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.OPENED_EMPTY);
+                        DFS(move.getSquare().getX(),move.getSquare().getY(),myGrid);
                     }
                     else if(value>=1 && value<=8)
                     {
@@ -164,10 +166,10 @@ public class NormalGame extends Game {
         }
     }
     
-    /*@Override
+    @Override
     public void Winner()
     {
-        Player thePlayer;
+        Player thePlayer = null;
         if(players.size()==1)
         {
             thePlayer=players.get(0);
@@ -175,15 +177,51 @@ public class NormalGame extends Game {
         }
         else
         {
-            players.sort(this.currentStatue.realScore);
+            int winScore = -100000;
             for(int i=0;i<players.size();i++)
             {
-                thePlayer = players.get(i);
-                if(thePlayer.getCurrentScore().getRealScore()>winScore)
+                if(players.get(i).getCurrentScore().getRealScore()>winScore)
                 {
-                    
+                    thePlayer =  players.get(i);
+                    winScore = thePlayer.getCurrentScore().getRealScore();
+                }
+            }
+            thePlayer.getCurrentStatue().setStatus(Constants.WINNER);
+            for(int i=0;i<players.size();i++)
+            {
+                if(!players.get(i).getCurrentStatue().getStatus().equals(Constants.WINNER))
+                {
+                    players.get(i).getCurrentStatue().setStatus(Constants.LOSER);
                 }
             }
         }
-    }*/
+    }
+    @Override
+    public void DFS(int x, int y, Grid myGrid) 
+    {
+        Integer[][] coordinator=new Integer[][]{{0,1},{0,-1},{1,0},{-1,0},{-1,-1},{-1,1},{1,-1},{1,1}};
+        int tempX,tempY;
+        int value;
+        for(int coordinat=0;coordinat<8;coordinat++)
+        {
+            tempX=x+coordinator[coordinat][0];
+            tempY=y+coordinator[coordinat][1];
+            if(tempX >=1 && tempX<myGrid.getSquares().length-1 && tempY >=1 && tempY<myGrid.getSquares().length-1)
+            {
+                if(myGrid.getSquares()[tempX][tempY].getSquareStatus().getStatus().equals(Constants.CLOSED))
+                {
+                    value = myGrid.getSquares()[tempX][tempY].getSquareStatus().getValue();
+                    if(value == 0)
+                    {
+                        myGrid.getSquares()[tempX][tempY].getSquareStatus().setStatus(Constants.OPENED_EMPTY);
+                        DFS(tempX,tempY,myGrid);
+                    }
+                    else if(value>0 && value<9)
+                    {
+                        myGrid.getSquares()[tempX][tempY].getSquareStatus().setStatus(Constants.OPENED_NUMBER);
+                    }
+                }
+            }
+        }
+    }
 }

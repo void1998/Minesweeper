@@ -26,7 +26,9 @@ public abstract class Game {
 
     public abstract void ApplyPlayerMove(PlayerMove move, Grid myGrid);
     
-    //public abstract void Winner();
+    public abstract void Winner();
+    
+    public abstract void DFS(int x,int y, Grid myGrid);
 
     public void setPlayers(List<Player> players) {
         this.players = players;
