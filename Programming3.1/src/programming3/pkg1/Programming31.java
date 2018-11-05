@@ -16,11 +16,12 @@ public class Programming31 extends Application  {
         View myView = new ConsoleView();
         myView.Draw(myGrid.getSquares());
         PlayerMove temp = new PlayerMove();
+        temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
+        myGrid.initGrid(temp.getSquare());
         while(!myGrid.checkGame())
         {
            temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
            myGrid.AcceptMove(temp);
-           myGrid.getSquares()[temp.getSquare().getX()][temp.getSquare().getY()] = temp.getSquare();
            myView.Draw(myGrid.getSquares());
           
         }

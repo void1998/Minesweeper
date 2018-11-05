@@ -24,7 +24,7 @@ public abstract class Game {
 
     public abstract boolean AcceptMove(PlayerMove move, Grid myGrid);
 
-    public abstract void ApplyPlayerMove(PlayerMove move);
+    public abstract void ApplyPlayerMove(PlayerMove move, Grid myGrid);
     
     //public abstract void Winner();
 

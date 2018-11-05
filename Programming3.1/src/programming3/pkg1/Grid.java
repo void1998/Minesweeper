@@ -21,10 +21,10 @@ public class Grid {
     
     public Grid(int hieght, int width, Game currentGame)
     {
-        squares = new Square[hieght][width];
-        for(int i=0;i<hieght;i++)
+        squares = new Square[hieght+2][width+2];
+        for(int i=0;i<hieght+2;i++)
         {
-            for(int j=0;j<width;j++)
+            for(int j=0;j<width+2;j++)
             {
                 squares[i][j] = new Square();
                 squares[i][j].setX(i);
@@ -65,7 +65,7 @@ public class Grid {
             int scoreChange;
             int score=move.getPlayer().getCurrentScore().getRealScore();
             String status;
-            currentGame.ApplyPlayerMove(move);
+            currentGame.ApplyPlayerMove(move,this);
             scoreChange = currentGame.getCurrentRules().GetScoreChange(move);
             move.getResult().setScoreChange(scoreChange);
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);

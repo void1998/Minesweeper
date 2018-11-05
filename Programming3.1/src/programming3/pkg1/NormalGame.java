@@ -114,17 +114,23 @@ public class NormalGame extends Game {
         return false;
     }
     @Override
-    public void ApplyPlayerMove(PlayerMove move)
+    public void ApplyPlayerMove(PlayerMove move,Grid myGrid)
     {
-        String state = move.getSquare().getSquareStatus().getStatus();
+        String state = myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().getStatus();
         switch(move.getMove().getType())
         {
             case Constants.MARK:
             {
                 if(state .equals(Constants.CLOSED))
+                {
                     move.getSquare().getSquareStatus().setStatus(Constants.MARKED);
+                    myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.MARKED);
+                }
                 else if(state .equals(Constants.MARKED))
+                {
                     move.getSquare().getSquareStatus().setStatus(Constants.CLOSED);
+                    myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.CLOSED);
+                }
                 break;
                 
             }
@@ -136,14 +142,17 @@ public class NormalGame extends Game {
                     if(value == 0)
                     {
                         move.getSquare().getSquareStatus().setStatus(Constants.OPENED_EMPTY);
+                        myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.OPENED_EMPTY);
                     }
                     else if(value>=1 && value<=8)
                     {
                         move.getSquare().getSquareStatus().setStatus(Constants.OPENED_NUMBER);
+                        myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.OPENED_NUMBER);
                     }
                     else if(value == 9)
                     {
                         move.getSquare().getSquareStatus().setStatus(Constants.OPENED_MINE);
+                        myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.OPENED_MINE);
                     }
                     break;
                 /*}
