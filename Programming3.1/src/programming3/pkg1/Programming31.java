@@ -19,6 +19,14 @@ public class Programming31 extends Application  {
         temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
         myGrid.initGrid(temp.getSquare());
         myGrid.AcceptMove(temp);
+        /*for(int i=1;i<20;i++)
+        {
+            for(int j=1;j<20;j++)
+            {
+                System.out.print(myGrid.getSquares()[i][j].getSquareStatus().getValue());
+            }
+            System.out.println("");
+        }*/
         myView.Draw(myGrid.getSquares());
         while(!myGrid.checkGame())
         {

@@ -13,9 +13,9 @@ public class ConsoleView implements View {
     @Override
     public void Draw(Square squares[][])
     {
-        for(int i=0;i<19;i++)
+        for(int i=1;i<20;i++)
         {
-            for(int j=0;j<19; j++)
+            for(int j=1;j<20; j++)
             {
                 switch (squares[i][j].getSquareStatus().getStatus()) {
                     case Constants.MARKED:

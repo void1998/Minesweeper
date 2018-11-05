@@ -46,6 +46,7 @@ public class Square {
     
 
     public boolean IsMine() {
-       return squareStatus.getStatus().equals(Constants.OPENED_MINE);
+        return squareStatus.getValue()==9;
+                
     }
 }

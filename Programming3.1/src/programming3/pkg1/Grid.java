@@ -162,7 +162,8 @@ public class Grid {
                    {
                        int tempX=i+coordinator[coordinat][0];
                        int tempY=j+coordinator[coordinat][1];
-                       squares[tempX][tempY].getSquareStatus().setValue(squares[tempX][tempY].getSquareStatus().getValue()+1);
+                       if(squares[tempX][tempY].getSquareStatus().getValue()!=9)
+                            squares[tempX][tempY].getSquareStatus().setValue(squares[tempX][tempY].getSquareStatus().getValue()+1);
                    }
                 }
             }
