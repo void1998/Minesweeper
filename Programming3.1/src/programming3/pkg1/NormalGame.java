@@ -206,7 +206,7 @@ public class NormalGame extends Game {
         {
             tempX=x+coordinator[coordinat][0];
             tempY=y+coordinator[coordinat][1];
-            if(tempX >=1 && tempX<myGrid.getSquares().length-1 && tempY >=1 && tempY<myGrid.getSquares().length-1)
+            if(tempX >=1 && tempX<=myGrid.getHieght() && tempY >=1 && tempY<=myGrid.getWidth())
             {
                 if(myGrid.getSquares()[tempX][tempY].getSquareStatus().getStatus().equals(Constants.CLOSED))
                 {

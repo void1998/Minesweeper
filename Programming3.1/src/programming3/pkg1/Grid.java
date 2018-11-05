@@ -10,6 +10,9 @@ public class Grid {
     
     GameException gameException;
     
+    private int hieght;
+            
+    private int width;
 
     public Grid() {
     }
@@ -32,6 +35,8 @@ public class Grid {
             }
         }
         this.currentGame = currentGame;
+        this.hieght = hieght;
+        this.width = width;
     }
 
     public Square[][] getSquares() {
@@ -48,6 +53,14 @@ public class Grid {
 
     public void setCurrentGame(Game currentGame) {
         this.currentGame = currentGame;
+    }
+
+    public int getHieght() {
+        return hieght;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     
@@ -82,11 +95,11 @@ public class Grid {
     public void setBorder()
     {
       //  set the border around the grid as a mines
-            for(int i=0;i<squares.length;i++)
+            for(int i=0;i<hieght+2;i++)
         {
-            for(int j=0;j<squares.length;i++)
+            for(int j=0;j<width+2;j++)
             {
-                if(i==0||j==0||i==squares.length-1||j==squares.length-1)
+                if(i==0||j==0||i==hieght+1||j==width+1)
                 {
                     squares[i][j].getSquareStatus().setValue(9);
                 }
@@ -100,12 +113,12 @@ public class Grid {
       int count=0;
        Random random=new Random();
        //generat 19 mines
-       for(int mineNumber=0;mineNumber<250;mineNumber++)
+       for(int mineNumber=0;mineNumber<35;mineNumber++)
       {
        while(true)
        {
-       int x=random.nextInt()*(squares.length-1)+1;
-       int y=random.nextInt()*(squares.length-1)+1;
+       int x=random.nextInt(hieght)+1;
+       int y=random.nextInt(width)+1;
        if(!squares[x][y].IsMine())
        {  
            //if not mine
@@ -139,9 +152,9 @@ public class Grid {
     public void fillUpNumbers()
     {
         Integer[][] coordinator=new Integer[][]{{0,1},{0,-1},{1,0},{-1,0},{-1,-1},{-1,1},{1,-1},{1,1}};
-        for(int i=1;i<squares.length-1;i++)
+        for(int i=1;i<hieght+1;i++)
         {
-            for(int j=1;j<squares.length-1;j++)
+            for(int j=1;j<width+1;j++)
             {
                 if(squares[i][j].IsMine())
                 {
