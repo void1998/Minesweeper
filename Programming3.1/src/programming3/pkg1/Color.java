@@ -1,10 +1,31 @@
 package programming3.pkg1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Color {
-   private static int colorNumber=1;
-    public int getPlayerColor()
+      private static int GUIplayerNumber=1;
+      private final int standerdNumber=20;
+      ////////////////////////////
+      private static int consoleplayerNumber=0;
+      private final List<String> colorList=Arrays.asList(".",",",";","~",":","^","`","-","*","'");
+    
+    
+    public List<Integer> getGUIPlayerColor()
     {
-        return colorNumber++;
+          List<Integer> colorNumber=new ArrayList<>();
+        colorNumber.add(standerdNumber*GUIplayerNumber);
+        colorNumber.add(standerdNumber*GUIplayerNumber);
+        colorNumber.add(standerdNumber*GUIplayerNumber);
+        GUIplayerNumber++;
+        return colorNumber;
+    }
+    
+    
+    public String getConsolePlayerColor()
+    {
+        return colorList.get(consoleplayerNumber++);
     }
 }
 
