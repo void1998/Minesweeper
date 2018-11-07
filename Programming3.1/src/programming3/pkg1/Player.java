@@ -9,7 +9,6 @@ public abstract class Player {
     {
         this.name = "Player";
         this.currentScore = new NumiricScore();
-        this.currentScore = new NumiricScore();
         this.currentStatue = new PlayerStatue();
     }
     Player(Score score,PlayerStatue statue)

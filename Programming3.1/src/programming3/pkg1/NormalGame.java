@@ -3,7 +3,9 @@ package programming3.pkg1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NormalGame extends Game {
+public class NormalGame extends Game implements GridInterface{
+    Grid currentGrid;
+
     public class DefaultRules extends GameRules 
     {
 
@@ -182,8 +184,15 @@ public class NormalGame extends Game {
                 }*/
             }
         }
+        currentGrid=myGrid;
     }
     
+       @Override
+    public Grid getGrid() {
+        return currentGrid;
+    }
+       
+  
     @Override
     public void Winner()
     {

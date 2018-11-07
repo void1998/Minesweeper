@@ -17,6 +17,7 @@ public class PlayerMove {
         
     }
 
+    
     public PlayerMove(Player player, Square square, MoveType move, MoveResult result) {
         this.player = player;
         this.square = square;
