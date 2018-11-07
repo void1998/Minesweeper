@@ -5,6 +5,7 @@
  */
 package programming3.pkg1;
 
+
 /**
  *
  * @author void
@@ -13,8 +14,20 @@ public class ConsoleView implements View {
     @Override
     public void Draw(Square squares[][])
     {
+        char characters;
+        System.out.print("    ");
+        for (char i=65;i<84;i++)
+        {
+            characters=i;
+            System.out.print(characters+"  ");
+        }
+        System.out.println();
         for(int i=1;i<20;i++)
         {
+            if(i<10)
+             System.out.print(i+"   ");
+            else 
+               System.out.print(i+"  "); 
             for(int j=1;j<20; j++)
             {
                 switch (squares[i][j].getSquareStatus().getStatus()) {
@@ -36,8 +49,9 @@ public class ConsoleView implements View {
                     default:
                         break;
                 }
+                System.out.print("  ");
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 }

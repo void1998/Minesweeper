@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -28,36 +29,75 @@ public class ConsolePlayer extends Player {
         Square square = new Square();
         MoveType currentType = new MoveType();
         BufferedReader reader = new BufferedReader (new InputStreamReader(System.in));
+        while(true)
+        {
         try {
             System.out.println("to mark square please enter 1, to reveal square please enter 2 ");
             String Insert = reader.readLine();
-            int insert = Integer.parseInt(Insert);
-            if(insert == 1)
-            currentType.setType(Constants.MARK);
-            else if(insert == 2)
-            currentType.setType(Constants.REVEAL);
-            else
-                System.out.println("not available please try again");
-        } catch (IOException ex) {
+            switch (Insert) {
+                case "1":
+                    currentType.setType(Constants.MARK);
+                    break;
+                case "2":
+                    currentType.setType(Constants.REVEAL);
+                    break;
+                default:
+                    throw new IllegalGameMove("not available please try again");
+            }
+            break;
+        }
+         catch (IllegalGameMove ex) {
+            System.out.println(ex);
+        }  
+        catch (IOException ex) {
             Logger.getLogger(ConsolePlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
+        while(true)
+        {
         try {
             System.out.println("Please enter the letter of the column");
             String Insert = reader.readLine();
-            int insert = Integer.parseInt(Insert);
-            square.setX(insert);
-        } catch (IOException ex) {
+           // int insert = Integer.parseInt(Insert);
+             // if(insert<20 && insert>0)
+             if(Pattern.compile("[0-9]").matcher(Insert).matches())
+              { 
+                  int insert = Integer.parseInt(Insert);
+                  square.setX(insert);
+                  break;
+              }
+            throw new IllegalSquareName("illegal square name!");
+        }
+        catch (IllegalSquareName ex) {
+             System.out.println(ex);  
+                    
+        }
+        catch (IOException ex) {
             Logger.getLogger(ConsolePlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
+        while(true)
+        {
         try {
             System.out.println("please enter the number of the row");
             String Insert = reader.readLine();
             int insert = Integer.parseInt(Insert);
-            square.setY(insert);
+            if(insert<20 && insert>0)
+            {
+                square.setY(insert);
+                break;
+            }
+            throw new IllegalSquareName("illegal square name!");
             } 
+        catch (IllegalSquareName ex) {
+             System.out.println(ex);     
+        }
         catch (IOException ex) {
              Logger.getLogger(ConsolePlayer.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
         currentMove.setPlayer(this);
         currentMove.setSquare(square);
         currentMove.setMove(currentType);

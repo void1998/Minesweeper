@@ -8,6 +8,7 @@ public class IllegalGameMove extends GameException {
         message=string;
     }
 
+    
     @Override
     public String getException() {
         return message;
