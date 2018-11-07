@@ -8,9 +8,10 @@ import javafx.scene.input.MouseEvent;
 
 public class GUIPlayer extends Player {
         static Button buttons[][] =  GUIView.initGrid(19,19);
-        GUIPlayer(Score score, PlayerStatue playerStatue) {
+        GUIPlayer(Score score, PlayerStatue playerStatue,String name) {
         this.currentScore = score;
         this.currentStatue = playerStatue;
+        this.name = name;
     }
     @Override
     public PlayerMove GetPlayerMove()
