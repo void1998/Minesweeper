@@ -36,6 +36,7 @@ public class GUIView  {
             {
                 button[i][j] = new Button();
                 GridPane.setConstraints(button[i][j],i,j);
+                button[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
             }
         }
         return button;
@@ -51,14 +52,43 @@ public class GUIView  {
         //
         for(int i=0;i<height;i++)
             for(int j=0;j<width;j++)
+            {
                 Grid.getChildren().add(button[i][j]);
+            }
+                
         //
         return Grid;
         
     }
     
-    public static void interact(Button button)
+    public static void interact(Button buttons[][],Square squares[][])
     {
+        for(int i=0;i<19;i++)
+        {
+            for(int j=0;j<19;j++)
+            {
+                if(squares[i][j].getSquareStatus().getStatus().equals(Constants.CLOSED))
+                buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
+                else if(squares[i][j].getSquareStatus().getStatus().equals(Constants.MARKED))
+                {
+                    buttons[i][j].setStyle("-fx-background-color: orange;-fx-border-color:black;");
+                }
+                else if(squares[i][j].getSquareStatus().getStatus().equals(Constants.OPENED_EMPTY))
+                {
+                    buttons[i][j].setStyle("-fx-background-color: white;-fx-border-color:black;");
+                }
+                else if(squares[i][j].getSquareStatus().getStatus().equals(Constants.OPENED_MINE))
+                {
+                    buttons[i][j].setStyle("-fx-background-color: black;-fx-border-color:black;");
+                }
+                else if(squares[i][j].getSquareStatus().getStatus().equals(Constants.OPENED_NUMBER))
+                {
+                    buttons[i][j].setStyle("-fx-background-color: red;-fx-border-color:black;");
+                }
+
+            }
+        }
+                
         
     }
     
