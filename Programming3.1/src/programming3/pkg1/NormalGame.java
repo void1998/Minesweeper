@@ -116,9 +116,13 @@ public class NormalGame extends Game {
                         {
                             return Constants.TRUE;
                         }   
-                        else
+                        else if(state .equals(Constants.MARKED))
                         {
                             return "you can't open a marked square";
+                        }
+                        else
+                        {
+                            return "you can't open an opened square";
                         }
                 }
             }
