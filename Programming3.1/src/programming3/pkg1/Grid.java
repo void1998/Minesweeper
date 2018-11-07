@@ -1,6 +1,9 @@
 package programming3.pkg1;
 
+import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Grid {
 
@@ -73,21 +76,32 @@ public class Grid {
     }
 
     public void AcceptMove(PlayerMove move) {
-        if(currentGame.AcceptMove(move,this))
+        
+        try 
         {
+            String accept = currentGame.AcceptMove(move,this);
+            if(!accept.equals(Constants.TRUE))
+            {
+                throw new IllegalGameMove(accept);
+            }
             int scoreChange;
             int score=move.getPlayer().getCurrentScore().getRealScore();
             String status;
-            currentGame.ApplyPlayerMove(move,this);
+            move.square.squareStatus = this.getSquares()[move.getSquare().getX()][move.getSquare().getY()].squareStatus;
+            currentGame.moves.add(move);
+            currentGame.ApplyPlayerMove(currentGame.moves,this);
             scoreChange = currentGame.getCurrentRules().GetScoreChange(move);
             move.getResult().setScoreChange(scoreChange);
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
             status = currentGame.getCurrentRules().ChangePlayerStatus(move);
             move.getPlayer().getCurrentStatue().setStatus(status);
-            currentGame.moves.add(move);
+            currentGame.setCurrentPlayer(currentGame.getCurrentRules().DecideNextPlayer(currentGame.moves));
+       
+        } 
+        catch (IllegalGameMove ex) 
+        {
+            System.out.println(ex.getException());
         }
-        /*else 
-            gameException.handleEx();*/
             
     }
     

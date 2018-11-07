@@ -13,6 +13,7 @@ public class PlayerMove {
     public PlayerMove() {
        move = new MoveType();
        result = new MoveResult();
+       square = new Square();
         
     }
 
