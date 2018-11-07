@@ -183,22 +183,4 @@ public class Grid {
             }
         }
     }
-    
-    public boolean checkGame()
-    {
-        String state;
-        for(int i=1;i<squares.length-1;i++)
-        {
-            for(int j=1;j<squares.length-1;j++)
-            {
-                state = squares[i][j].getSquareStatus().getStatus();
-                if(state.equals(Constants.CLOSED) || state.equals(Constants.OPENED_MINE))
-                {
-                    return false;
-                }
-            }
-        }
-        currentGame.setGameStatus(Constants.FINISHED);
-        return true;
-    }
 }

@@ -1,9 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package programming3.pkg1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NormalGame extends Game {
+/**
+ *
+ * @author ASUS
+ */
+public class ScoreGame extends Game
+{
     public class DefaultRules extends GameRules 
     {
 
@@ -79,13 +89,13 @@ public class NormalGame extends Game {
         players = new ArrayList<>();
         Score score;
         PlayerStatue playerStatue;
-        String name;
         Player current;
+        String name;
         for(int i=0;i<playersNumber;i++)
         {
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
-            name = "Player " + (i+1);
+            name = "Player " + i;
             current = new ConsolePlayer(score, playerStatue, name);
             setCurrentPlayer(current);
             players.add(current);
@@ -272,7 +282,7 @@ public class NormalGame extends Game {
         {
             myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
         }
-        this.Winner();
         return gameState;
     }
+    
 }

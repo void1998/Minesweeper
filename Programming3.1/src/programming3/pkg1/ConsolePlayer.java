@@ -18,7 +18,8 @@ import java.util.regex.Pattern;
  */
 public class ConsolePlayer extends Player {
 
-    ConsolePlayer(Score score, PlayerStatue playerStatue) {
+    ConsolePlayer(Score score, PlayerStatue playerStatue, String name) {
+        this.name = name;
         this.currentScore = score;
         this.currentStatue = playerStatue;
     }
@@ -61,7 +62,7 @@ public class ConsolePlayer extends Player {
             String Insert = reader.readLine();
            // int insert = Integer.parseInt(Insert);
              // if(insert<20 && insert>0)
-             if(Pattern.compile("[0-9]").matcher(Insert).matches())
+             if(Pattern.compile("[0-9]|1[0-9]").matcher(Insert).matches())
               { 
                   int insert = Integer.parseInt(Insert);
                   square.setX(insert);
@@ -83,9 +84,11 @@ public class ConsolePlayer extends Player {
         try {
             System.out.println("please enter the number of the row");
             String Insert = reader.readLine();
-            int insert = Integer.parseInt(Insert);
-            if(insert<20 && insert>0)
+            //int insert = Integer.parseInt(Insert);
+            //if(insert<20 && insert>0)
+            if(Pattern.compile("[0-9]|1[0-9]").matcher(Insert).matches())
             {
+            int insert = Integer.parseInt(Insert);
                 square.setY(insert);
                 break;
             }

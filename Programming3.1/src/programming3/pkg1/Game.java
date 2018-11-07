@@ -31,6 +31,8 @@ public abstract class Game {
     public abstract void Winner();
     
     public abstract void DFS(int x,int y, Grid myGrid);
+    
+    public abstract String checkGame(Grid myGrid);
 
     public void setPlayers(List<Player> players) {
         this.players = players;
