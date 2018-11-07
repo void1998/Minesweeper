@@ -11,7 +11,7 @@ public class Programming31 extends Application  {
     public static void main(String[] args)
     {
         Game myGame = new NormalGame();
-        myGame.initGame(1);
+        myGame.initGame(2);
         Grid myGrid = new Grid(19,19,myGame);
         View myView = new ConsoleView();
         myView.Draw(myGrid.getSquares());
@@ -19,21 +19,25 @@ public class Programming31 extends Application  {
         temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
         myGrid.initGrid(temp.getSquare());
         myGrid.AcceptMove(temp);
-        /*for(int i=1;i<20;i++)
+        for(int i=1;i<20;i++)
         {
             for(int j=1;j<20;j++)
             {
                 System.out.print(myGrid.getSquares()[i][j].getSquareStatus().getValue());
             }
             System.out.println("");
-        }*/
+        }
+        System.out.println("");
         myView.Draw(myGrid.getSquares());
         while(!myGrid.checkGame())
         {
+           System.out.println("");
+           System.out.printf("The score is:%d", myGame.getCurrentPlayer().getCurrentScore().getRealScore());
+           System.out.println("");
            temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
            myGrid.AcceptMove(temp);
            myView.Draw(myGrid.getSquares());
-          
+      
         }
         
     }

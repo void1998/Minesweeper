@@ -19,5 +19,6 @@ public class Constants {
     public static final String ON_GOING="On Going";
     public static final String NOT_STARTED="New Game";
     
-    
+    public static final String TRUE="True";
+    public static final String FALSE="False";
 }

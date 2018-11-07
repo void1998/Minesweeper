@@ -12,19 +12,21 @@ public abstract class Game {
     private GameRules CurrentRules;
     
     private String GameStatus;
+    
+    private int playersNumber;
 
     public abstract class GameRules 
     {
 
         public abstract int GetScoreChange(PlayerMove move);
-        //public abstract Player DecideNextPlayer(List<PlayerMove> moves);
+        public abstract Player DecideNextPlayer(List<PlayerMove> moves);
         public abstract String ChangePlayerStatus(PlayerMove move);
     }
     public abstract void initGame(int playersNumber);
 
-    public abstract boolean AcceptMove(PlayerMove move, Grid myGrid);
+    public abstract String AcceptMove(PlayerMove move, Grid myGrid) throws IllegalGameMove;
 
-    public abstract void ApplyPlayerMove(PlayerMove move, Grid myGrid);
+    public abstract void ApplyPlayerMove(List<PlayerMove> moves, Grid myGrid);
     
     public abstract void Winner();
     
@@ -69,6 +71,13 @@ public abstract class Game {
     public String getGameStatus() {
         return GameStatus;
     }
-    
+
+    public int getPlayersNumber() {
+        return playersNumber;
+    }
+
+    public void setPlayersNumber(int playersNumber) {
+        this.playersNumber = playersNumber;
+    }
     
 }

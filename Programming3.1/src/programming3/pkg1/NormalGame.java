@@ -1,8 +1,6 @@
 package programming3.pkg1;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 
 public class NormalGame extends Game {
@@ -13,7 +11,7 @@ public class NormalGame extends Game {
         public int GetScoreChange(PlayerMove move) {
             String status = move.getSquare().getSquareStatus().getStatus();
             int value = move.getSquare().getSquareStatus().getValue();
-                if(status .equals(Constants.MARK))
+                if(status .equals(Constants.MARKED))
                 {
                     if(value == 9)
                     {
@@ -42,9 +40,15 @@ public class NormalGame extends Game {
             return 0;
         }
     
-     /*public Player DecideNextPlayer(List<PlayerMove> moves) {
-         throw new UnsupportedOperationException("Not supported yet.");
-     }*/
+        @Override
+        public Player DecideNextPlayer(List<PlayerMove> moves) 
+        {
+            int playerNum;
+            playerNum = (moves.size())%getPlayersNumber();
+            return players.get(playerNum);
+            
+        }
+        
         @Override
      public String ChangePlayerStatus(PlayerMove move)
      {
@@ -88,49 +92,59 @@ public class NormalGame extends Game {
         setMoves(new ArrayList<>());
         setGameStatus(Constants.NOT_STARTED);
         setCurrentPlayer(players.get(0));
+        setPlayersNumber(playersNumber);
     }
     
     @Override
-    public boolean AcceptMove(PlayerMove move, Grid myGrid) 
+    public String AcceptMove(PlayerMove move, Grid myGrid) 
     {
-        if(move.getSquare().getX()>=1 && move.getSquare().getX()<=19)
+        if(move.getSquare().getX()>=1 && move.getSquare().getX()<=myGrid.getHieght())
         {
-            if(move.getSquare().getY()>=1 && move.getSquare().getY()<=19)
+            if(move.getSquare().getY()>=1 && move.getSquare().getY()<=myGrid.getWidth())
             {
                 String state = myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().getStatus();
                 switch (move.getMove().getType()) {
                     case Constants.MARK:
                         if(state .equals(Constants.CLOSED) || state .equals(Constants.MARKED))
                         {
-                            return true;
-                        }   break;
+                            return Constants.TRUE;
+                        }
+                        else
+                            return "you can't mark an opened square";
                     case Constants.REVEAL:
                         if(state .equals(Constants.CLOSED))
                         {
-                            return true;
-                        }   break;
+                            return Constants.TRUE;
+                        }   
+                        else
+                        {
+                            return "you can't open a marked square";
+                        }
                 }
             }
+            return "out of width exception";
         }
-        return false;
+        return "out of hieght eception";
     }
     @Override
-    public void ApplyPlayerMove(PlayerMove move,Grid myGrid)
+    public void ApplyPlayerMove(List<PlayerMove> moves,Grid myGrid)
     {
+        PlayerMove move = moves.get(moves.size()-1);
         String state = myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().getStatus();
         switch(move.getMove().getType())
         {
             case Constants.MARK:
             {
-                if(state .equals(Constants.CLOSED))
+                switch (state) 
                 {
-                    move.getSquare().getSquareStatus().setStatus(Constants.MARKED);
-                    myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.MARKED);
-                }
-                else if(state .equals(Constants.MARKED))
-                {
-                    move.getSquare().getSquareStatus().setStatus(Constants.CLOSED);
-                    myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.CLOSED);
+                    case Constants.CLOSED:
+                        move.getSquare().getSquareStatus().setStatus(Constants.MARKED);
+                        myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.MARKED);
+                        break;
+                    case Constants.MARKED:
+                        move.getSquare().getSquareStatus().setStatus(Constants.CLOSED);
+                        myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().setStatus(Constants.CLOSED);
+                        break;
                 }
                 break;
                 
