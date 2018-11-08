@@ -269,21 +269,24 @@ public class ScoreGame extends Game
                 gameState = Constants.LOSER;
             }
         }
-        for(int i=1;i<myGrid.getHieght();i++)
+        if(!gameState.equals(Constants.LOSER))
         {
-            for(int j=1;j<myGrid.getWidth();j++)
+            for(int i=1;i<myGrid.getHieght();i++)
             {
-                state = myGrid.getSquares()[i][j].getSquareStatus().getStatus();
-                value = myGrid.getSquares()[i][j].getSquareStatus().getValue();
-                if((state.equals(Constants.CLOSED)&& value != 9) || (state.equals(Constants.MARKED) && value != 9))
+                for(int j=1;j<myGrid.getWidth();j++)
                 {
-                    gameState = Constants.ON_GOING;
+                    state = myGrid.getSquares()[i][j].getSquareStatus().getStatus();
+                    value = myGrid.getSquares()[i][j].getSquareStatus().getValue();
+                    if((state.equals(Constants.CLOSED)&& value != 9) || (state.equals(Constants.MARKED) && value != 9))
+                    {
+                        gameState = Constants.ON_GOING;
+                    }
                 }
             }
-        }
-        if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
-        {
-            myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+            if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
+            {
+                myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+            }
         }
         return gameState;
     }
