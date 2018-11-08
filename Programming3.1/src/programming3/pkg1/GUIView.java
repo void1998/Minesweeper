@@ -245,7 +245,7 @@ public class GUIView  {
                             temp2.getSquare().setY(y);
                             temp2.setPlayer(myGame.getCurrentPlayer());
                             grid.AcceptMove(temp2);
-                            if(myGame.checkGame(grid)== Constants.PLAYING)
+                            if(myGame.checkGame(grid)!= Constants.PLAYING)
                             {
                                 
                                 Scene fscene = new Scene(GUIView.finishGame());
