@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -19,25 +20,23 @@ import javafx.stage.Stage;
  */
 public class GUIView  {
     
-    
-    public static Stage initWindow(Stage primaryStage)
+    public static Stage window ;
+    public static void initWindow( )
     {
-        Stage window;
-        window = primaryStage;
+        window = new Stage();
         window.setTitle("Minesweeper");
         window.setMinWidth(600);
         window.setMinHeight(600);
         //window.setMaxWidth(800);
         //window.setMaxHeight(800);
-        return window;
     }
     
     public static Button[][] initGrid(int height,int width)
     {
         Button button[][] = new Button[height][width];
-        for(int i=0;i<height;i++)
+        for(int i=0;i<width;i++)
         {
-            for(int j=0;j<width;j++)
+            for(int j=0;j<height;j++)
             {
                 button[i][j] = new Button();
                 GridPane.setConstraints(button[i][j],i,j);
@@ -51,11 +50,11 @@ public class GUIView  {
     
 
     
-    public static void interact(Button buttons[][],Square squares[][])
+    public static void interact(Button buttons[][],Square squares[][],int height,int width)
     {
-        for(int i=0;i<19;i++)
+        for(int i=0;i<width;i++)
         {
-            for(int j=0;j<19;j++)
+            for(int j=0;j<height;j++)
             {
                 if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.CLOSED))
                 buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
@@ -93,8 +92,8 @@ public class GUIView  {
         Grid.setHgap(0);
         Grid.setAlignment(Pos.CENTER);
         //
-        for(int i=0;i<height;i++)
-            for(int j=0;j<width;j++)
+        for(int i=0;i<width;i++)
+            for(int j=0;j<height;j++)
             {
                 Grid.getChildren().add(button[i][j]);
             }
@@ -120,7 +119,7 @@ public class GUIView  {
         return Grid;
     }
     
-        public static GridPane initMenu(Stage window)
+        public static GridPane initMenu()
     {
         GridPane Grid = new GridPane();
         Grid.setPadding(new Insets(10,10,10,10));
@@ -158,10 +157,7 @@ public class GUIView  {
             start.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event) {
-                    GridPane myGrid = GUIView.initLayout(buttons, 19, 19);
-                    Scene scene = new Scene(myGrid);
-                    window.setScene(scene);
-                    window.show();
+                    initGame(new NormalGame(),1,16,16);
                 }
                 
             });
@@ -201,33 +197,104 @@ public class GUIView  {
 
 
             //
-            optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea);
+            /*optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea);
             Grid.getChildren().addAll(start,options,exit);
              initButton(start,0,1);
              initButton(options,0,2);
              initButton(exit,0,3);
 
             //
-            return Grid;
+            return Grid;*/
         }
-
+        
     private static void optionsButtonActions(Button submit,TextArea playersNumTextArea,TextArea heightTextArea,TextArea widthTextArea) 
     {
         
-        submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        /*submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
                 String num = playersNumTextArea.getText();
                 playerNum = Integer.parseInt(num);
                 String height = heightTextArea.getText();
                 String width = widthTextArea.getText();
-                init();//CONTINUE frOM HERE
+                init()//CONTINUE frOM HERE
             }
 
         });
-        
+        */
     }
-    
+    public static void applyGUI(Button buttons[][],Game myGame,Grid grid)
+    {
+        for(int i=0;i<grid.getWidth(); i++)
+            for(int j=0;j<grid.getHieght(); j++)
+            {
+                final int x;
+                x = i+1;
+                final int y;
+                y = j+1;
+                 
+                buttons[i][j].setOnMouseClicked(new EventHandler<MouseEvent>(){
+                    @Override
+                    public void handle(MouseEvent event) {
+                       PlayerMove temp2 = new PlayerMove();
+                        if(event.getButton() == MouseButton.PRIMARY)
+                        {
+                            
+                            temp2.getMove().setType(Constants.REVEAL);
+                            temp2.getSquare().setX(x);
+                            temp2.getSquare().setY(y);
+                            temp2.setPlayer(myGame.getCurrentPlayer());
+                            grid.AcceptMove(temp2);
+                            if(myGame.checkGame(grid)!= Constants.PLAYING)
+                            {
+                                
+                                Scene fscene = new Scene(GUIView.finishGame());
+                                window.setScene(fscene);
+                                window.show();
+                            }
+                            else
+                            interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth());
+                        
+                        }
+                        else
+                        if(event.getButton() == MouseButton.SECONDARY)
+                        {
+                            temp2.getMove().setType(Constants.MARK);
+                            temp2.getSquare().setX(x);
+                            temp2.getSquare().setY(y);
+                            temp2.setPlayer(myGame.getCurrentPlayer());
+                            grid.AcceptMove(temp2);
+                            interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth());
+                        
+                        }
+
+                    }
+                });
+              
+                
+            }
+    }
+    public static void initGame(Game game,int playersNum,int height,int width)
+    {
+         //init game
+        Game myGame = game;
+        myGame.initGame(playersNum);
+        Grid grid = new Grid(width,height,myGame);
+        
+        PlayerMove temp = new PlayerMove();
+        grid.initGrid(temp.getSquare()); 
+        //
+        Button buttons[][] = GUIView.initGrid(height,width);
+        initGraphics(initLayout(buttons,height,width));
+        applyGUI(buttons,myGame,grid);
+    }
+
+    public static void initGraphics(GridPane layout)
+    {
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.show();
+    }
         
 
 }

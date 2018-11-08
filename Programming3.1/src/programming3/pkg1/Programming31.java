@@ -14,72 +14,7 @@ public class Programming31 extends Application  {
     /**
      * @param args the command line arguments
      */
-    public void applyGUI(Stage window,Button buttons[][],Game myGame,Grid grid)
-    {
-        for(int i=0;i<19; i++)
-            for(int j=0;j<19; j++)
-            {
-                final int x;
-                x = i+1;
-                final int y;
-                y = j+1;
-                 
-                buttons[i][j].setOnMouseClicked(new EventHandler<MouseEvent>(){
-                    @Override
-                    public void handle(MouseEvent event) {
-                       PlayerMove temp2 = new PlayerMove();
-                        if(event.getButton() == MouseButton.PRIMARY)
-                        {
-                            
-                            temp2.getMove().setType(Constants.REVEAL);
-                            temp2.getSquare().setX(x);
-                            temp2.getSquare().setY(y);
-                            temp2.setPlayer(myGame.getCurrentPlayer());
-                            grid.AcceptMove(temp2);
-                            if(grid.checkGame())
-                            {
-                                
-                                Scene fscene = new Scene(GUIView.finishGame());
-                                window.setScene(fscene);
-                                window.show();
-                            }
-                            else
-                            GUIView.interact(buttons, grid.getSquares());
-                        
-                        }
-                        else
-                        if(event.getButton() == MouseButton.SECONDARY)
-                        {
-                            temp2.getMove().setType(Constants.MARK);
-                            temp2.getSquare().setX(x);
-                            temp2.getSquare().setY(y);
-                            temp2.setPlayer(myGame.getCurrentPlayer());
-                            grid.AcceptMove(temp2);
-                            GUIView.interact(buttons, grid.getSquares());
-                        
-                        }
-
-                    }
-                });
-              
-                
-            }
-    }
-    public void init(Stage window,Game game,int playersNum,int height,int width)
-    {
-         //init game
-        Game myGame = game;
-        myGame.initGame(playersNum);
-        Grid grid = new Grid(width,height,myGame);
-        
-        PlayerMove temp = new PlayerMove();
-        grid.initGrid(temp.getSquare()); 
-        //
-        Button buttons[][] = GUIView.initGrid(height,width);
-        Scene qscene = new Scene(GUIView.initLayout(buttons,height,width));
-        window.setScene(qscene);
-        applyGUI(window,buttons,myGame,grid);
-    }
+    
     public static void main(String[] args)
     {
         /*Game myGame = new NormalGame();
@@ -118,14 +53,11 @@ public class Programming31 extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //inti window
-        Stage window = GUIView.initWindow(primaryStage);
+         GUIView.initWindow();
+         GUIView.initGraphics(GUIView.initMenu());
         //
         
-        //main menu
-        Scene ascene = new Scene(GUIView.initMenu(window));
-        window.setScene(ascene);
-        window.show();
-        //
+
         
     }
     
