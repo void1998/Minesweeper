@@ -2,6 +2,7 @@
 package programming3.pkg1;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,8 +43,8 @@ public class GUIView  {
                 button[i][j] = new Button();
                 GridPane.setConstraints(button[i][j],i,j);
                 button[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
-                button[i][j].setMinWidth(40);
-                button[i][j].setMinHeight(40);
+                button[i][j].setMinWidth(30);
+                button[i][j].setMinHeight(30);
             }
         }
         return button;
@@ -104,13 +105,13 @@ public class GUIView  {
         
     }
         
-    static GridPane finishGame() {
+    static GridPane finishGame(String message) {
         GridPane Grid = new GridPane();
         Grid.setPadding(new Insets(0,0,0,0));
         Grid.setVgap(0);
         Grid.setHgap(0);
         Grid.setAlignment(Pos.CENTER);
-        Label statment = new Label("Game Finished");
+        Label statment = new Label(message);
         //
 
                 Grid.getChildren().add(statment);
@@ -213,7 +214,20 @@ public class GUIView  {
         submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                initGame(new NormalGame(),Integer.parseInt(playersNumTextArea.getText()),Integer.parseInt(heightTextArea.getText()),Integer.parseInt(widthTextArea.getText()));
+                try{
+                String pNum = playersNumTextArea.getText();
+                String hNum = heightTextArea.getText();
+                String wNum = widthTextArea.getText();
+                if(Pattern.compile("[1-2]").matcher(pNum).matches()
+                        &&Pattern.compile("[5-9]|1[0-9]|2[0-5]").matcher(hNum).matches()
+                        &&Pattern.compile("[5-9]|1[0-9]|2[0-5]").matcher(wNum).matches())
+                initGame(new NormalGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum));
+                throw new Exception("INVALID INPUT");
+                }
+                catch(Exception ex){
+                    System.out.println(ex.getMessage());
+                }
+                
                 
             }
 
@@ -242,13 +256,20 @@ public class GUIView  {
                             temp2.getSquare().setY(y);
                             temp2.setPlayer(myGame.getCurrentPlayer());
                             grid.AcceptMove(temp2);
-                            if(myGame.checkGame(grid)!= Constants.ON_GOING)
+                            if(myGame.checkGame(grid)== Constants.WINNER)
                             {
                                 
-                                Scene fscene = new Scene(GUIView.finishGame());
+                                Scene fscene = new Scene(GUIView.finishGame("Grid finished correctly"));
                                 window.setScene(fscene);
                                 window.show();
                             }
+                            else
+                                if(myGame.checkGame(grid)== Constants.LOSER)
+                                {
+                                    Scene fscene = new Scene(GUIView.finishGame("game finished"));
+                                    window.setScene(fscene);
+                                    window.show();
+                                }
                             else
                             interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth());
                         
