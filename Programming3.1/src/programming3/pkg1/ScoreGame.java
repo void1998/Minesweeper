@@ -42,9 +42,9 @@ public class ScoreGame extends Game
                     {
                         return value;
                     }
-                    else
+                    else if(value ==9)
                     {
-                        return 0;
+                        return -50;
                     }
                 }
             return 0;

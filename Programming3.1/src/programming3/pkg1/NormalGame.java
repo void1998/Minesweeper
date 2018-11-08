@@ -34,9 +34,9 @@ public class NormalGame extends Game implements GridInterface{
                     {
                         return value;
                     }
-                    else
+                    else if(value ==9)
                     {
-                        return 0;
+                        return -50;
                     }
                 }
             return 0;
