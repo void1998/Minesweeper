@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -165,7 +166,7 @@ public class GUIView  {
             options.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println("options");
+                    initGraphics(initOptions());
                 }
                 
             });
@@ -179,49 +180,45 @@ public class GUIView  {
             });
         }
         
-        public static void initOptions()
+        public static GridPane initOptions()
         {
             GridPane Grid = new GridPane();
-            Grid.setPadding(new Insets(10,10,10,10));
-            Grid.setVgap(10);
-            Grid.setHgap(10);
+            Grid.setPadding(new Insets(100,200,250,250));
+            Grid.setVgap(30);
+            Grid.setHgap(30);
             Grid.setAlignment(Pos.CENTER);
             //init buttons
             Button submit = new Button("Apply changes and start game");
+            GridPane.setConstraints(submit,0,6);
             Label playersNumLabel = new Label("Number of players");
-            TextArea playersNumTextArea = new TextArea();
+            GridPane.setConstraints(playersNumLabel,0,0);
+            TextField playersNumTextArea = new TextField();
+            GridPane.setConstraints(playersNumTextArea,0,1);
             Label heightLabel = new Label("MineSweeper height");
-            TextArea heightTextArea = new TextArea();
+            GridPane.setConstraints(heightLabel,0,2);
+            TextField heightTextArea = new TextField();
+            GridPane.setConstraints(heightTextArea,0,3);
             Label widthLabel = new Label("MineSweeper Width");
-            TextArea widthTextArea = new TextArea();
-
-
-            //
-            /*optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea);
-            Grid.getChildren().addAll(start,options,exit);
-             initButton(start,0,1);
-             initButton(options,0,2);
-             initButton(exit,0,3);
-
-            //
-            return Grid;*/
+            GridPane.setConstraints(widthLabel,0,4);
+            TextField widthTextArea = new TextField();
+            GridPane.setConstraints(widthTextArea,0,5);
+            Grid.getChildren().addAll(submit,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea);
+            optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea);
+            return Grid;
         }
         
-    private static void optionsButtonActions(Button submit,TextArea playersNumTextArea,TextArea heightTextArea,TextArea widthTextArea) 
+    private static void optionsButtonActions(Button submit,TextField playersNumTextArea,TextField heightTextArea,TextField widthTextArea) 
     {
         
-        /*submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                String num = playersNumTextArea.getText();
-                playerNum = Integer.parseInt(num);
-                String height = heightTextArea.getText();
-                String width = widthTextArea.getText();
-                init()//CONTINUE frOM HERE
+                initGame(new NormalGame(),Integer.parseInt(playersNumTextArea.getText()),Integer.parseInt(heightTextArea.getText()),Integer.parseInt(widthTextArea.getText()));
+                
             }
 
         });
-        */
+        
     }
     public static void applyGUI(Button buttons[][],Game myGame,Grid grid)
     {
@@ -245,7 +242,7 @@ public class GUIView  {
                             temp2.getSquare().setY(y);
                             temp2.setPlayer(myGame.getCurrentPlayer());
                             grid.AcceptMove(temp2);
-                            if(myGame.checkGame(grid)!= Constants.PLAYING)
+                            if(myGame.checkGame(grid)!= Constants.ON_GOING)
                             {
                                 
                                 Scene fscene = new Scene(GUIView.finishGame());
