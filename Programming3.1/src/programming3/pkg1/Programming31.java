@@ -17,12 +17,12 @@ public class Programming31 extends Application  {
     
     public static void main(String[] args)
     {
-        /*Game myGame = new ScoreGame();
-        myGame.initGame(2,0);
+Game myGame = new NormalGame();
+        myGame.initGame(1,1);
         Grid myGrid = new Grid(19,19,myGame);
         View myView = new ConsoleView();
         myView.Draw(myGrid.getSquares());
-        PlayerMove temp = new PlayerMove();
+        PlayerMove temp;
         temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
         myGrid.initGrid(temp.getSquare());
         myGrid.AcceptMove(temp);
@@ -67,8 +67,8 @@ public class Programming31 extends Application  {
                 System.out.print(": ");
                 System.out.println(myGame.players.get(i).getCurrentScore().getRealScore());
             }
-        }*/
-        launch(args);
+        }
+        //launch(args);
     }
 
     @Override

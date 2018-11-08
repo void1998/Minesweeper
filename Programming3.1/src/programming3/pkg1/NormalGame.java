@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NormalGame extends Game implements GridInterface{
-    Grid currentGrid;
-
+   static Grid currentGrid=new Grid();  
+   
     public class DefaultRules extends GameRules 
     {
 
@@ -85,6 +85,7 @@ public class NormalGame extends Game implements GridInterface{
         Player current;
         for(int i=0;i<playersNumber;i++)
         {
+            setPlayersNumber(playersNumber);
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
@@ -97,15 +98,15 @@ public class NormalGame extends Game implements GridInterface{
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Auto Player";
-            current = new EasyPlayer(score, playerStatue, name);
+            current = new EasyPlayer(score, playerStatue, name,(GridInterface)this);
             setCurrentPlayer(current);
             players.add(current);
+            setPlayersNumber(getPlayersNumber()+1);
         }
         setCurrentRules(new DefaultRules());
         setMoves(new ArrayList<>());
         setGameStatus(Constants.NOT_STARTED);
         setCurrentPlayer(players.get(0));
-        setPlayersNumber(playersNumber);
     }
     
     @Override

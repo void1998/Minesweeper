@@ -13,6 +13,7 @@ import java.util.List;
  * @author ASUS
  */
 public class ScoreGame extends Game
+
 {
     public class DefaultRules extends GameRules 
     {
@@ -86,6 +87,7 @@ public class ScoreGame extends Game
     public void initGame(int playersNumber, int isAuto)
     {
         // doing the new players list
+        setPlayersNumber(playersNumber);
         players = new ArrayList<>();
         Score score;
         PlayerStatue playerStatue;
@@ -105,15 +107,15 @@ public class ScoreGame extends Game
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Auto Player";
-            current = new EasyPlayer(score, playerStatue, name);
+            current = new EasyPlayer(score, playerStatue, name,(GridInterface)this);
             setCurrentPlayer(current);
             players.add(current);
+            this.setPlayersNumber(this.getPlayersNumber()+1);
         }
         setCurrentRules(new ScoreGame.DefaultRules());
         setMoves(new ArrayList<>());
         setGameStatus(Constants.NOT_STARTED);
         setCurrentPlayer(players.get(0));
-        setPlayersNumber(playersNumber);
     }
     
     @Override

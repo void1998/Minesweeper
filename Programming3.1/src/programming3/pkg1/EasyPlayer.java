@@ -5,6 +5,7 @@
  */
 package programming3.pkg1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -14,17 +15,18 @@ import java.util.Random;
  */
 public class EasyPlayer extends AutoPlayer{
     GridInterface gridInterface;
-    Grid currentGrid;
-    List<Square> closedSquares;
+    Grid currentGrid=new Grid();
+    List<Square> closedSquares=new ArrayList<>();
 
-    public EasyPlayer() {
+   /* public EasyPlayer() {
         currentGrid=gridInterface.getGrid();
-    }
+    }*/
     
-    EasyPlayer(Score score, PlayerStatue playerStatue, String name) {
+    EasyPlayer(Score score, PlayerStatue playerStatue, String name,GridInterface gridInterface) {
         this.name = name;
         this.currentScore = score;
         this.currentStatue = playerStatue;
+        this.gridInterface = gridInterface;
     }
     
     public EasyPlayer(GridInterface gridInterface, Grid currentGrid) {
@@ -41,15 +43,16 @@ public class EasyPlayer extends AutoPlayer{
         MoveType currentMove=new MoveType();
         currentMove.setType(Constants.REVEAL);
         playerMove.setMove(currentMove);
+        playerMove.setPlayer(this);
         return playerMove;
     }
     
     public void fillUpList()
     {
         currentGrid=gridInterface.getGrid();
-        for(int i=1;i<currentGrid.getHieght();i++)
+        for(int i=1;i<=currentGrid.getHieght();i++)
         {
-            for(int j=1;j<currentGrid.getWidth();j++)
+            for(int j=1;j<=currentGrid.getWidth();j++)
             {
                 if(currentGrid.getSquares()[i][j].squareStatus.getStatus().equals(Constants.CLOSED))
                 {
@@ -62,7 +65,7 @@ public class EasyPlayer extends AutoPlayer{
     {
         Square randomSquare;
         Random random=new Random();
-        int index=random.nextInt(closedSquares.size());
+        int index=random.nextInt(closedSquares.size()-1);
         randomSquare=closedSquares.get(index);
         return randomSquare;
     }
