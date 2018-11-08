@@ -34,9 +34,9 @@ public class NormalGame extends Game implements GridInterface{
                     {
                         return value;
                     }
-                    else
+                    else if(value ==9)
                     {
-                        return 0;
+                        return -50;
                     }
                 }
             return 0;
@@ -75,7 +75,7 @@ public class NormalGame extends Game implements GridInterface{
     }
     
     @Override
-    public void initGame(int playersNumber)
+    public void initGame(int playersNumber, int isAuto)
     {
         // doing the new players list
         players = new ArrayList<>();
@@ -89,6 +89,15 @@ public class NormalGame extends Game implements GridInterface{
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
             current = new ConsolePlayer(score, playerStatue, name);
+            setCurrentPlayer(current);
+            players.add(current);
+        }
+        if(isAuto == 1)
+        {
+            score = new NumiricScore();
+            playerStatue = new PlayerStatue();
+            name = "Auto Player";
+            current = new EasyPlayer(score, playerStatue, name);
             setCurrentPlayer(current);
             players.add(current);
         }

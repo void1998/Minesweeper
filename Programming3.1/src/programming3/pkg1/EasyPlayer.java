@@ -21,6 +21,12 @@ public class EasyPlayer extends AutoPlayer{
         currentGrid=gridInterface.getGrid();
     }
     
+    EasyPlayer(Score score, PlayerStatue playerStatue, String name) {
+        this.name = name;
+        this.currentScore = score;
+        this.currentStatue = playerStatue;
+    }
+    
     public EasyPlayer(GridInterface gridInterface, Grid currentGrid) {
         this.gridInterface = gridInterface;
         this.currentGrid = currentGrid;

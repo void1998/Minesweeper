@@ -42,9 +42,9 @@ public class ScoreGame extends Game
                     {
                         return value;
                     }
-                    else
+                    else if(value ==9)
                     {
-                        return 0;
+                        return -50;
                     }
                 }
             return 0;
@@ -83,24 +83,33 @@ public class ScoreGame extends Game
     }
     
     @Override
-    public void initGame(int playersNumber)
+    public void initGame(int playersNumber, int isAuto)
     {
         // doing the new players list
         players = new ArrayList<>();
         Score score;
         PlayerStatue playerStatue;
-        Player current;
         String name;
+        Player current;
         for(int i=0;i<playersNumber;i++)
         {
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
-            name = "Player " + i;
+            name = "Player " + (i+1);
             current = new ConsolePlayer(score, playerStatue, name);
             setCurrentPlayer(current);
             players.add(current);
         }
-        setCurrentRules(new DefaultRules());
+        if(isAuto == 1)
+        {
+            score = new NumiricScore();
+            playerStatue = new PlayerStatue();
+            name = "Auto Player";
+            current = new EasyPlayer(score, playerStatue, name);
+            setCurrentPlayer(current);
+            players.add(current);
+        }
+        setCurrentRules(new ScoreGame.DefaultRules());
         setMoves(new ArrayList<>());
         setGameStatus(Constants.NOT_STARTED);
         setCurrentPlayer(players.get(0));
@@ -269,21 +278,24 @@ public class ScoreGame extends Game
                 gameState = Constants.LOSER;
             }
         }
-        for(int i=1;i<myGrid.getHieght();i++)
+        if(!gameState.equals(Constants.LOSER))
         {
-            for(int j=1;j<myGrid.getWidth();j++)
+            for(int i=1;i<myGrid.getHieght();i++)
             {
-                state = myGrid.getSquares()[i][j].getSquareStatus().getStatus();
-                value = myGrid.getSquares()[i][j].getSquareStatus().getValue();
-                if((state.equals(Constants.CLOSED)&& value != 9) || (state.equals(Constants.MARKED) && value != 9))
+                for(int j=1;j<myGrid.getWidth();j++)
                 {
-                    gameState = Constants.ON_GOING;
+                    state = myGrid.getSquares()[i][j].getSquareStatus().getStatus();
+                    value = myGrid.getSquares()[i][j].getSquareStatus().getValue();
+                    if((state.equals(Constants.CLOSED)&& value != 9) || (state.equals(Constants.MARKED) && value != 9))
+                    {
+                        gameState = Constants.ON_GOING;
+                    }
                 }
             }
-        }
-        if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
-        {
-            myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+            if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
+            {
+                myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+            }
         }
         return gameState;
     }
