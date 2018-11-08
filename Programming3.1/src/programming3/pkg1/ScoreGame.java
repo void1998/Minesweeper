@@ -260,25 +260,28 @@ public class ScoreGame extends Game
     {
         String state;
         String gameState = Constants.WINNER;
+        int score,value;
+        for(int i=0;i<myGrid.getCurrentGame().getPlayersNumber();i++)
+        {
+            score = myGrid.getCurrentGame().players.get(i).getCurrentScore().getRealScore();
+            if(score<0)
+            {
+                gameState = Constants.LOSER;
+            }
+        }
         for(int i=1;i<myGrid.getHieght();i++)
         {
             for(int j=1;j<myGrid.getWidth();j++)
             {
                 state = myGrid.getSquares()[i][j].getSquareStatus().getStatus();
-                if(state.equals(Constants.OPENED_MINE))
+                value = myGrid.getSquares()[i][j].getSquareStatus().getValue();
+                if((state.equals(Constants.CLOSED)&& value != 9) || (state.equals(Constants.MARKED) && value != 9))
                 {
-                    gameState = Constants.LOSER;
-                    break;
-                }
-                if(state.equals(Constants.CLOSED))
-                {
-                    gameState = Constants.PLAYING;
+                    gameState = Constants.ON_GOING;
                 }
             }
-            if(gameState.equals(Constants.LOSER))
-                break;
         }
-        if(gameState.equals(Constants.WINNER))
+        if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
         {
             myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
         }
