@@ -83,24 +83,33 @@ public class ScoreGame extends Game
     }
     
     @Override
-    public void initGame(int playersNumber)
+    public void initGame(int playersNumber, int isAuto)
     {
         // doing the new players list
         players = new ArrayList<>();
         Score score;
         PlayerStatue playerStatue;
-        Player current;
         String name;
+        Player current;
         for(int i=0;i<playersNumber;i++)
         {
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
-            name = "Player " + i;
+            name = "Player " + (i+1);
             current = new ConsolePlayer(score, playerStatue, name);
             setCurrentPlayer(current);
             players.add(current);
         }
-        setCurrentRules(new DefaultRules());
+        if(isAuto == 1)
+        {
+            score = new NumiricScore();
+            playerStatue = new PlayerStatue();
+            name = "Auto Player";
+            current = new EasyPlayer(score, playerStatue, name);
+            setCurrentPlayer(current);
+            players.add(current);
+        }
+        setCurrentRules(new ScoreGame.DefaultRules());
         setMoves(new ArrayList<>());
         setGameStatus(Constants.NOT_STARTED);
         setCurrentPlayer(players.get(0));

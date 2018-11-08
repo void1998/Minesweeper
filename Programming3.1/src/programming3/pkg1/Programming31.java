@@ -17,8 +17,8 @@ public class Programming31 extends Application  {
     
     public static void main(String[] args)
     {
-        /*Game myGame = new NormalGame();
-        myGame.initGame(2);
+        Game myGame = new ScoreGame();
+        myGame.initGame(2,0);
         Grid myGrid = new Grid(19,19,myGame);
         View myView = new ConsoleView();
         myView.Draw(myGrid.getSquares());
@@ -36,18 +36,39 @@ public class Programming31 extends Application  {
         }
         System.out.println("");
         myView.Draw(myGrid.getSquares());
-        while(!myGrid.checkGame())
+        while(myGrid.getCurrentGame().checkGame(myGrid).equals(Constants.ON_GOING))
         {
+           System.out.printf("Player: %s",myGame.getCurrentPlayer().getName());
            System.out.println("");
            System.out.printf("The score is:%d", myGame.getCurrentPlayer().getCurrentScore().getRealScore());
            System.out.println("");
            temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
            myGrid.AcceptMove(temp);
            myView.Draw(myGrid.getSquares());
-      
         }
-        */
-        launch(args);
+        if(myGrid.getCurrentGame().checkGame(myGrid).equals(Constants.LOSER))
+        {
+            System.out.println("Game Over");
+            System.out.println("The scores:");
+            for(int i=0;i<myGame.players.size();i++)
+            {
+                System.out.print(myGame.players.get(i).getName());
+                System.out.print(": ");
+                System.out.println(myGame.players.get(i).getCurrentScore().getRealScore());
+            }
+        }
+        else if(myGrid.getCurrentGame().checkGame(myGrid).equals(Constants.WINNER))
+        {
+            System.out.println("You finished the grid.");
+            System.out.println("The scores:");
+            for(int i=0;i<myGame.players.size();i++)
+            {
+                System.out.print(myGame.players.get(i).getName());
+                System.out.print(": ");
+                System.out.println(myGame.players.get(i).getCurrentScore().getRealScore());
+            }
+        }
+        //launch(args);
     }
 
     @Override

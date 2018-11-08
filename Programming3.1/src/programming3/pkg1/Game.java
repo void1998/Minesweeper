@@ -22,7 +22,7 @@ public abstract class Game {
         public abstract Player DecideNextPlayer(List<PlayerMove> moves);
         public abstract String ChangePlayerStatus(PlayerMove move);
     }
-    public abstract void initGame(int playersNumber);
+    public abstract void initGame(int playersNumber, int isAuto);
 
     public abstract String AcceptMove(PlayerMove move, Grid myGrid) throws IllegalGameMove;
 
