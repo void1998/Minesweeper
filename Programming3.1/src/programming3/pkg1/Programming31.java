@@ -17,7 +17,7 @@ public class Programming31 extends Application  {
     
     public static void main(String[] args)
     {
-        Game myGame = new ScoreGame();
+        /*Game myGame = new ScoreGame();
         myGame.initGame(2,0);
         Grid myGrid = new Grid(19,19,myGame);
         View myView = new ConsoleView();
@@ -67,8 +67,8 @@ public class Programming31 extends Application  {
                 System.out.print(": ");
                 System.out.println(myGame.players.get(i).getCurrentScore().getRealScore());
             }
-        }
-        //launch(args);
+        }*/
+        launch(args);
     }
 
     @Override

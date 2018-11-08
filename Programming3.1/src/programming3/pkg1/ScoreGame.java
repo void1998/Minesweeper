@@ -44,7 +44,7 @@ public class ScoreGame extends Game
                     }
                     else if(value ==9)
                     {
-                        return -50;
+                        return -5;
                     }
                 }
             return 0;

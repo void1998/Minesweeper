@@ -41,7 +41,7 @@ public class GUIView  {
             for(int j=0;j<height;j++)
             {
                 button[i][j] = new Button();
-                GridPane.setConstraints(button[i][j],i,j);
+                GridPane.setConstraints(button[i][j],i+1,j+1);
                 button[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
                 button[i][j].setMinWidth(30);
                 button[i][j].setMinHeight(30);
@@ -86,7 +86,7 @@ public class GUIView  {
         
     }
     
-        public static GridPane initLayout(Button button[][],int height,int width)
+        public static GridPane initLayout(Button button[][],int height,int width,Label nameLabel,Label scoreLabel)
     {
         GridPane Grid = new GridPane();
         Grid.setPadding(new Insets(0,0,0,0));
@@ -99,6 +99,9 @@ public class GUIView  {
             {
                 Grid.getChildren().add(button[i][j]);
             }
+            GridPane.setConstraints(nameLabel,0, 0);
+            GridPane.setConstraints(scoreLabel,4, 0);
+            Grid.getChildren().addAll(scoreLabel,nameLabel);
                 
         //
         return Grid;
@@ -189,26 +192,30 @@ public class GUIView  {
             Grid.setHgap(30);
             Grid.setAlignment(Pos.CENTER);
             //init buttons
-            Button submit = new Button("Apply changes and start game");
-            GridPane.setConstraints(submit,0,6);
-            Label playersNumLabel = new Label("Number of players");
+            Button submit = new Button("Apply changes and start game:");
+            GridPane.setConstraints(submit,0,8);
+            Label playersNumLabel = new Label("Number of players:");
             GridPane.setConstraints(playersNumLabel,0,0);
             TextField playersNumTextArea = new TextField();
             GridPane.setConstraints(playersNumTextArea,0,1);
-            Label heightLabel = new Label("MineSweeper height");
+            Label heightLabel = new Label("MineSweeper height:");
             GridPane.setConstraints(heightLabel,0,2);
             TextField heightTextArea = new TextField();
             GridPane.setConstraints(heightTextArea,0,3);
-            Label widthLabel = new Label("MineSweeper Width");
+            Label widthLabel = new Label("MineSweeper Width:");
             GridPane.setConstraints(widthLabel,0,4);
             TextField widthTextArea = new TextField();
             GridPane.setConstraints(widthTextArea,0,5);
-            Grid.getChildren().addAll(submit,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea);
-            optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea);
+            Label typeLabel = new Label("Game Type:(enter 1 for normal game & 2 for Score game)");
+            GridPane.setConstraints(typeLabel,0,6);
+            TextField typeTextArea = new TextField();
+            GridPane.setConstraints(typeTextArea,0,7);
+            Grid.getChildren().addAll(submit,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea,typeLabel,typeTextArea);
+            optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea,typeTextArea);
             return Grid;
         }
         
-    private static void optionsButtonActions(Button submit,TextField playersNumTextArea,TextField heightTextArea,TextField widthTextArea) 
+    private static void optionsButtonActions(Button submit,TextField playersNumTextArea,TextField heightTextArea,TextField widthTextArea,TextField typeTextArea) 
     {
         
         submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
@@ -218,10 +225,18 @@ public class GUIView  {
                 String pNum = playersNumTextArea.getText();
                 String hNum = heightTextArea.getText();
                 String wNum = widthTextArea.getText();
+                String tNum = typeTextArea.getText();
                 if(Pattern.compile("[1-2]").matcher(pNum).matches()
-                        &&Pattern.compile("[5-9]|1[0-9]|2[0-5]").matcher(hNum).matches()
-                        &&Pattern.compile("[5-9]|1[0-9]|2[0-5]").matcher(wNum).matches())
-                initGame(new NormalGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum));
+                        &&Pattern.compile("[5-9]|1[0-9]|2[0]").matcher(hNum).matches()
+                        &&Pattern.compile("[5-9]|1[0-9]|2[0]").matcher(wNum).matches()
+                        &&Pattern.compile("[1-2]").matcher(tNum).matches())
+                {
+                    if(Integer.parseInt(tNum)== 1)
+                    initGame(new NormalGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum));
+                    else
+                        initGame(new ScoreGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum));
+                }
+                
                 throw new Exception("INVALID INPUT");
                 }
                 catch(Exception ex){
@@ -234,7 +249,7 @@ public class GUIView  {
         });
         
     }
-    public static void applyGUI(Button buttons[][],Game myGame,Grid grid)
+    public static void applyGUI(Button buttons[][],Game myGame,Grid grid,Label nameLabel,Label scoreLabel)
     {
         for(int i=0;i<grid.getWidth(); i++)
             for(int j=0;j<grid.getHieght(); j++)
@@ -266,7 +281,7 @@ public class GUIView  {
                             else
                                 if(myGame.checkGame(grid)== Constants.LOSER)
                                 {
-                                    Scene fscene = new Scene(GUIView.finishGame("game finished"));
+                                    Scene fscene = new Scene(GUIView.finishGame("game finished "+grid.getCurrentGame().getCurrentPlayer().getName()+" lost"));
                                     window.setScene(fscene);
                                     window.show();
                                 }
@@ -285,6 +300,9 @@ public class GUIView  {
                             interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth());
                         
                         }
+                        nameLabel.setText(temp2.getPlayer().getName());
+                        Integer temp = temp2.getPlayer().getCurrentScore().getRealScore();
+                        scoreLabel.setText(temp.toString());
 
                     }
                 });
@@ -296,15 +314,17 @@ public class GUIView  {
     {
          //init game
         Game myGame = game;
-        myGame.initGame(playersNum);
+        myGame.initGame(playersNum,0);
         Grid grid = new Grid(width,height,myGame);
         
         PlayerMove temp = new PlayerMove();
         grid.initGrid(temp.getSquare()); 
         //
         Button buttons[][] = GUIView.initGrid(height,width);
-        initGraphics(initLayout(buttons,height,width));
-        applyGUI(buttons,myGame,grid);
+        Label scoreLabel = new Label();
+        Label nameLabel = new Label();
+        initGraphics(initLayout(buttons,height,width,nameLabel,scoreLabel));
+        applyGUI(buttons,myGame,grid,nameLabel,scoreLabel);
     }
 
     public static void initGraphics(GridPane layout)
