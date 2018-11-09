@@ -7,14 +7,15 @@ package programming3.pkg1;
 
 import java.util.ArrayList;
 import java.util.List;
+import static programming3.pkg1.NormalGame.currentGrid;
 
 /**
  *
  * @author ASUS
  */
-public class ScoreGame extends Game
-
+public class ScoreGame extends Game implements GridInterface
 {
+    Grid currentGrid=new Grid();
     public class DefaultRules extends GameRules 
     {
 
@@ -98,7 +99,7 @@ public class ScoreGame extends Game
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
-            current = new ConsolePlayer(score, playerStatue, name);
+            current = new GUIPlayer(score, playerStatue, name);
             setCurrentPlayer(current);
             players.add(current);
         }
@@ -205,8 +206,14 @@ public class ScoreGame extends Game
                 }*/
             }
         }
+        currentGrid=myGrid;
     }
     
+    
+      @Override
+    public Grid getGrid() {
+        return currentGrid;
+    }
     @Override
     public void Winner()
     {

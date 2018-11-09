@@ -89,7 +89,7 @@ public class NormalGame extends Game implements GridInterface{
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
-            current = new ConsolePlayer(score, playerStatue, name);
+            current = new GUIPlayer(score, playerStatue, name);
             setCurrentPlayer(current);
             players.add(current);
         }
