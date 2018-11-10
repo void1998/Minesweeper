@@ -1,5 +1,5 @@
 
-package programming3.pkg1;
+package programming3.pkg1.Viewpackage;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -15,6 +15,19 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import programming3.pkg1.UtilPackage.Constants;
+import programming3.pkg1.Game;
+import programming3.pkg1.Game;
+import programming3.pkg1.Grid;
+import programming3.pkg1.Grid;
+import programming3.pkg1.NormalGame;
+import programming3.pkg1.NormalGame;
+import programming3.pkg1.PlayerMove;
+import programming3.pkg1.PlayerMove;
+import programming3.pkg1.ScoreGame;
+import programming3.pkg1.ScoreGame;
+import programming3.pkg1.Square;
+import programming3.pkg1.Square;
 
 /**
  *

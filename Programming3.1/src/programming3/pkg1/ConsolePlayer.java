@@ -5,12 +5,18 @@
  */
 package programming3.pkg1;
 
+import programming3.pkg1.UtilPackage.Constants;
+import programming3.pkg1.Score;
+import programming3.pkg1.ExceptionPackage.IllegalSquareName;
+import programming3.pkg1.ExceptionPackage.IllegalGameMove;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import programming3.pkg1.Movespackage.MoveType;
+import programming3.pkg1.PlayerMove;
 
 /**
  *

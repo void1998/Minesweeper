@@ -1,5 +1,7 @@
 package programming3.pkg1;
 
+import programming3.pkg1.UtilPackage.Constants;
+
 public class SquareStatus {
 
     private String status;

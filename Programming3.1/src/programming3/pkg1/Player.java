@@ -1,4 +1,9 @@
 package programming3.pkg1;
+
+import programming3.pkg1.NumiricScore;
+import programming3.pkg1.Score;
+import programming3.pkg1.PlayerMove;
+
 public abstract class Player {
 
     protected String name;

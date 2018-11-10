@@ -1,10 +1,15 @@
 package programming3.pkg1;
 //WARNING: Not Finished
 
+import programming3.pkg1.UtilPackage.Constants;
+import programming3.pkg1.Viewpackage.GUIView;
+import programming3.pkg1.Score;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import programming3.pkg1.Movespackage.MoveType;
+import programming3.pkg1.PlayerMove;
 
 public class GUIPlayer extends Player {
         static Button buttons[][] =  GUIView.initGrid(19,19);

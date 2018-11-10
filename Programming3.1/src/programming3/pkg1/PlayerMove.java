@@ -1,5 +1,8 @@
 package programming3.pkg1;
 
+import programming3.pkg1.Movespackage.MoveResult;
+import programming3.pkg1.Movespackage.MoveType;
+
 public class PlayerMove {
 
     private Player player;

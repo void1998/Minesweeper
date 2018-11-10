@@ -1,4 +1,6 @@
-package programming3.pkg1;
+package programming3.pkg1.Movespackage;
+
+import programming3.pkg1.SquareStatus;
 
 public class MoveResult {
 

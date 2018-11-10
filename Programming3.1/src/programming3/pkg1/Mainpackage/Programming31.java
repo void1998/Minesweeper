@@ -1,4 +1,4 @@
-package programming3.pkg1;
+package programming3.pkg1.Mainpackage;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -8,6 +8,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import programming3.pkg1.Viewpackage.GUIView;
 
 public class Programming31 extends Application  {
 

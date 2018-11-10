@@ -1,7 +1,13 @@
 package programming3.pkg1;
 
+import programming3.pkg1.UtilPackage.Constants;
+import programming3.pkg1.NumiricScore;
+import programming3.pkg1.Score;
+import programming3.pkg1.UtilPackage.GridInterface;
 import java.util.ArrayList;
 import java.util.List;
+import programming3.pkg1.Game;
+import programming3.pkg1.PlayerMove;
 
 public class NormalGame extends Game implements GridInterface{
    static Grid currentGrid=new Grid();  
