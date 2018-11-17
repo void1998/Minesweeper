@@ -200,13 +200,15 @@ public class GUIView  {
         public static GridPane initOptions()
         {
             GridPane Grid = new GridPane();
-            Grid.setPadding(new Insets(100,200,250,250));
+            Grid.setPadding(new Insets(100,50,250,250));
             Grid.setVgap(30);
             Grid.setHgap(30);
             Grid.setAlignment(Pos.CENTER);
             //init buttons
             Button submit = new Button("Apply changes and start game:");
             GridPane.setConstraints(submit,0,10);
+            Button back = new Button("Back to main menu");
+            GridPane.setConstraints(back,1,0);
             Label playersNumLabel = new Label("Number of players:");
             GridPane.setConstraints(playersNumLabel,0,0);
             TextField playersNumTextArea = new TextField();
@@ -227,10 +229,17 @@ public class GUIView  {
             GridPane.setConstraints(AutoLabel,0,8);
             TextField AutoTextArea = new TextField();
             GridPane.setConstraints(AutoTextArea,0,9);
-            Grid.getChildren().addAll(submit,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea,typeLabel,typeTextArea
+            Grid.getChildren().addAll(submit,back,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea,typeLabel,typeTextArea
             ,AutoLabel,AutoTextArea);
             optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea,typeTextArea,AutoTextArea);
+            backEvent(back);
             return Grid;
+        }
+        public static void backEvent(Button back)
+        {
+            back.setOnMouseClicked((MouseEvent event) -> {
+                initGraphics(GUIView.initMenu());
+            });
         }
         
     private static void optionsButtonActions(Button submit,TextField playersNumTextArea,TextField heightTextArea,TextField widthTextArea,TextField typeTextArea,TextField AutoTextArea) 
