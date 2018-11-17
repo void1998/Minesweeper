@@ -211,11 +211,11 @@ public class GUIView  {
             GridPane.setConstraints(playersNumLabel,0,0);
             TextField playersNumTextArea = new TextField();
             GridPane.setConstraints(playersNumTextArea,0,1);
-            Label heightLabel = new Label("MineSweeper height:");
+            Label heightLabel = new Label("MineSweeper Width:");
             GridPane.setConstraints(heightLabel,0,2);
             TextField heightTextArea = new TextField();
             GridPane.setConstraints(heightTextArea,0,3);
-            Label widthLabel = new Label("MineSweeper Width:");
+            Label widthLabel = new Label("MineSweeper Height :");
             GridPane.setConstraints(widthLabel,0,4);
             TextField widthTextArea = new TextField();
             GridPane.setConstraints(widthTextArea,0,5);
