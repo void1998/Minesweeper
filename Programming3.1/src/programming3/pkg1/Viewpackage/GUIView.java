@@ -49,9 +49,9 @@ public class GUIView  {
     public static Button[][] initGrid(int height,int width)
     {
         Button button[][] = new Button[height][width];
-        for(int i=0;i<width;i++)
+        for(int i=0;i<height;i++)
         {
-            for(int j=0;j<height;j++)
+            for(int j=0;j<width;j++)
             {
                 button[i][j] = new Button();
                 GridPane.setConstraints(button[i][j],i+1,j+1);
@@ -67,9 +67,9 @@ public class GUIView  {
     
     public static void interact(Button buttons[][],Square squares[][],int height,int width)
     {
-        for(int i=0;i<width;i++)
+        for(int i=0;i<height;i++)
         {
-            for(int j=0;j<height;j++)
+            for(int j=0;j<width;j++)
             {
                 if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.CLOSED))
                 buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
@@ -107,8 +107,8 @@ public class GUIView  {
         Grid.setHgap(0);
         Grid.setAlignment(Pos.CENTER);
         //
-        for(int i=0;i<width;i++)
-            for(int j=0;j<height;j++)
+        for(int i=0;i<height;i++)
+            for(int j=0;j<width;j++)
             {
                 Grid.getChildren().add(button[i][j]);
             }
@@ -272,8 +272,8 @@ public class GUIView  {
     }
     public static void applyGUI(Button buttons[][],Game myGame,Grid grid,Label nameLabel,Label scoreLabel,int Auto)
     {
-        for(int i=0;i<grid.getWidth(); i++)
-            for(int j=0;j<grid.getHieght(); j++)
+        for(int i=0;i<grid.getHieght(); i++)
+            for(int j=0;j<grid.getWidth(); j++)
             {
                 final int x;
                 x = i+1;
@@ -347,7 +347,7 @@ public class GUIView  {
          //init game
         Game myGame = game;
         myGame.initGame(playersNum,Auto);
-        Grid grid = new Grid(width,height,myGame);
+        Grid grid = new Grid(height,width,myGame);
         
         PlayerMove temp = new PlayerMove();
         grid.initGrid(temp.getSquare()); 
