@@ -1,9 +1,10 @@
 package programming3.pkg1;
 
+import programming3.pkg1.ExceptionPackage.IllegalGameMove;
 import java.util.List;
 public abstract class Game {
 
-    protected List<Player> players;
+    public List<Player> players;
 
     private Player currentPlayer;
 

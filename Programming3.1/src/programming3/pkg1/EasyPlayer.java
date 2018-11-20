@@ -5,9 +5,15 @@
  */
 package programming3.pkg1;
 
+import programming3.pkg1.UtilPackage.Constants;
+import programming3.pkg1.AutoPlayer;
+import programming3.pkg1.Score;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import programming3.pkg1.UtilPackage.GridInterface;
+import programming3.pkg1.Movespackage.MoveType;
+import programming3.pkg1.PlayerMove;
 
 /**
  *

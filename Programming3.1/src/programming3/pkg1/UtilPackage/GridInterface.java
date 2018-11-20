@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programming3.pkg1;
+package programming3.pkg1.UtilPackage;
+
+import programming3.pkg1.Grid;
 
 /**
  *

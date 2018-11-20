@@ -1,4 +1,4 @@
-package programming3.pkg1;
+package programming3.pkg1.Mainpackage;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -8,6 +8,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import programming3.pkg1.Viewpackage.GUIView;
 
 public class Programming31 extends Application  {
 
@@ -17,9 +18,10 @@ public class Programming31 extends Application  {
     
     public static void main(String[] args)
     {
+     /*   
 Game myGame = new NormalGame();
-        myGame.initGame(1,0);
-        Grid myGrid = new Grid(10,15,myGame);
+        myGame.initGame(1,1);
+        Grid myGrid = new Grid(19,19,myGame);
         View myView = new ConsoleView();
         myView.Draw(myGrid.getSquares());
         PlayerMove temp;
@@ -67,8 +69,8 @@ Game myGame = new NormalGame();
                 System.out.print(": ");
                 System.out.println(myGame.players.get(i).getCurrentScore().getRealScore());
             }
-        }
-        //launch(args);
+        }*/
+        launch(args);
     }
 
     @Override

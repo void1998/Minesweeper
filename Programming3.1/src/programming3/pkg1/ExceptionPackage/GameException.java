@@ -1,4 +1,4 @@
-package programming3.pkg1;
+package programming3.pkg1.ExceptionPackage;
 
 
 public abstract class GameException extends Exception{

@@ -1,4 +1,4 @@
-package programming3.pkg1;
+package programming3.pkg1.UtilPackage;
 
 public class Constants {
     public static final String CLOSED="Closed";
