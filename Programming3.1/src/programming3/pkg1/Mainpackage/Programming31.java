@@ -8,7 +8,14 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import programming3.pkg1.Game;
+import programming3.pkg1.Grid;
+import programming3.pkg1.NormalGame;
+import programming3.pkg1.PlayerMove;
+import programming3.pkg1.UtilPackage.Constants;
+import programming3.pkg1.Viewpackage.ConsoleView;
 import programming3.pkg1.Viewpackage.GUIView;
+import programming3.pkg1.Viewpackage.View;
 
 public class Programming31 extends Application  {
 
@@ -18,8 +25,8 @@ public class Programming31 extends Application  {
     
     public static void main(String[] args)
     {
-     /*   
-Game myGame = new NormalGame();
+        
+        /*Game myGame = new NormalGame();
         myGame.initGame(1,1);
         Grid myGrid = new Grid(19,19,myGame);
         View myView = new ConsoleView();

@@ -20,7 +20,7 @@ public abstract class Game {
     {
 
         public abstract int GetScoreChange(PlayerMove move);
-        public abstract Player DecideNextPlayer(List<PlayerMove> moves);
+        public abstract Player DecideNextPlayer(Player currentPlayer);
         public abstract String ChangePlayerStatus(PlayerMove move);
     }
     public abstract void initGame(int playersNumber, int isAuto);

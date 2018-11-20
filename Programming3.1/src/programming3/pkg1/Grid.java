@@ -102,7 +102,7 @@ public class Grid {
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
             status = currentGame.getCurrentRules().ChangePlayerStatus(move);
             move.getPlayer().getCurrentStatue().setStatus(status);
-            currentGame.setCurrentPlayer(currentGame.getCurrentRules().DecideNextPlayer(currentGame.moves));
+            currentGame.setCurrentPlayer(currentGame.getCurrentRules().DecideNextPlayer(currentGame.getCurrentPlayer()));
        
         } 
         catch (IllegalGameMove ex) 

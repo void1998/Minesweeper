@@ -42,17 +42,23 @@ public class NormalGame extends Game implements GridInterface{
                     }
                     else if(value ==9)
                     {
-                        return -50;
+                        if(!getCurrentPlayer().shields.isEmpty())
+                        {
+                            int Change = getCurrentPlayer().shields.get(getCurrentPlayer().shields.size()-1).InteractWithScore(-50);
+                            return Change;
+                        }
+                        else
+                            return -50;
                     }
                 }
             return 0;
         }
     
         @Override
-        public Player DecideNextPlayer(List<PlayerMove> moves) 
+        public Player DecideNextPlayer(Player currentPlayer) 
         {
             int playerNum;
-            playerNum = (moves.size())%getPlayersNumber();
+            playerNum = (currentPlayer.playerNumber+1)%getPlayersNumber();
             return players.get(playerNum);
             
         }
@@ -89,14 +95,13 @@ public class NormalGame extends Game implements GridInterface{
         PlayerStatue playerStatue;
         String name;
         Player current;
+        setPlayersNumber(playersNumber);
         for(int i=0;i<playersNumber;i++)
         {
-            setPlayersNumber(playersNumber);
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
-            current = new GUIPlayer(score, playerStatue, name);
-            setCurrentPlayer(current);
+            current = new ConsolePlayer(score, playerStatue, name, i);
             players.add(current);
         }
         if(isAuto == 1)
@@ -108,7 +113,7 @@ public class NormalGame extends Game implements GridInterface{
             setCurrentPlayer(current);
             players.add(current);
             setPlayersNumber(getPlayersNumber()+1);
-        }
+        } 
         setCurrentRules(new DefaultRules());
         setMoves(new ArrayList<>());
         setGameStatus(Constants.NOT_STARTED);

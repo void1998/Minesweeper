@@ -1,14 +1,18 @@
 package programming3.pkg1;
 
+import java.util.List;
 import programming3.pkg1.NumiricScore;
 import programming3.pkg1.Score;
 import programming3.pkg1.PlayerMove;
+import programming3.pkg1.ShieldPackage.Shield;
 
 public abstract class Player {
 
     protected String name;
     protected Score currentScore;
     protected PlayerStatue currentStatue;
+    protected List<Shield> shields;
+    protected int playerNumber;
     
     Player()
     {
@@ -44,6 +48,8 @@ public abstract class Player {
     public void setCurrentStatue(PlayerStatue currentStatue) {
         this.currentStatue = currentStatue;
     }
+    
+    
     
     public abstract PlayerMove GetPlayerMove();
 

@@ -57,10 +57,10 @@ public class ScoreGame extends Game implements GridInterface
         }
     
         @Override
-        public Player DecideNextPlayer(List<PlayerMove> moves) 
+        public Player DecideNextPlayer(Player currentPlayer) 
         {
             int playerNum;
-            playerNum = (moves.size())%getPlayersNumber();
+            playerNum = (currentPlayer.playerNumber+1)%getPlayersNumber();
             return players.get(playerNum);
             
         }
@@ -103,7 +103,7 @@ public class ScoreGame extends Game implements GridInterface
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
-            current = new GUIPlayer(score, playerStatue, name);
+            current = new GUIPlayer(score, playerStatue, name, i);
             setCurrentPlayer(current);
             players.add(current);
         }

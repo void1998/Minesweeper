@@ -13,10 +13,11 @@ import programming3.pkg1.PlayerMove;
 
 public class GUIPlayer extends Player {
         static Button buttons[][] =  GUIView.initGrid(19,19);
-        GUIPlayer(Score score, PlayerStatue playerStatue,String name) {
+        GUIPlayer(Score score, PlayerStatue playerStatue,String name,int playerNumber) {
         this.currentScore = score;
         this.currentStatue = playerStatue;
         this.name = name;
+        this.playerNumber = playerNumber;
     }
     @Override
     public PlayerMove GetPlayerMove()

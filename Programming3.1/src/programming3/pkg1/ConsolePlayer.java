@@ -24,10 +24,11 @@ import programming3.pkg1.PlayerMove;
  */
 public class ConsolePlayer extends Player {
 
-    ConsolePlayer(Score score, PlayerStatue playerStatue, String name) {
+    ConsolePlayer(Score score, PlayerStatue playerStatue, String name, int playerNumber) {
         this.name = name;
         this.currentScore = score;
         this.currentStatue = playerStatue;
+        this.playerNumber = playerNumber;
     }
     @Override
     public PlayerMove GetPlayerMove()
