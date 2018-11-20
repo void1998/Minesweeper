@@ -1,6 +1,7 @@
 package programming3.pkg1;
 //WARNING: Not Finished
 
+import java.util.ArrayList;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.Viewpackage.GUIView;
 import programming3.pkg1.Score;
@@ -18,6 +19,7 @@ public class GUIPlayer extends Player {
         this.currentStatue = playerStatue;
         this.name = name;
         this.playerNumber = playerNumber;
+        shields = new ArrayList<>();
     }
     @Override
     public PlayerMove GetPlayerMove()

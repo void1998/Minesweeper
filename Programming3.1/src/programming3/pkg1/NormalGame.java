@@ -46,6 +46,7 @@ public class NormalGame extends Game implements GridInterface{
                         if(size!=0)
                         {
                             int Change = getCurrentPlayer().shields.get(getCurrentPlayer().shields.size()-1).InteractWithScore(-50);
+                            getCurrentPlayer().shields.remove(size-1);
                             return Change;
                         }
                         else

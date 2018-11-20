@@ -50,7 +50,15 @@ public class ScoreGame extends Game implements GridInterface
                     }
                     else if(value ==9)
                     {
-                        return -5;
+                        int size = getCurrentPlayer().shields.size();
+                        if(size!=0)
+                        {
+                            int Change = getCurrentPlayer().shields.get(getCurrentPlayer().shields.size()-1).InteractWithScore(-50);
+                            getCurrentPlayer().shields.remove(size-1);
+                            return Change;
+                        }
+                        else
+                            return -50;
                     }
                 }
             return 0;

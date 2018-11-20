@@ -12,6 +12,7 @@ import programming3.pkg1.ExceptionPackage.IllegalGameMove;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -29,6 +30,7 @@ public class ConsolePlayer extends Player {
         this.currentScore = score;
         this.currentStatue = playerStatue;
         this.playerNumber = playerNumber;
+        shields = new ArrayList<>();
     }
     @Override
     public PlayerMove GetPlayerMove()
