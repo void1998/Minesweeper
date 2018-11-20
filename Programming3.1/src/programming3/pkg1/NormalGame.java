@@ -42,7 +42,8 @@ public class NormalGame extends Game implements GridInterface{
                     }
                     else if(value ==9)
                     {
-                        if(!getCurrentPlayer().shields.isEmpty())
+                        int size = getCurrentPlayer().shields.size();
+                        if(size!=0)
                         {
                             int Change = getCurrentPlayer().shields.get(getCurrentPlayer().shields.size()-1).InteractWithScore(-50);
                             return Change;
@@ -87,7 +88,7 @@ public class NormalGame extends Game implements GridInterface{
     }
     
     @Override
-    public void initGame(int playersNumber, int isAuto)
+    public void initGame(int playersNumber, int isAuto/*, int shieldsNumber*/)
     {
         // doing the new players list
         players = new ArrayList<>();
