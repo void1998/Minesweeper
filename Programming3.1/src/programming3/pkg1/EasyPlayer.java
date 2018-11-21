@@ -11,9 +11,12 @@ import programming3.pkg1.Score;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import programming3.pkg1.UtilPackage.GridInterface;
 import programming3.pkg1.Movespackage.MoveType;
 import programming3.pkg1.PlayerMove;
+import programming3.pkg1.Timerhelperspackage.MoveTimer;
 
 /**
  *
@@ -68,9 +71,15 @@ public class EasyPlayer extends AutoPlayer{
         }
     }
     public Square GenerateMove()
-    {
+    { 
         Square randomSquare;
         Random random=new Random();
+        
+        int delay=random.nextInt(15);
+        Timer timer=new Timer();
+        TimerTask task=new MoveTimer();
+        timer.schedule(task, delay);
+        
         int index=random.nextInt(closedSquares.size()-1);
         randomSquare=closedSquares.get(index);
         return randomSquare;
