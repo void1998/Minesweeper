@@ -12,7 +12,7 @@ package programming3.pkg1.ShieldPackage;
 public class Shield50 extends Shield
 {
     protected int number;
-    Shield50()
+    public Shield50()
     {
         this.number++;
         ShieldsNumber++;
@@ -23,5 +23,12 @@ public class Shield50 extends Shield
     {
         
         return scoreChange/2;
+    }
+    
+    @Override
+    public void RemoveShield()
+    {
+        this.number--;
+        ShieldsNumber--;
     }
 }

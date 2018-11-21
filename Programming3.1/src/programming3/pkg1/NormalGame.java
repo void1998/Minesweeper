@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import programming3.pkg1.Game;
 import programming3.pkg1.PlayerMove;
+import programming3.pkg1.ShieldPackage.Shield;
+import programming3.pkg1.ShieldPackage.Shield100;
+import programming3.pkg1.ShieldPackage.Shield200;
+import programming3.pkg1.ShieldPackage.Shield50;
 
 public class NormalGame extends Game implements GridInterface{
    static Grid currentGrid=new Grid();  
@@ -45,7 +49,8 @@ public class NormalGame extends Game implements GridInterface{
                         int size = getCurrentPlayer().shields.size();
                         if(size!=0)
                         {
-                            int Change = getCurrentPlayer().shields.get(getCurrentPlayer().shields.size()-1).InteractWithScore(-50);
+                            int Change = getCurrentPlayer().shields.get(size-1).InteractWithScore(-50);
+                            getCurrentPlayer().shields.get(size-1).RemoveShield();
                             getCurrentPlayer().shields.remove(size-1);
                             return Change;
                         }
@@ -104,6 +109,32 @@ public class NormalGame extends Game implements GridInterface{
             playerStatue = new PlayerStatue();
             name = "Player " + (i+1);
             current = new ConsolePlayer(score, playerStatue, name, i);
+            //adding shield to the player
+            /*int shields=shieldsNumber, count=3,shieldtype;
+            while(count>0)
+            {
+                shieldtype=shields/count;
+                shields=shields-shieldtype;
+                for(int j=0;j<shieldtype;j++)
+                {
+                    if(count==3)
+                    {
+                        Shield shield = new Shield200();
+                        current.shields.add(shield);
+                    }
+                    else if(count ==2)
+                    {
+                        Shield shield = new Shield100();
+                        current.shields.add(shield);
+                    }
+                    else if(count ==1)
+                    {
+                        Shield shield = new Shield50();
+                        current.shields.add(shield);
+                    }
+                }
+                count--;
+            }*/
             players.add(current);
         }
         if(isAuto == 1)
@@ -111,7 +142,7 @@ public class NormalGame extends Game implements GridInterface{
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Auto Player";
-            current = new EasyPlayer(score, playerStatue, name,(GridInterface)this);
+            current = new EasyPlayer(score, playerStatue, name,(GridInterface)this, playersNumber);
             setCurrentPlayer(current);
             players.add(current);
             setPlayersNumber(getPlayersNumber()+1);

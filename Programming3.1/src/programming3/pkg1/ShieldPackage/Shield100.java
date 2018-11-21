@@ -14,7 +14,7 @@ import static programming3.pkg1.ShieldPackage.Shield.ShieldsNumber;
 public class Shield100 extends Shield
 {
      protected int number;
-    Shield100()
+    public Shield100()
     {
         this.number++;
         ShieldsNumber++;
@@ -24,5 +24,12 @@ public class Shield100 extends Shield
     public int InteractWithScore(int scoreChange)
     {
         return 0;
+    }
+    
+    @Override
+    public void RemoveShield()
+    {
+        this.number--;
+        ShieldsNumber--;
     }
 }

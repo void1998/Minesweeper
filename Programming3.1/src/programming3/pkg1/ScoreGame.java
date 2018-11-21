@@ -120,7 +120,7 @@ public class ScoreGame extends Game implements GridInterface
             score = new NumiricScore();
             playerStatue = new PlayerStatue();
             name = "Auto Player";
-            current = new EasyPlayer(score, playerStatue, name,(GridInterface)this);
+            current = new EasyPlayer(score, playerStatue, name,(GridInterface)this,playersNumber);
             setCurrentPlayer(current);
             players.add(current);
             this.setPlayersNumber(this.getPlayersNumber()+1);

@@ -33,4 +33,5 @@ public abstract class Shield
     }
     
     public abstract int InteractWithScore(int scoreChange);
+    public abstract void RemoveShield ();
 }

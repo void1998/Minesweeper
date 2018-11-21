@@ -13,8 +13,8 @@ import static java.lang.Math.abs;
  */
 public class Shield200 extends Shield
 {
-     protected int number;
-    Shield200()
+    protected int number;
+    public Shield200()
     {
         this.number++;
         ShieldsNumber++;
@@ -24,5 +24,12 @@ public class Shield200 extends Shield
     public int InteractWithScore(int scoreChange)
     {
         return abs(scoreChange)*2;
+    }
+    
+    @Override
+    public void RemoveShield()
+    {
+        this.number--;
+        ShieldsNumber--;
     }
 }
