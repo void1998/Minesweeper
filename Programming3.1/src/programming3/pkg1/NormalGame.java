@@ -94,7 +94,7 @@ public class NormalGame extends Game implements GridInterface{
     }
     
     @Override
-    public void initGame(int playersNumber, int isAuto/*, int shieldsNumber*/)
+    public void initGame(int playersNumber, int isAuto, int numberOfShieldsForPlayer)
     {
         // doing the new players list
         players = new ArrayList<>();
@@ -110,7 +110,7 @@ public class NormalGame extends Game implements GridInterface{
             name = "Player " + (i+1);
             current = new ConsolePlayer(score, playerStatue, name, i);
             //adding shield to the player
-            /*int shields=shieldsNumber, count=3,shieldtype;
+            int shields=numberOfShieldsForPlayer, count=3,shieldtype;
             while(count>0)
             {
                 shieldtype=shields/count;
@@ -134,7 +134,7 @@ public class NormalGame extends Game implements GridInterface{
                     }
                 }
                 count--;
-            }*/
+            }
             players.add(current);
         }
         if(isAuto == 1)

@@ -1,5 +1,6 @@
 package programming3.pkg1;
 
+import java.util.ArrayList;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.ExceptionPackage.IllegalGameMove;
 import programming3.pkg1.ExceptionPackage.GameException;
@@ -11,6 +12,10 @@ import programming3.pkg1.Game;
 import programming3.pkg1.Game;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.PlayerMove;
+import programming3.pkg1.ShieldPackage.Shield;
+import programming3.pkg1.ShieldPackage.Shield100;
+import programming3.pkg1.ShieldPackage.Shield200;
+import programming3.pkg1.ShieldPackage.Shield50;
 
 public class Grid {
 
@@ -23,6 +28,10 @@ public class Grid {
     private int hieght;
             
     private int width;
+    
+    protected List<Shield> shieldsPlaces;
+    
+    protected int numberOfShieldsInGired;
 
     public Grid() {
     }
@@ -32,7 +41,7 @@ public class Grid {
         this.currentGame = currentGame;
     }
     
-    public Grid(int hieght, int width, Game currentGame)
+    public Grid(int hieght, int width, Game currentGame, int numberOfShields)
     {
         squares = new Square[hieght+2][width+2];
         for(int i=0;i<hieght+2;i++)
@@ -47,6 +56,7 @@ public class Grid {
         this.currentGame = currentGame;
         this.hieght = hieght;
         this.width = width;
+        this.numberOfShieldsInGired = numberOfShields;
     }
 
     public Square[][] getSquares() {
@@ -73,12 +83,17 @@ public class Grid {
         return width;
     }
 
+    public List<Shield> getShieldsPlaces() {
+        return shieldsPlaces;
+    }
+
     
     
     public void initGrid(Square initSquare) {
     setBorder();
     generateMines(initSquare);
     fillUpNumbers();
+    GenerateShields(this.numberOfShieldsInGired);
     
     }
 
@@ -102,6 +117,27 @@ public class Grid {
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
             status = currentGame.getCurrentRules().ChangePlayerStatus(move);
             move.getPlayer().getCurrentStatue().setStatus(status);
+            if(!shieldsPlaces.isEmpty())
+            {
+                int x=0,y=0;
+                Shield shield;
+                String state;
+                for(int i=0;i<shieldsPlaces.size();i++)
+                {
+                    shield = shieldsPlaces.get(i);
+                    x=shield.getX();
+                    y=shield.getY();
+                    state=squares[x][y].getSquareStatus().getStatus();
+                    if(!state.equals(Constants.CLOSED) && !state.equals(Constants.MARKED))
+                    {
+                        shield.setX(0);
+                        shield.setY(0);
+                        currentGame.getCurrentPlayer().shields.add(shield);
+                        shieldsPlaces.remove(i);
+                        i--;
+                    }
+                }
+            }
             currentGame.setCurrentPlayer(currentGame.getCurrentRules().DecideNextPlayer(currentGame.getCurrentPlayer()));
        
         } 
@@ -187,6 +223,71 @@ public class Grid {
                             squares[tempX][tempY].getSquareStatus().setValue(squares[tempX][tempY].getSquareStatus().getValue()+1);
                    }
                 }
+            }
+        }
+    }
+    
+    public void GenerateShields(int shieldsNumber)
+    {
+        int shieldType1=0,shieldType2=0,shieldType3=0,count=3,number=shieldsNumber;
+        while(count>0)
+        {
+            if(count==3)
+            {
+                shieldType1=number/count;
+                number-=shieldType1;
+            }
+            else if(count==2)
+            {
+                shieldType2=number/count;
+                number-=shieldType2;
+            }
+            else
+            {
+                shieldType3=number/count;
+                number-=shieldType3;
+            }
+            count--;
+        }
+        shieldsPlaces = new ArrayList<>();
+        Random random = new Random();
+        for(int shield1=0;shield1<shieldType1;shield1++)
+        {
+            int x=random.nextInt(hieght)+1;
+            int y=random.nextInt(width)+1;
+            if(squares[x][y].getSquareStatus().getValue()!=9 && squares[x][y].getSquareStatus().shield==null)
+            {
+                Shield shield = new Shield50(); 
+                shield.setX(x);
+                shield.setY(y);
+                squares[x][y].getSquareStatus().shield = shield;
+                shieldsPlaces.add(shield);
+            }
+        }
+        for(int shield2=0;shield2<shieldType2;shield2++)
+        {
+            int x=random.nextInt(hieght)+1;
+            int y=random.nextInt(width)+1;
+            if(squares[x][y].getSquareStatus().getValue()!=9 && squares[x][y].getSquareStatus().shield==null)
+            {
+                Shield shield = new Shield100(); 
+                shield.setX(x);
+                shield.setY(y);
+                squares[x][y].getSquareStatus().shield = shield;
+                shieldsPlaces.add(shield);
+            }
+        }
+        for(int shield3=0;shield3<shieldType3;shield3++)
+        {
+            int x=random.nextInt(hieght)+1;
+            int y=random.nextInt(width)+1;
+            if(squares[x][y].getSquareStatus().getValue()!=9 && squares[x][y].getSquareStatus().shield==null)
+            {
+                Shield shield = new Shield200(); 
+                shield.setX(x);
+                shield.setY(y);
+                squares[x][y].getSquareStatus().shield = shield;
+                shieldsPlaces.add(shield);
             }
         }
     }

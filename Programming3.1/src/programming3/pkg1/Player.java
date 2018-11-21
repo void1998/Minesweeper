@@ -48,6 +48,12 @@ public abstract class Player {
     public void setCurrentStatue(PlayerStatue currentStatue) {
         this.currentStatue = currentStatue;
     }
+
+    public List<Shield> getShields() {
+        return shields;
+    }
+    
+    
     
     
     

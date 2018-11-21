@@ -1,5 +1,6 @@
 package programming3.pkg1;
 
+import programming3.pkg1.ShieldPackage.Shield;
 import programming3.pkg1.UtilPackage.Constants;
 
 public class SquareStatus {
@@ -8,12 +9,14 @@ public class SquareStatus {
     private int value;
     private boolean is_marked;
     private boolean is_closed;
+    protected Shield shield;
 
     public SquareStatus() {
         this.status=Constants.CLOSED;
         this.value=0;
         is_closed=true;
         is_marked=false;
+        shield = null;
     }
 
     

@@ -16,6 +16,9 @@ public class Shield50 extends Shield
     {
         this.number++;
         ShieldsNumber++;
+        type=50;
+        x=0;
+        y=0;
     }
     
     @Override

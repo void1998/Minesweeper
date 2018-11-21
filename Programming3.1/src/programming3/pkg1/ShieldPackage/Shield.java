@@ -15,6 +15,9 @@ public abstract class Shield
 {
     protected static int ShieldsNumber = 0;
     protected Player player;
+    protected int x;
+    protected int y;
+    protected int type;
     
     public static int getShieldsNumber() {
         return ShieldsNumber;
@@ -31,6 +34,24 @@ public abstract class Shield
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+    
     
     public abstract int InteractWithScore(int scoreChange);
     public abstract void RemoveShield ();

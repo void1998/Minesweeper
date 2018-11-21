@@ -14,6 +14,7 @@ import programming3.pkg1.Game;
 import programming3.pkg1.Grid;
 import programming3.pkg1.NormalGame;
 import programming3.pkg1.PlayerMove;
+import programming3.pkg1.ScoreGame;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.UtilPackage.GridInterface;
 import programming3.pkg1.Timerhelperspackage.TimerHelper;
@@ -30,9 +31,9 @@ public class Programming31 extends Application{
     public static void main(String[] args)
     {
         
-        Game myGame = new NormalGame();
-        myGame.initGame(1,1);
-        myGrid = new Grid(19,19,myGame);
+        Game myGame = new ScoreGame();
+        myGame.initGame(1,0,4);
+        myGrid = new Grid(19,19,myGame,10);
         View myView = new ConsoleView();
         myView.Draw(myGrid.getSquares());
         PlayerMove temp;
@@ -47,27 +48,34 @@ public class Programming31 extends Application{
             }
             System.out.println("");
         }
+        for(int i=0;i<myGrid.getShieldsPlaces().size();i++)
+        {
+            System.out.printf("x = %d  y = %d", myGrid.getShieldsPlaces().get(i).getX(), myGrid.getShieldsPlaces().get(i).getY());
+            System.out.println("");
+        }
         System.out.println("");
         myView.Draw(myGrid.getSquares());
         
         // object for timer
-         Timer timer=new Timer();
+         /*Timer timer=new Timer();
          GridInterface gi=new GridInterface() {
             @Override
             public Grid getGrid() {
                  return myGrid;//To change body of generated methods, choose Tools | Templates.
             }
         };
-         TimerTask task = new TimerHelper((gi));
+         TimerTask task = new TimerHelper((gi));*/
         while(myGrid.getCurrentGame().checkGame(myGrid).equals(Constants.ON_GOING))
         {
            System.out.printf("Player: %s",myGame.getCurrentPlayer().getName());
            System.out.println("");
            System.out.printf("The score is:%d", myGame.getCurrentPlayer().getCurrentScore().getRealScore());
            System.out.println("");
-           timer.schedule(task, 0, 8000);
-          /* temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
-           myGrid.AcceptMove(temp);*/
+           System.out.printf("The number of shields is:%d", myGame.getCurrentPlayer().getShields().size());
+           System.out.println("");
+           //timer.schedule(task, 0, 8000);
+          temp =  myGrid.getCurrentGame().getCurrentPlayer().GetPlayerMove();
+           myGrid.AcceptMove(temp);
            myView.Draw(myGrid.getSquares());
         }
         if(myGrid.getCurrentGame().checkGame(myGrid).equals(Constants.LOSER))
