@@ -31,7 +31,7 @@ public class Programming31 extends Application{
     public static void main(String[] args)
     {
         
-        Game myGame = new ScoreGame();
+        /*Game myGame = new ScoreGame();
         myGame.initGame(1,0,4);
         myGrid = new Grid(19,19,myGame,10);
         View myView = new ConsoleView();
@@ -55,16 +55,6 @@ public class Programming31 extends Application{
         }
         System.out.println("");
         myView.Draw(myGrid.getSquares());
-        
-        // object for timer
-         /*Timer timer=new Timer();
-         GridInterface gi=new GridInterface() {
-            @Override
-            public Grid getGrid() {
-                 return myGrid;//To change body of generated methods, choose Tools | Templates.
-            }
-        };
-         TimerTask task = new TimerHelper((gi));*/
         while(myGrid.getCurrentGame().checkGame(myGrid).equals(Constants.ON_GOING))
         {
            System.out.printf("Player: %s",myGame.getCurrentPlayer().getName());
@@ -99,8 +89,8 @@ public class Programming31 extends Application{
                 System.out.print(": ");
                 System.out.println(myGame.players.get(i).getCurrentScore().getRealScore());
             }
-        }
-      //  launch(args);
+        }*/
+        launch(args);
     }
 
     @Override

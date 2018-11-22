@@ -13,7 +13,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import static javafx.scene.paint.Color.BLUE;
+import static javafx.scene.paint.Color.PINK;
 import javafx.stage.Stage;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.Game;
@@ -25,12 +31,10 @@ import programming3.pkg1.NormalGame;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.ScoreGame;
-import programming3.pkg1.ScoreGame;
-import programming3.pkg1.Square;
 import programming3.pkg1.Square;
 
 /**
- *
+ * 
  * @author void
  */
 public class GUIView  {
@@ -40,66 +44,27 @@ public class GUIView  {
     {
         window = new Stage();
         window.setTitle("Minesweeper");
-        window.setMinWidth(600);
-        window.setMinHeight(600);
+        //window.setMinWidth(600);
+        //window.setMinHeight(600);
+        window.setFullScreen(true);
         //window.setMaxWidth(800);
         //window.setMaxHeight(800);
     }
     
-    public static Button[][] initGrid(int height,int width)
+        public static void initGraphics(GridPane layout)
     {
-        Button button[][] = new Button[height][width];
-        for(int i=0;i<height;i++)
-        {
-            for(int j=0;j<width;j++)
-            {
-                button[i][j] = new Button();
-                GridPane.setConstraints(button[i][j],i+1,j+1);
-                button[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
-                button[i][j].setMinWidth(30);
-                button[i][j].setMinHeight(30);
-            }
-        }
-        return button;
+        // create a background fill 
+        BackgroundFill background_fill = new BackgroundFill(PINK,CornerRadii.EMPTY, Insets.EMPTY); 
+        // create Background 
+        Background background = new Background(background_fill); 
+        layout.setBackground(background);
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.setFullScreen(true);
+        window.show();
     }
     
-
-    
-    public static void interact(Button buttons[][],Square squares[][],int height,int width)
-    {
-        for(int i=0;i<height;i++)
-        {
-            for(int j=0;j<width;j++)
-            {
-                if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.CLOSED))
-                buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.MARKED))
-                {
-                    buttons[i][j].setStyle("-fx-background-color: orange;-fx-border-color:black;");
-                }
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_EMPTY))
-                {
-                    buttons[i][j].setStyle("-fx-background-color: white;-fx-border-color:black;");
-                }
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_MINE))
-                {
-                    buttons[i][j].setStyle("-fx-background-color: black;-fx-border-color:black;");
-                }
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_NUMBER))
-                {
-                    buttons[i][j].setStyle("-fx-background-color: red;-fx-border-color:black;");
-                    Integer temp = squares[i+1][j+1].getSquareStatus().getValue();
-                    String value = temp.toString();
-                    buttons[i][j].setText(value);
-                }
-
-            }
-        }
-                
-        
-    }
-    
-        public static GridPane initLayout(Button button[][],int height,int width,Label nameLabel,Label scoreLabel)
+    public static GridPane initLayout(Button button[][],int height,int width,Label nameLabel,Label scoreLabel)
     {
         GridPane Grid = new GridPane();
         Grid.setPadding(new Insets(0,0,0,0));
@@ -120,6 +85,77 @@ public class GUIView  {
         return Grid;
         
     }
+                
+                
+    public static Button[][] initGrid(int height,int width)
+    {
+        Button button[][] = new Button[height][width];
+        for(int i=0;i<height;i++)
+        {
+            for(int j=0;j<width;j++)
+            {
+                button[i][j] = new Button();
+                GridPane.setConstraints(button[i][j],i+1,j+1);
+                button[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
+                button[i][j].setMinWidth(30);
+                button[i][j].setMinHeight(30);
+            }
+        }
+        return button;
+    }
+    
+
+    
+    public static void interact(Button buttons[][],Square squares[][],int height,int width,int playerNumber)
+    {
+        for(int i=0;i<height;i++)
+        {
+            for(int j=0;j<width;j++)
+            {
+                String borderColor = "black";
+                if(playerNumber == 0)
+                {
+                    borderColor = "Chartreuse";
+                }
+                else if(playerNumber == 1)
+                {
+                    borderColor = "blue";
+                }
+                else
+                {
+                    borderColor = "yellow";
+                }
+                if(buttons[i][j].getStyle().contains("-fx-border-color:black;"))
+                {
+                                    if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.CLOSED))
+                buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
+                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.MARKED))
+                {
+                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/flag.png');-fx-background-size:30px 30px;-fx-border-color:"+borderColor+";");
+                }
+                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_EMPTY))
+                {
+                    buttons[i][j].setStyle("-fx-background-color: white;-fx-border-color:"+borderColor+";");
+                }
+                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_MINE))
+                {
+                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/mine.jpg');-fx-background-size:30px 30px;-fx-border-color:"+borderColor+";");
+                }
+                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_NUMBER))
+                {
+                    buttons[i][j].setStyle("-fx-background-color: red;-fx-border-color:"+borderColor+";");
+                    Integer temp = squares[i+1][j+1].getSquareStatus().getValue();
+                    String value = temp.toString();
+                    buttons[i][j].setText(value);
+                }
+                }
+            }
+        }
+                
+        
+    }
+    
+
         
     static GridPane finishGame(String message) {
         GridPane Grid = new GridPane();
@@ -175,7 +211,7 @@ public class GUIView  {
             start.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event) {
-                    initGame(new NormalGame(),1,16,16,0);
+                    initGame(new NormalGame(),1,16,16,0,2,5);
                 }
                 
             });
@@ -200,15 +236,15 @@ public class GUIView  {
         public static GridPane initOptions()
         {
             GridPane Grid = new GridPane();
-            Grid.setPadding(new Insets(100,50,250,250));
-            Grid.setVgap(30);
-            Grid.setHgap(30);
+            Grid.setPadding(new Insets(50,50,50,50));
+            Grid.setVgap(20);
+            Grid.setHgap(20);
             Grid.setAlignment(Pos.CENTER);
             //init buttons
             Button submit = new Button("Apply changes and start game:");
-            GridPane.setConstraints(submit,0,10);
+            GridPane.setConstraints(submit,0,14);
             Button back = new Button("Back to main menu");
-            GridPane.setConstraints(back,1,0);
+            GridPane.setConstraints(back,1,14);
             Label playersNumLabel = new Label("Number of players:");
             GridPane.setConstraints(playersNumLabel,0,0);
             TextField playersNumTextArea = new TextField();
@@ -229,9 +265,18 @@ public class GUIView  {
             GridPane.setConstraints(AutoLabel,0,8);
             TextField AutoTextArea = new TextField();
             GridPane.setConstraints(AutoTextArea,0,9);
-            Grid.getChildren().addAll(submit,back,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea,typeLabel,typeTextArea
+            
+            Label playerShieldsNumLabel = new Label("initial player shields num(between 0&4)");
+            GridPane.setConstraints(playerShieldsNumLabel,0,10);
+            TextField playerShieldsNumTextArea = new TextField();
+            GridPane.setConstraints(playerShieldsNumTextArea,0,11);
+            Label gridShieldsNumLabel = new Label("grid shields num(between 0&15)");
+            GridPane.setConstraints(gridShieldsNumLabel,0,12);
+            TextField gridShieldsNumTextArea = new TextField();
+            GridPane.setConstraints(gridShieldsNumTextArea,0,13);
+            Grid.getChildren().addAll(playerShieldsNumLabel,playerShieldsNumTextArea,gridShieldsNumLabel,gridShieldsNumTextArea,submit,back,playersNumLabel,playersNumTextArea,heightLabel,heightTextArea,widthLabel,widthTextArea,typeLabel,typeTextArea
             ,AutoLabel,AutoTextArea);
-            optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea,typeTextArea,AutoTextArea);
+            optionsButtonActions(submit,playersNumTextArea,heightTextArea,widthTextArea,typeTextArea,AutoTextArea,playerShieldsNumTextArea,gridShieldsNumTextArea);
             backEvent(back);
             return Grid;
         }
@@ -242,7 +287,9 @@ public class GUIView  {
             });
         }
         
-    private static void optionsButtonActions(Button submit,TextField playersNumTextArea,TextField heightTextArea,TextField widthTextArea,TextField typeTextArea,TextField AutoTextArea) 
+    private static void optionsButtonActions(Button submit,TextField playersNumTextArea,TextField heightTextArea
+            ,TextField widthTextArea,TextField typeTextArea,TextField AutoTextArea,
+            TextField playerShieldsNumTextArea,TextField gridShieldsNumTextArea) 
     {
         
         submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
@@ -254,17 +301,23 @@ public class GUIView  {
                 String wNum = widthTextArea.getText();
                 String tNum = typeTextArea.getText();
                 String ANum = AutoTextArea.getText();
+                String playerShieldsNum = playerShieldsNumTextArea.getText();
+                String gridShieldsNum = gridShieldsNumTextArea.getText();
+                
                 if(Pattern.compile("[1-2]").matcher(pNum).matches()
                         &&Pattern.compile("[5-9]|1[0-9]|2[0]").matcher(hNum).matches()
                         &&Pattern.compile("[5-9]|1[0-9]|2[0]").matcher(wNum).matches()
                         &&Pattern.compile("[1-2]").matcher(tNum).matches()
                         &&Pattern.compile("[0-1]").matcher(ANum).matches()
+                        &&Pattern.compile("[0-4]").matcher(playerShieldsNum).matches()
+                        &&Pattern.compile("[0-9]||1[0-5]").matcher(gridShieldsNum).matches()
+                        
                         )
                 {
                     if(Integer.parseInt(tNum)== 1)
-                    initGame(new NormalGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum),Integer.parseInt(ANum));
+                        initGame(new NormalGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum),Integer.parseInt(ANum),Integer.parseInt(playerShieldsNum),Integer.parseInt(gridShieldsNum));
                     else
-                        initGame(new ScoreGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum),Integer.parseInt(ANum));
+                        initGame(new ScoreGame(),Integer.parseInt(pNum),Integer.parseInt(hNum),Integer.parseInt(wNum),Integer.parseInt(ANum),Integer.parseInt(playerShieldsNum),Integer.parseInt(gridShieldsNum));
                 }
                 
                 throw new Exception("INVALID INPUT");
@@ -323,7 +376,7 @@ public class GUIView  {
                                     window.show();
                                 }
                             else
-                            interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth());
+                            interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth(),temp2.getPlayer().getPlayerNumber());
                         
                         }
                         else
@@ -338,7 +391,7 @@ public class GUIView  {
                             {
                                 grid.AcceptMove(myGame.getCurrentPlayer().GetPlayerMove());
                             }
-                            interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth());
+                            interact(buttons, grid.getSquares(),grid.getHieght(),grid.getWidth(),temp2.getPlayer().getPlayerNumber());
                         
                         }
                         nameLabel.setText(temp2.getPlayer().getName());
@@ -351,12 +404,12 @@ public class GUIView  {
                 
             }
     }
-    public static void initGame(Game game,int playersNum,int height,int width,int Auto)
+    public static void initGame(Game game,int playersNum,int height,int width,int Auto,int playerShieldsNum,int gridShieldsNum)
     {
          //init game
         Game myGame = game;
-        myGame.initGame(playersNum,Auto);
-        Grid grid = new Grid(height,width,myGame);
+        myGame.initGame(playersNum,Auto,playerShieldsNum);
+        Grid grid = new Grid(height,width,myGame,gridShieldsNum);
         
         PlayerMove temp = new PlayerMove();
         grid.initGrid(temp.getSquare()); 
@@ -368,12 +421,7 @@ public class GUIView  {
         applyGUI(buttons,myGame,grid,nameLabel,scoreLabel,Auto);
     }
 
-    public static void initGraphics(GridPane layout)
-    {
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.show();
-    }
+
         
 
 }

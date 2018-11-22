@@ -52,7 +52,11 @@ public abstract class Player {
     public List<Shield> getShields() {
         return shields;
     }
+    public int getPlayerNumber()
     
+    {
+        return playerNumber;
+    }
     
     
     
