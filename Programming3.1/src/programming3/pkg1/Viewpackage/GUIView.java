@@ -112,6 +112,8 @@ public class GUIView  {
         {
             for(int j=0;j<width;j++)
             {
+
+                //setting the border depending on a player
                 String borderColor = "black";
                 if(playerNumber == 0)
                 {
@@ -127,26 +129,39 @@ public class GUIView  {
                 }
                 if(buttons[i][j].getStyle().contains("-fx-border-color:black;"))
                 {
-                                    if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.CLOSED))
-                buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.MARKED))
+                    if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.CLOSED))
+                    buttons[i][j].setStyle("-fx-background-color: gray;-fx-border-color:black;");
+                    else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.MARKED))
+                    {
+                        buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/flag.png');-fx-background-size:30px 30px;-fx-border-color:"+borderColor+";");
+                    }
+                    else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_EMPTY))
+                    {
+                        buttons[i][j].setStyle("-fx-background-color: white;-fx-border-color:"+borderColor+";");
+                    }
+                    else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_MINE))
+                    {
+                        buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/mine.jpg');-fx-background-size:30px 30px;-fx-border-color:"+borderColor+";");
+                    }
+                    else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_NUMBER))
+                    {
+                        buttons[i][j].setStyle("-fx-background-color: red;-fx-border-color:"+borderColor+";");
+                        Integer temp = squares[i+1][j+1].getSquareStatus().getValue();
+                        String value = temp.toString();
+                        buttons[i][j].setText(value);
+                    }
+                //checking if there is an open shield
+                if(squares[i+1][j+1].getSquareStatus().getShield().getType()==50&&(squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_EMPTY||squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_NUMBER))
                 {
-                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/flag.png');-fx-background-size:30px 30px;-fx-border-color:"+borderColor+";");
+                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/shield50.png');-fx-background-size:30px 30px;");
                 }
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_EMPTY))
+                else if(squares[i+1][j+1].getSquareStatus().getShield().getType()==100&&(squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_EMPTY||squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_NUMBER))
                 {
-                    buttons[i][j].setStyle("-fx-background-color: white;-fx-border-color:"+borderColor+";");
+                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/shield100.jpg');-fx-background-size:30px 30px;");
                 }
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_MINE))
+                else if(squares[i+1][j+1].getSquareStatus().getShield().getType()==200&&(squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_EMPTY||squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_NUMBER))
                 {
-                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/mine.jpg');-fx-background-size:30px 30px;-fx-border-color:"+borderColor+";");
-                }
-                else if(squares[i+1][j+1].getSquareStatus().getStatus().equals(Constants.OPENED_NUMBER))
-                {
-                    buttons[i][j].setStyle("-fx-background-color: red;-fx-border-color:"+borderColor+";");
-                    Integer temp = squares[i+1][j+1].getSquareStatus().getValue();
-                    String value = temp.toString();
-                    buttons[i][j].setText(value);
+                    buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/shield200.png');-fx-background-size:30px 30px;");
                 }
                 }
             }
@@ -211,7 +226,7 @@ public class GUIView  {
             start.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event) {
-                    initGame(new NormalGame(),1,16,16,0,2,5);
+                    initGame(new NormalGame(),1,16,16,0,2,20);
                 }
                 
             });
@@ -345,6 +360,14 @@ public class GUIView  {
                 buttons[i][j].setOnMouseClicked(new EventHandler<MouseEvent>(){
                     @Override
                     public void handle(MouseEvent event) {
+                        //
+                        for(int i=0;i<grid.getShieldsPlaces().size();i++)
+                            {
+                                System.out.printf("x = %d  y = %d", grid.getShieldsPlaces().get(i).getX(), grid.getShieldsPlaces().get(i).getY());
+                                System.out.println("");
+                            }
+                        System.out.println("");
+        //
                        PlayerMove temp2 = new PlayerMove();
                         if(event.getButton() == MouseButton.PRIMARY)
                         {

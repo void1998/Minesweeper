@@ -1,6 +1,7 @@
 package programming3.pkg1;
 
 import programming3.pkg1.ShieldPackage.Shield;
+import programming3.pkg1.ShieldPackage.Shield0;
 import programming3.pkg1.UtilPackage.Constants;
 
 public class SquareStatus {
@@ -16,8 +17,13 @@ public class SquareStatus {
         this.value=0;
         is_closed=true;
         is_marked=false;
-        shield = null;
+        shield = new Shield0();
     }
+    public Shield getShield()
+    {
+        return shield;
+    }
+            
 
     
     

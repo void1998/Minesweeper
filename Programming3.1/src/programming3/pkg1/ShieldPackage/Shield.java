@@ -51,7 +51,10 @@ public abstract class Shield
         this.y = y;
     }
     
-    
+    public int getType()
+    {
+        return type;
+    }
     
     public abstract int InteractWithScore(int scoreChange);
     public abstract void RemoveShield ();
