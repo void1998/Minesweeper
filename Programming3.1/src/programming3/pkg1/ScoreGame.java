@@ -54,16 +54,23 @@ public class ScoreGame extends Game implements GridInterface
                     }
                     else if(value ==9)
                     {
-                        int size = getCurrentPlayer().shields.size();
-                        if(size!=0)
+                        if(!getCurrentPlayer().getName().equals("Auto Player"))
                         {
-                            int Change = getCurrentPlayer().shields.get(size-1).InteractWithScore(-50);
-                            getCurrentPlayer().shields.get(size-1).RemoveShield();
-                            getCurrentPlayer().shields.remove(size-1);
-                            return Change;
+                            return -50;
                         }
                         else
-                            return -50;
+                        {
+                            int size = getCurrentPlayer().shields.size();
+                            if(size!=0)
+                            {
+                                int Change = getCurrentPlayer().shields.get(size-1).InteractWithScore(-50);
+                                getCurrentPlayer().shields.get(size-1).RemoveShield();
+                                getCurrentPlayer().shields.remove(size-1);
+                                return Change;
+                            }
+                            else
+                                return -50;
+                        }
                     }
                 }
             return 0;
@@ -324,7 +331,7 @@ public class ScoreGame extends Game implements GridInterface
         for(int i=0;i<myGrid.getCurrentGame().getPlayersNumber();i++)
         {
             score = myGrid.getCurrentGame().players.get(i).getCurrentScore().getRealScore();
-            if(score<0)
+            if(score<-75)
             {
                 gameState = Constants.LOSER;
             }

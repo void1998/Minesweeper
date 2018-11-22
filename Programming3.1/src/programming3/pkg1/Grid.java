@@ -117,7 +117,7 @@ public class Grid {
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
             status = currentGame.getCurrentRules().ChangePlayerStatus(move);
             move.getPlayer().getCurrentStatue().setStatus(status);
-            if(!shieldsPlaces.isEmpty())
+            if(!shieldsPlaces.isEmpty() && !getCurrentGame().getCurrentPlayer().getName().equals("Auto Player"))
             {
                 int x=0,y=0;
                 Shield shield;
