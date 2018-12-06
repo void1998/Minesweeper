@@ -5,20 +5,53 @@
  */
 package programming3.pkg1.Timerhelperspackage;
 
+import static java.lang.Thread.sleep;
 import java.util.TimerTask;
+import javafx.scene.text.Text;
+import programming3.pkg1.Grid;
 
 /**
  *
  * @author CEC
  */
-public class MoveTimer extends TimerTask{
+public class MoveTimer extends Thread{
 
-    private static int count=0;
-    @Override
-    public void run() {
-        if(count==1)
-            cancel();
-        count++;
+    int t = 10;
+    Text ttText = new Text();
+     public MoveTimer()
+    {
+        
     }
     
+    public int getT()
+    {
+        return t;
+    }
+    public void setT(int t)
+    {
+        this.t = t;
+    }
+    
+    @Override
+    public void run()
+    {
+        int x = t;
+        while(x>0)
+        {
+            try{
+                sleep(1000);
+            } catch (InterruptedException ex)
+            {
+            }
+            System.out.println(""+x);
+            ttText.setText(""+x);
+            x--;
+        }
+        check();
+        run();
+        }
+    public void check()
+    {
+       
+    }
 }
