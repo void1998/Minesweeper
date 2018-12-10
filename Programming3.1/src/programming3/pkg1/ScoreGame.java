@@ -54,7 +54,7 @@ public class ScoreGame extends Game implements GridInterface
                     }
                     else if(value ==9)
                     {
-                        if(!getCurrentPlayer().getName().equals("Auto Player"))
+                        if(getCurrentPlayer().getName().equals("Auto Player"))
                         {
                             return -50;
                         }

@@ -95,12 +95,19 @@ public class Programming31 extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //inti window
+        //GUI VIEW CLASS//
+        /*
          GUIView.initWindow();
          GUIView.initGraphics(GUIView.initMenu());
-        //
+        */
+        //GUI VIEW1 Class//
+        /*GUIView1 GUI = new GUIView1();
+        GUI.initWindow();
+        GUI.mainMenu();*/
+        //FXML View//
         
-
+        FXMLController View = new FXMLController(); 
+        View.GO();
         
     }
     

@@ -151,7 +151,9 @@ public class GUIView  {
                         buttons[i][j].setText(value);
                     }
                 //checking if there is an open shield
-                if(squares[i+1][j+1].getSquareStatus().getShield().getType()==50&&(squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_EMPTY||squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_NUMBER))
+                if(squares[i+1][j+1].getSquareStatus().getShield()!=null)
+                {
+                    if(squares[i+1][j+1].getSquareStatus().getShield().getType()==50&&(squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_EMPTY||squares[i+1][j+1].getSquareStatus().getStatus()==Constants.OPENED_NUMBER))
                 {
                     buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/shield50.png');-fx-background-size:30px 30px;");
                 }
@@ -163,6 +165,8 @@ public class GUIView  {
                 {
                     buttons[i][j].setStyle("-fx-background-image: url('programming3/pkg1/shield200.png');-fx-background-size:30px 30px;");
                 }
+                }
+   
                 }
             }
         }
@@ -226,7 +230,7 @@ public class GUIView  {
             start.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event) {
-                    initGame(new NormalGame(),1,16,16,0,2,20);
+                    initGame(new ScoreGame(),1,16,16,0,2,20);
                 }
                 
             });
@@ -433,6 +437,7 @@ public class GUIView  {
         Game myGame = game;
         myGame.initGame(playersNum,Auto,playerShieldsNum);
         Grid grid = new Grid(height,width,myGame,gridShieldsNum);
+        System.out.println(myGame.getCurrentPlayer().getShields().size());
         
         PlayerMove temp = new PlayerMove();
         grid.initGrid(temp.getSquare()); 

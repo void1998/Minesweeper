@@ -17,7 +17,7 @@ public class SquareStatus {
         this.value=0;
         is_closed=true;
         is_marked=false;
-        shield = new Shield0();
+        shield = null;
     }
     public Shield getShield()
     {

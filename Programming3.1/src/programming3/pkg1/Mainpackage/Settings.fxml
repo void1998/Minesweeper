@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="mainFxmlClass" stylesheets="@settings.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programming3.pkg1.Mainpackage.SettingsController">
+   <children>
+      <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="640.0" styleClass="Header" translateY="-51.0" VBox.vgrow="NEVER">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" translateY="-45.0">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
+               <children>
+                  <Label text="First player name:">
+                     <font>
+                        <Font name="Levenim MT" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField promptText="Enter a name...." />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
+               <children>
+                  <Label text="Second player name:">
+                     <font>
+                        <Font name="Levenim MT" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField promptText="Enter a name....." />
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" translateY="-45.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="200.0" text="Number of players:">
+               <font>
+                  <Font name="Levenim MT" size="13.0" />
+               </font>
+            </Label>
+            <RadioButton mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" stylesheets="@settings.css" text="1">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="numberOfPlayers" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" prefWidth="200.0" text="2" toggleGroup="$numberOfPlayers">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+            </RadioButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" translateY="-45.0">
+         <children>
+            <Label prefHeight="24.0" prefWidth="200.0" text="Auto player:">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+            </Label>
+            <RadioButton mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="Activate">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="AutoPlayer" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="Deactivate" toggleGroup="$AutoPlayer">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+            </RadioButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" translateY="-45.0">
+         <children>
+            <Label prefWidth="200.0" text="Game type:">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+            </Label>
+            <RadioButton mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="Normal Game">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="GameType" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="Score Game" toggleGroup="$GameType">
+               <font>
+                  <Font name="Levenim MT" size="14.0" />
+               </font>
+            </RadioButton>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" translateY="-45.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="300.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="160.0" text="Grid width:">
+                     <font>
+                        <Font name="Levenim MT" size="14.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="1.0" majorTickUnit="1.0" max="20.0" min="5.0" minorTickCount="0" prefHeight="14.0" prefWidth="162.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="300.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="122.0" text="Grid height:">
+                     <font>
+                        <Font name="Levenim MT" size="14.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="1.0" majorTickUnit="1.0" max="20.0" min="5.0" minorTickCount="0" prefHeight="14.0" prefWidth="153.0" showTickLabels="true" showTickMarks="true" styleClass="slider" value="5.0" />
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" translateY="-45.0">
+         <children>
+            <HBox prefHeight="24.0" prefWidth="300.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="151.0" text="Initial shields:">
+                     <font>
+                        <Font name="Levenim MT" size="14.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="1.0" majorTickUnit="1.0" max="4.0" minorTickCount="0" prefHeight="14.0" prefWidth="155.0" showTickLabels="true" showTickMarks="true" styleClass="slider" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="300.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="128.0" text="Grid shields':">
+                     <font>
+                        <Font name="Levenim MT" size="14.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="1.0" majorTickUnit="1.0" max="15.0" minorTickCount="0" prefHeight="14.0" prefWidth="155.0" showTickLabels="true" showTickMarks="true" styleClass="slider" />
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="600.0" translateY="18.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#GoBack" prefHeight="37.0" prefWidth="95.0" styleClass="MainMenuButton" stylesheets="@settings.css" text="Go Back!">
+                     <font>
+                        <Font name="Levenim MT" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="370.0">
+               <children>
+                  <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#StartGamewithSettings" prefHeight="35.0" prefWidth="148.0" styleClass="playButton" text="Start Game!">
+                     <font>
+                        <Font name="Levenim MT Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

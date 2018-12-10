@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="mainFxmlClass" stylesheets="@scoreboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programming3.pkg1.Mainpackage.ScoreBoardController">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="130.0" prefWidth="640.0" styleClass="Header">
+         <opaqueInsets>
+            <Insets bottom="10.0" />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></HBox>
+      <HBox prefHeight="100.0" prefWidth="640.0">
+         <children>
+            <ScrollBar orientation="VERTICAL" prefHeight="191.0" prefWidth="14.0" />
+            <VBox prefHeight="160.0" prefWidth="640.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="76.0" prefWidth="600.0" spacing="10.0" styleClass="card">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="153.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@mushroom.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Player1">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@mushroom.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label layoutX="10.0" layoutY="10.0" text="player2">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="92.0" spacing="10.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="37.0" prefWidth="79.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@score.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Label layoutX="10.0" layoutY="10.0" text="300">
+                                             <font>
+                                                <Font name="Levenim MT" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@score.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Label layoutX="10.0" layoutY="10.0" text="100">
+                                             <font>
+                                                <Font name="Levenim MT" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="110.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@racing%20(1).png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="02:13">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@racing.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="02:23">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="74.0" prefWidth="116.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@speedometer.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="00:10:22">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@play-arrow.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Watch">
+                                       <font>
+                                          <Font name="Levenim MT Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets top="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="76.0" prefWidth="600.0" spacing="10.0" styleClass="card">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="153.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@mushroom.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Player1">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@mushroom.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label layoutX="10.0" layoutY="10.0" text="player2">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="92.0" spacing="10.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="37.0" prefWidth="79.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@score.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Label layoutX="10.0" layoutY="10.0" text="300">
+                                             <font>
+                                                <Font name="Levenim MT" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@score.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Label layoutX="10.0" layoutY="10.0" text="100">
+                                             <font>
+                                                <Font name="Levenim MT" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="110.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@racing%20(1).png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="02:13">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@racing.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="02:23">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="74.0" prefWidth="116.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@speedometer.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="00:10:22">
+                                       <font>
+                                          <Font name="Levenim MT" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@play-arrow.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Watch">
+                                       <font>
+                                          <Font name="Levenim MT Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets top="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_CENTER" layoutX="10.0" prefWidth="640.0" translateY="100.0">
+         <children>
+            <Button layoutX="500.0" mnemonicParsing="false" onAction="#GoBack" styleClass="MainMenuButton" text="Go Back!">
+               <font>
+                  <Font name="Levenim MT" size="12.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
