@@ -5,43 +5,97 @@
  */
 package programming3.pkg1.GameTime;
 
-import static java.lang.Math.abs;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
-
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import programming3.pkg1.Grid;
 
 /**
  *
  * @author CEC
  */
 public class GameTime {
- 
-    private LocalDateTime time;
 
-    public GameTime(LocalDateTime time) {
-        this.time = time;
-    }
+    private String startTime;
+    private String endTime;
+    private Date startDate;
+    private Date endDate;
+    private String duration;
+    
 
     public GameTime() {
     }
 
-    public LocalDateTime getTime() {
-        return time;
+  /*  public GameTime(String startTime, String endTime, String startDate, String endDate, String duration) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.duration = duration;
+    }*/
+
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void initStartTime() {
+        this.startTime = getCurrentTime();
     }
 
-           
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void initEndTime() {
+        this.endTime = getCurrentTime();
+        calculateDuration();
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void initStartDate() {
+        this.startDate = getCurrentDate();
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void initEndDate() {
+        this.endDate = getCurrentDate();
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void calculateDuration() {
+        this.duration = getGameTime(startTime, endTime);
+    }
+    
+    
+
     public String getCurrentTime()
     {
-        time = LocalDateTime.now();
+        LocalDateTime time = LocalDateTime.now();
         String format = time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         return format;
+    }
+    
+    
+       public Date getCurrentDate()
+    {
+        Date date=new Date();
+        return date;
     }
     
     
@@ -68,4 +122,52 @@ public class GameTime {
         
     }
     
+ 
+    
+    public List<Grid> sortGamesByStartDate(List<Grid> gamesList)
+    {
+        Collections.sort(gamesList, new Comparator<Grid>() {
+        @Override
+        public int compare(Grid one, Grid other) {
+            
+            Date first=one.getCurrentGame().getGameTime().getStartDate();
+            Date second=other.getCurrentGame().getGameTime().getStartDate();
+      
+            return first.compareTo(second);
+  }
+});
+        return gamesList;
+    }
+    
+    
+    public List<Grid> sortGamesByEndtDate(List<Grid> gamesList)
+    {
+        Collections.sort(gamesList, new Comparator<Grid>() {
+        @Override
+        public int compare(Grid one, Grid other) {
+            
+            Date first=one.getCurrentGame().getGameTime().getEndDate();
+            Date second=other.getCurrentGame().getGameTime().getEndDate();
+      
+            return first.compareTo(second);
+  }
+}); 
+        return gamesList;
+    }
+    
+    
+    public List<Grid> sortGamesByPlayerName(List<Grid> gamesList)
+    {
+        Collections.sort(gamesList, new Comparator<Grid>() {
+        @Override
+        public int compare(Grid one, Grid other) {
+        
+        String first=one.getCurrentGame().getCurrentPlayer().getName();
+        String second=other.getCurrentGame().getCurrentPlayer().getName();
+        
+        return first.compareTo(second);
+        }
+      });
+     return gamesList;
+    }
 }
