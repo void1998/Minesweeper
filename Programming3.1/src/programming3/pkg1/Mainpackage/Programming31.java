@@ -21,6 +21,7 @@ import programming3.pkg1.Timerhelperspackage.TimerHelper;
 import programming3.pkg1.Viewpackage.ConsoleView;
 import programming3.pkg1.Viewpackage.GUIView;
 import programming3.pkg1.Viewpackage.View;
+import sun.tools.jar.resources.jar;
 
 public class Programming31 extends Application{
 
@@ -91,16 +92,24 @@ public class Programming31 extends Application{
             }
         }*/
         launch(args);
+        
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //inti window
-         GUIView.initWindow();
-         GUIView.initGraphics(GUIView.initMenu());
-        //
+        //GUI VIEW CLASS//
         
-
+//         GUIView.initWindow();
+//         GUIView.initGraphics(GUIView.initMenu());
+        
+        //GUI VIEW1 Class//
+//        GUIView1 GUI = new GUIView1();
+//        GUI.initWindow();
+//        GUI.mainMenu();
+        //FXML View//
+        
+        FXMLController View = new FXMLController(); 
+        View.GO();
         
     }
     

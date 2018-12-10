@@ -76,11 +76,9 @@ public class EasyPlayer extends AutoPlayer{
         Square randomSquare;
         Random random=new Random();
         
-        int delay=random.nextInt(15);
-        Timer timer=new Timer();
-        TimerTask task=new MoveTimer();
-        timer.schedule(task, delay);
-        
+        /*int delay=random.nextInt(15);
+        Timer timer=new Timer();*/
+         
         int index=random.nextInt(closedSquares.size()-1);
         randomSquare=closedSquares.get(index);
         return randomSquare;
