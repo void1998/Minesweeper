@@ -64,6 +64,7 @@ public class GameTime {
 
     public void initStartDate() {
         this.startDate = getCurrentDate();
+        initStartTime();
     }
 
     public Date getEndDate() {
@@ -72,6 +73,7 @@ public class GameTime {
 
     public void initEndDate() {
         this.endDate = getCurrentDate();
+        initEndTime();
     }
 
     public String getDuration() {
