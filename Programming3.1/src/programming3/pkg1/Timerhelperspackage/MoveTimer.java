@@ -7,6 +7,8 @@ package programming3.pkg1.Timerhelperspackage;
 
 import static java.lang.Thread.sleep;
 import java.util.TimerTask;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.text.Text;
 import programming3.pkg1.Grid;
 
@@ -17,12 +19,24 @@ import programming3.pkg1.Grid;
 public class MoveTimer extends Thread{
 
     int t = 10;
-    Text ttText = new Text();
-     public MoveTimer()
-    {
-        
+    public static StringProperty ttText;
+
+    public StringProperty getTtTextProperty() {
+        return ttText;
+    }
+
+    public void setTtText(String ttText) {
+        this.ttText.set(ttText);
     }
     
+    public String getTtText()
+    {
+        return ttText.get();
+    }
+     public MoveTimer()
+    {
+        ttText = new SimpleStringProperty(this,"Time","0");
+    }
     public int getT()
     {
         return t;
@@ -43,8 +57,9 @@ public class MoveTimer extends Thread{
             } catch (InterruptedException ex)
             {
             }
-            System.out.println(""+x);
-            ttText.setText(""+x);
+            Integer temp = x;
+            setTtText(temp.toString());
+            System.out.println(getTtText());
             x--;
         }
         check();

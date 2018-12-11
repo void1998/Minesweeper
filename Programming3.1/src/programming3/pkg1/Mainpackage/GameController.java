@@ -7,12 +7,17 @@ package programming3.pkg1.Mainpackage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import programming3.pkg1.Timerhelperspackage.MoveTimer;
+import programming3.pkg1.Viewpackage.NewGUI;
 
 /**
  * FXML Controller class
@@ -23,6 +28,9 @@ public class GameController implements Initializable {
     
     @FXML
     public VBox root;
+
+    
+
     
     
     /**
@@ -30,7 +38,7 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
     //Menu Bar Actions
@@ -52,5 +60,11 @@ public class GameController implements Initializable {
                 window.close();
                 
             }
+            
+            public void startTime()
+            {
+
+            }
+            
     
 }
