@@ -22,7 +22,7 @@ import programming3.pkg1.Grid;
  *
  * @author CEC
  */
-public class GameTime implements Serializable{
+public final class GameTime implements Serializable{
 
     private final Date actualStartDate;
     private String startTime;
@@ -34,6 +34,7 @@ public class GameTime implements Serializable{
 
     public GameTime() {
         actualStartDate=new Date();
+        initStartDate();
     }
 
     public Date getActualStartDate() {
@@ -162,8 +163,8 @@ public class GameTime implements Serializable{
         @Override
         public int compare(Grid one, Grid other) {
         
-        String first=one.getCurrentGame().getCurrentPlayer().getName();
-        String second=other.getCurrentGame().getCurrentPlayer().getName();
+        String first=one.getCurrentGame().getPlayers().get(0).getName();
+        String second=other.getCurrentGame().getPlayers().get(0).getName();
         
         return first.compareTo(second);
         }

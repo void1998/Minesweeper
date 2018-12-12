@@ -163,8 +163,14 @@ public class Grid implements Serializable {
                     }
                 }
             }
-
             currentGame.setCurrentPlayer(currentGame.getCurrentRules().DecideNextPlayer(currentGame.getCurrentPlayer()));
+            try 
+            {
+                Folders.quickSave(this);
+                System.out.println("quick saved");
+            } catch (IOException ex) {
+                Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } catch (IllegalGameMove ex) {
             System.out.println(ex.getException());

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import programming3.pkg1.Grid;
+import programming3.pkg1.UtilPackage.Constants;
 
 /**
  *
@@ -26,14 +27,22 @@ public class Folders implements Serializable
 {
     public static void quickSave(Grid myGrid) throws IOException
     {
-        FileOutputStream f = new FileOutputStream("quickSave.bin");
+        FileOutputStream f = new FileOutputStream("Saved Games/quickSave.bin");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(f);
         objectOutputStream.writeObject(myGrid);
     }
     
     public static void save(Grid myGrid) throws IOException
     {
-        String folderPath = myGrid.getGameNumber()+".bin";
+        String folderPath;
+        if(myGrid.getCurrentGame().getGameStatus().equals(Constants.FINISHED))
+        {
+            folderPath = "Saved Games/Finished Games/"+myGrid.getGameNumber()+".bin";
+        }
+        else
+        {
+            folderPath = "Saved Games/On Going Games/"+myGrid.getGameNumber()+".bin";
+        }
         FileOutputStream f = new FileOutputStream(folderPath);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(f);
         objectOutputStream.writeObject(myGrid);
@@ -41,9 +50,18 @@ public class Folders implements Serializable
     
     public static void writeNumber(int number) throws FileNotFoundException, IOException, ClassNotFoundException
     {
-        FileOutputStream f = new FileOutputStream("gameNumber.bin");
+        FileOutputStream f = new FileOutputStream("Saved Games/gameNumber.bin");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(f);
         objectOutputStream.writeObject(number);
+    }
+    
+    public static Grid quickLoad() throws IOException, ClassNotFoundException
+    {
+        Grid myGrid;
+        FileInputStream f = new FileInputStream("Saved Games/quickSave.bin");
+        ObjectInputStream objectInputStream = new ObjectInputStream(f);
+        myGrid = (Grid) objectInputStream.readObject();
+        return myGrid;
     }
     
     public static Grid readFile(String folderPath) throws IOException, ClassNotFoundException
@@ -58,13 +76,13 @@ public class Folders implements Serializable
     public static int readNumber() throws IOException, ClassNotFoundException
     {
         int number;
-        FileInputStream f = new FileInputStream("gameNumber.bin");
+        FileInputStream f = new FileInputStream("Saved Games/gameNumber.bin");
         ObjectInputStream objectInputStream = new ObjectInputStream(f);
         number = (int) objectInputStream.readObject();
         return number;
     }
     
-    public static List<Grid> getGrids() throws IOException
+    public static List<Grid> getFinishedGrids() throws IOException
     {
         int number=0;
         List<Grid> grids = new ArrayList<>();
@@ -73,16 +91,46 @@ public class Folders implements Serializable
         try {
             number = readNumber();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.printf("cannot open number file");
+            number=0;
         }
         for(int i=0;i<number;i++)
         {
             try {
-                folderPath = i+".bin";
+                folderPath = "Saved Games/Finished Games/"+i+".bin";
                 myGrid = readFile(folderPath);
                 grids.add(myGrid);
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.printf("cannot get the game with number: %d",i);
+            }  
+        }
+        return grids;
+    }
+    
+    public static List<Grid> getOnGoingGrids() throws IOException
+    {
+        int number=0;
+        List<Grid> grids = new ArrayList<>();
+        Grid myGrid;
+        String folderPath;
+        try {
+            number = readNumber();
+        } catch (ClassNotFoundException ex) {
+            //Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.printf("cannot open number file");
+            number=0;
+        }
+        for(int i=0;i<number;i++)
+        {
+            try {
+                folderPath = "Saved Games/On Going Games/"+i+".bin";
+                myGrid = readFile(folderPath);
+                grids.add(myGrid);
+            } catch (ClassNotFoundException ex) {
+                //Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.printf("cannot get the game with number: %d",i);
             }  
         }
         return grids;
