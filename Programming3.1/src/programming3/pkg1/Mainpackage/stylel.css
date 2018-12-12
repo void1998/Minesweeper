@@ -1,0 +1,14 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #f0f7d4;
+}
+.Header{
+    -fx-background-image: url("header.png") ;
+    -fx-background-size: cover;
+}
+.MainMenuButton{
+    -fx-background-color: #66B032;
+}

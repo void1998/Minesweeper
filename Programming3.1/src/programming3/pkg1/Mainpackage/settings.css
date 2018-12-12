@@ -1,0 +1,55 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #f0f7d4;
+}
+.Header{
+    -fx-background-image: url("settings.png") ;
+    -fx-background-size: cover;
+}
+.MainMenuButton{
+
+        -fx-background-color: 
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+}
+
+.playButton{
+    -fx-background-color: linear-gradient(#66B032, #F4F5EF,#B2D732);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2;
+    -fx-border-color: #C9D0AF;
+    -fx-border-radius: 30;
+}
+
+/* Styling the slider track */
+.jfx-slider > .track {
+     -fx-background-color: yellow;
+}
+
+/* Styling the slider thumb */
+.jfx-slider > .thumb {
+     -fx-background-color: green;
+}
+
+/* Styling the filled track */
+.jfx-slider > .colored-track {
+     -fx-background-color: green;
+}
+
+/* Styling the animated thumb */
+.jfx-slider > .animated-thumb {
+     -fx-background-color: green;
+}
+
+/* Styling the slider value text inside animated thumb */
+.jfx-slider .slider-value {
+     -fx-fill: white;
+     -fx-stroke: white;
+     -jfx-indicator-position: RIGHT;
+}
