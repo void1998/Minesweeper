@@ -33,14 +33,15 @@ import programming3.pkg1.UtilPackage.Constants;
  */
 public class NewGUI {
     static public  MoveTimer Time = new MoveTimer();
+    static public Grid grid = new Grid();
     //Game Logic initializing method
     
     public Grid InitGridLogicGUI()
     {
         //TODO maitain to take the first square then make the initializing process
         //init game
-        Game myGame = new NormalGame();
-        myGame.initGame(1, 0, 0);
+        Game myGame = new ScoreGame();
+        myGame.initGame(2, 0, 0);
         Grid grid = new Grid(20, 20, myGame, 5);
         PlayerMove temp = new PlayerMove();
         grid.initGrid(temp.getSquare());
@@ -68,13 +69,13 @@ public class NewGUI {
     //Init the GridPane of the minesweeper
     public void initGridPane(GridPane Grid,Label turnTimer,Label player1NameLabel,Label player2NameLabel,
                Label player1ScoreLabel,Label player2ScoreLabel,Label player1ShieldsLabel,
-               Label player2ShieldsLabel,Label GameStatus)
+               Label player2ShieldsLabel,Label GameStatus,Label autoPlayerScore)
     {
         Button[][] button = initCells();
-        Grid grid = InitGridLogicGUI();
+        this.grid = InitGridLogicGUI();
         CellsActions(button, grid,turnTimer,player1NameLabel,player2NameLabel,
                player1ScoreLabel,player2ScoreLabel,player1ShieldsLabel,player2ShieldsLabel
-                ,GameStatus);
+                ,GameStatus,autoPlayerScore);
         Grid.setPadding(new Insets(0, 0, 0, 0));
         Grid.setVgap(0);
         Grid.setHgap(0);
@@ -119,25 +120,40 @@ public class NewGUI {
     }
     //Cells Events Listener
     public void CellsActions(Button myButtons[][],Grid grid,Label turnTimer,Label playerName1,Label playerName2,
-            Label playerScore1,Label playerScore2,Label playerShields1,Label playerShields2,Label GameStatus)
+            Label playerScore1,Label playerScore2,Label playerShields1,Label playerShields2,Label GameStatus,
+            Label autoPlayerScore)
     {
         //PLayers Names Labels
         playerName1.setText(grid.getCurrentGame().getPlayers().get(0).getName());
-        if(grid.getCurrentGame().getPlayersNumber() == 2)
+        if(grid.getCurrentGame().getPlayersNumber() >= 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("AutoPlayer"))
         playerName2.setText(grid.getCurrentGame().getPlayers().get(1).getName());
         //Players Scores Labels
         String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
         playerScore1.setText(score1);
-        if(grid.getCurrentGame().getPlayersNumber() == 2)
+        if(grid.getCurrentGame().getPlayersNumber() >= 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
         {
             String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
             playerScore2.setText(score2);
         }
-
+        if((grid.getCurrentGame().getPlayersNumber() == 2 && grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player")))
+        {
+            String score3= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+            autoPlayerScore.setText(score3);
+        }
+        if(grid.getCurrentGame().getPlayersNumber() == 3 )
+        {
+            String score3= grid.getCurrentGame().getPlayers().get(2).getCurrentScore().getRealScore() +"";        
+            autoPlayerScore.setText(score3);
+        }
         //playerShields Labels
         String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
         playerShields1.setText(shields1);
-        if(grid.getCurrentGame().getPlayersNumber() == 2)
+        if(grid.getCurrentGame().getPlayersNumber() == 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
+        {
+            String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+            playerShields2.setText(shields2);
+        }
+        if(grid.getCurrentGame().getPlayersNumber() == 3 )
         {
             String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
             playerShields2.setText(shields2);
@@ -153,6 +169,7 @@ public class NewGUI {
                 myButtons[i][j].setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
+                        System.out.println(grid.getGameNumber());
                         PlayerMove temp2 = new PlayerMove();
                         if (event.getButton() == MouseButton.PRIMARY) {
                             temp2.getMove().setType(Constants.REVEAL);
@@ -163,65 +180,83 @@ public class NewGUI {
                             grid.getCurrentGame().getCurrentRules().DecideNextPlayer(grid.getCurrentGame()
                                     .getCurrentPlayer());
                             //changing score & shields labels
-                                //Players Scores Labels
+                                            //Players Scores Labels
                             String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
                             playerScore1.setText(score1);
-                            if(grid.getCurrentGame().getPlayersNumber() == 2)
+                            if(grid.getCurrentGame().getPlayersNumber() >= 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
                             {
                                 String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
                                 playerScore2.setText(score2);
                             }
-
-                                //playerShields Labels
+                            if((grid.getCurrentGame().getPlayersNumber() == 2 && grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player")))
+                            {
+                                String score3= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                autoPlayerScore.setText(score3);
+                            }
+                            if(grid.getCurrentGame().getPlayersNumber() == 3 )
+                            {
+                                String score3= grid.getCurrentGame().getPlayers().get(2).getCurrentScore().getRealScore() +"";        
+                                autoPlayerScore.setText(score3);
+                            }
+                            //playerShields Labels
                             String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
                             playerShields1.setText(shields1);
-                            if(grid.getCurrentGame().getPlayersNumber() == 2)
+                            if(grid.getCurrentGame().getPlayersNumber() == 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
                             {
                                 String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
                                 playerShields2.setText(shields2);
                             }
-                            //Checking the Game Status
-                            grid.getCurrentGame().checkGame(grid);
-                            if (grid.getCurrentGame().getGameStatus().equals(Constants.FINISHED)) {
-                                TranslateTransition transition = new TranslateTransition();
-                                transition.setDuration(Duration.ONE);
-                                transition.setNode(GameStatus);
-
-                                transition.setToY(-200);
-                                transition.setToX(-100);
-
-                                transition.play();
-                                System.out.println("fffffff");
-
+                            if(grid.getCurrentGame().getPlayersNumber() == 3 )
+                            {
+                                String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+                                playerShields2.setText(shields2);
                             }
+                            //
                             Time.stop();
 
                             Time = new MoveTimer() {
 
                                 @Override
                                 public void check() {
-                                    grid.ss();
+                                        grid.ss();
+                                        if (grid.getCurrentGame().getCurrentPlayer().getName().equals("Auto Player")) {
+                                        grid.AcceptMove(grid.getCurrentGame().getCurrentPlayer().GetPlayerMove());
+                                         }
                                     //changing score & shields labels
-                                        //Players Scores Labels
-                                    String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
-                                    playerScore1.setText(score1);
-                                    if(grid.getCurrentGame().getPlayersNumber() == 2)
-                                    {
-                                        String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
-                                        playerScore2.setText(score2);
-                                    }
-
+                                    //Players Scores Labels
+                                        String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
+                                        playerScore1.setText(score1);
+                                        if(grid.getCurrentGame().getPlayersNumber() >= 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
+                                        {
+                                            String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                            playerScore2.setText(score2);
+                                        }
+                                        if((grid.getCurrentGame().getPlayersNumber() == 2 && grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player")))
+                                        {
+                                            String score3= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                           // autoPlayerScore.setText(score3);
+                                        }
+                                        if(grid.getCurrentGame().getPlayersNumber() == 3 )
+                                        {
+                                            String score3= grid.getCurrentGame().getPlayers().get(2).getCurrentScore().getRealScore() +"";        
+                                            autoPlayerScore.setText(score3);
+                                        }
                                         //playerShields Labels
-                                    String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
-                                    playerShields1.setText(shields1);
-                                    if(grid.getCurrentGame().getPlayersNumber() == 2)
-                                    {
-                                        String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
-                                        playerShields2.setText(shields2);
-                                    }
+                                        String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
+                                        playerShields1.setText(shields1);
+                                        if(grid.getCurrentGame().getPlayersNumber() == 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
+                                        {
+                                            String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+                                            playerShields2.setText(shields2);
+                                        }
+                                        if(grid.getCurrentGame().getPlayersNumber() == 3 )
+                                        {
+                                            String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+                                            playerShields2.setText(shields2);
+                                        }
+                                        //
                                     //Checking the Game Status
-                                    grid.getCurrentGame().checkGame(grid);
-                                    if (grid.getCurrentGame().getGameStatus().equals(Constants.FINISHED)) {
+                                    if (grid.getCurrentGame().checkGame(grid).equals(Constants.LOSER)) {
                                         TranslateTransition transition = new TranslateTransition();
                                         transition.setDuration(Duration.ONE);
                                         transition.setNode(GameStatus);
@@ -230,12 +265,28 @@ public class NewGUI {
                                         transition.setToX(-100);
                                         
                                         transition.play();
-                                        System.out.println("fffffff");
+                                        
                                         
                                     }
                                 }
                             };
                             Time.start();
+                            //Checking the Game Status
+                            if (grid.getCurrentGame().checkGame(grid).equals(Constants.LOSER)) {
+                                TranslateTransition transition = new TranslateTransition();
+                                transition.setDuration(Duration.ONE);
+                                transition.setNode(GameStatus);
+
+                                transition.setToY(-200);
+                                transition.setToX(-100);
+
+                                transition.play();
+                                
+
+                            }
+                            if (grid.getCurrentGame().getCurrentPlayer().getName().equals("Auto Player")) {
+                                grid.AcceptMove(grid.getCurrentGame().getCurrentPlayer().GetPlayerMove());
+                            }
                             updateCells(myButtons,grid.getSquares(),20,20);
                         } else if (event.getButton() == MouseButton.SECONDARY) {
                             temp2.getMove().setType(Constants.MARK);
@@ -244,13 +295,23 @@ public class NewGUI {
                             temp2.setPlayer(grid.getCurrentGame().getCurrentPlayer());
                             grid.AcceptMove(temp2);
                             updateCells(myButtons,grid.getSquares(),20,20);
-                                //Players Scores Labels
+                            //Players Scores Labels
                             String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
                             playerScore1.setText(score1);
-                            if(grid.getCurrentGame().getPlayersNumber() == 2)
+                            if(grid.getCurrentGame().getPlayersNumber() >= 2 && !grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player"))
                             {
                                 String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
                                 playerScore2.setText(score2);
+                            }
+                            if((grid.getCurrentGame().getPlayersNumber() == 2 && grid.getCurrentGame().getPlayers().get(1).getName().equals("Auto Player")))
+                            {
+                                String score3= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                autoPlayerScore.setText(score3);
+                            }
+                            if(grid.getCurrentGame().getPlayersNumber() == 3 )
+                            {
+                                String score3= grid.getCurrentGame().getPlayers().get(2).getCurrentScore().getRealScore() +"";        
+                                autoPlayerScore.setText(score3);
                             }
                             //Checking the Game Status
                             grid.getCurrentGame().checkGame(grid);

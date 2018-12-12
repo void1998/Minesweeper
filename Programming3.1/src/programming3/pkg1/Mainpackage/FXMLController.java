@@ -126,6 +126,10 @@ public class FXMLController  {
         Label player2NameLabel = (Label)player2VBox.getChildren().get(0);
         Label player2ScoreLabel = (Label)player2VBox.getChildren().get(1);
         Label player2ShieldsLabel = (Label)player2VBox.getChildren().get(2);
+        //getting auto Player Score
+        HBox autoPlayerHBox = (HBox)secondFather.getChildren().get(2);
+        VBox autoPlayerVBox = (VBox)autoPlayerHBox.getChildren().get(1);
+        Label autoPlayerScoreLabel = (Label)autoPlayerVBox.getChildren().get(1);
         //getting GameStatus Label
         HBox GameStatusContainer = (HBox)root.getChildren().get(2); 
         Label GameStatus = (Label)GameStatusContainer.getChildren().get(0);
@@ -137,7 +141,7 @@ public class FXMLController  {
         GridPane realGrid = new GridPane();
        Helper.initGridPane(realGrid,TurnTimer,player1NameLabel,player2NameLabel,
                player1ScoreLabel,player2ScoreLabel,player1ShieldsLabel
-               ,player2ShieldsLabel,GameStatus);
+               ,player2ShieldsLabel,GameStatus,autoPlayerScoreLabel);
        
        GridContainer.getChildren().add(realGrid);
       

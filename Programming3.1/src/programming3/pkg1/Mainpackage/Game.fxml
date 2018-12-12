@@ -132,14 +132,9 @@
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="50" textFill="#33b890">
+                        <Label layoutX="10.0" layoutY="10.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="1shields" textFill="#33b890">
-                           <font>
-                              <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
                      </children>
