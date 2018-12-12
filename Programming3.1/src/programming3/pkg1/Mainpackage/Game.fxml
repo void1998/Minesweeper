@@ -10,16 +10,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="mainFxmlClass" stylesheets="@game.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programming3.pkg1.Mainpackage.GameController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#startTime" prefHeight="480.0" prefWidth="640.0" styleClass="mainFxmlClass" stylesheets="@game.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="programming3.pkg1.Mainpackage.GameController">
    <children>
-      <HBox id="firstPlayerHBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="680.0" spacing="4.0" VBox.vgrow="ALWAYS">
+      <HBox id="menuBar" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="680.0" spacing="4.0" VBox.vgrow="ALWAYS">
          <children>
             <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="680.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Load" />
+                    <MenuItem mnemonicParsing="false" onAction="#save" text="Save" />
+                        <MenuItem mnemonicParsing="false" onAction="#load" text="Load" />
                         <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
                   </items>
                 </Menu>
@@ -51,7 +51,7 @@
             </MenuBar>
          </children>
       </HBox>
-      <HBox id="secondPlayerHBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="680.0">
+      <HBox id="playerStatus" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="680.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
@@ -65,17 +65,17 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label id="firstPlayerName" text="Player1" textFill="#33b890">
+                        <Label id="firstPlayerName" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label id="firstPlayerScore" layoutX="10.0" layoutY="10.0" text="300" textFill="#33b890">
+                        <Label id="firstPlayerScore" layoutX="10.0" layoutY="10.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label id="firstPlayerShieldsNumber" layoutX="10.0" layoutY="27.0" text="3shields" textFill="#33b890">
+                        <Label id="firstPlayerShieldsNumber" layoutX="10.0" layoutY="27.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
@@ -96,17 +96,17 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Player2" textFill="#33b890">
+                        <Label text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="200" textFill="#33b890">
+                        <Label layoutX="10.0" layoutY="10.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="4shields" textFill="#33b890">
+                        <Label layoutX="10.0" layoutY="27.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
@@ -132,53 +132,34 @@
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="50" textFill="#33b890">
+                        <Label layoutX="10.0" layoutY="10.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="1shields" textFill="#33b890">
-                           <font>
-                              <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                </children>
             </HBox>
-         </children>
-      </HBox>
-      <HBox id="autoPlayerHBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="680.0">
-         <children>
-            <GridPane id="GUIGrid" alignment="CENTER" prefWidth="600.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
-         </children>
-      </HBox>
-      <HBox alignment="BOTTOM_CENTER" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="680.0">
-         <children>
-            <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="640.0" spacing="5.0">
+            <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@alarm-clock.png" />
                      </image>
                   </ImageView>
-                  <Label id="TurnTimer" text="10:00">
+                  <Label fx:id="TurnTimer" text="10:00">
                      <font>
                         <Font name="Levenim MT Bold" size="33.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" translateY="1000.0">
+         <children>
+            <Label text="Game finished" />
          </children>
       </HBox>
    </children>

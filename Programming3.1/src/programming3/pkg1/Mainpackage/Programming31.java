@@ -1,27 +1,11 @@
 package programming3.pkg1.Mainpackage;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.application.Platform;
 import javafx.stage.Stage;
-import programming3.pkg1.Game;
 import programming3.pkg1.Grid;
-import programming3.pkg1.NormalGame;
-import programming3.pkg1.PlayerMove;
-import programming3.pkg1.ScoreGame;
-import programming3.pkg1.UtilPackage.Constants;
-import programming3.pkg1.UtilPackage.GridInterface;
-import programming3.pkg1.Timerhelperspackage.TimerHelper;
-import programming3.pkg1.Viewpackage.ConsoleView;
-import programming3.pkg1.Viewpackage.GUIView;
-import programming3.pkg1.Viewpackage.View;
-import sun.tools.jar.resources.jar;
+
+
 
 public class Programming31 extends Application{
 
@@ -107,11 +91,12 @@ public class Programming31 extends Application{
 //        GUI.initWindow();
 //        GUI.mainMenu();
         //FXML View//
-        
+        //Platform.setImplicitExit(false);
         FXMLController View = new FXMLController(); 
         View.GO();
         
     }
+
     
     }
     

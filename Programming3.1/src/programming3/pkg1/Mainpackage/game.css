@@ -5,34 +5,66 @@
 .mainFxmlClass {
     -fx-background-color: #f0f7d4;
 }
-.button{
-    
-}
-.empty-opened{
-    
+
+.opened{
+    -fx-background-color: 
+    linear-gradient(#1594C6, #1681AC),
+    linear-gradient(#092834, #2E2E2E),
+    linear-gradient(#66B032, #B2D732),
+     #C9E364 ,
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: black;
+    -fx-border-raduis: 10;
 }
 
 .mine-opened{
-    
+    -fx-background-color: 
+    linear-gradient(#1594C6, #1681AC),
+    linear-gradient(#092834, #2E2E2E),
+    linear-gradient(#66B032, #B2D732),
+     #C9E364 ,
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+    -fx-background-image: url('mine.png');
+    -fx-background-size:30px 30px;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 .empty-closed{
-    
+    -fx-background-color: 
+    linear-gradient(#BDE727 0%, #66B032 50%, #C9E364 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 .marked-closed{
-    
+    -fx-background-color: 
+    linear-gradient(#1594C6, #1681AC),
+    linear-gradient(#092834, #2E2E2E),
+    linear-gradient(#66B032, #B2D732),
+    linear-gradient(#BDE727 0%, #66B032 50%, #C9E364 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+    -fx-background-image: url('flag.png');
+    -fx-background-size:30px 30px;
+    -fx-border-color: black;
+    -fx-border-raduis: 10;
 }
-
-.shield1{
-    
-}
-
-.shield2{
-    
-}
-
-.shields3{
-    
-}
-
