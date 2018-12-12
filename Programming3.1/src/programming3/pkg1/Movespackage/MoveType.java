@@ -1,6 +1,8 @@
 package programming3.pkg1.Movespackage;
 
-public class MoveType {
+import java.io.Serializable;
+
+public class MoveType implements Serializable{
 
     private String type;
 

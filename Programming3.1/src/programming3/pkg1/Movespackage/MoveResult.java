@@ -1,8 +1,9 @@
 package programming3.pkg1.Movespackage;
 
+import java.io.Serializable;
 import programming3.pkg1.SquareStatus;
 
-public class MoveResult {
+public class MoveResult implements Serializable{
 
     private int scoreChange;
     

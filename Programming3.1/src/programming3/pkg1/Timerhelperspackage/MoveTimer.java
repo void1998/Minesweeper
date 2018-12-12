@@ -5,6 +5,7 @@
  */
 package programming3.pkg1.Timerhelperspackage;
 
+import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.util.TimerTask;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,11 +18,11 @@ import programming3.pkg1.Grid;
  *
  * @author CEC
  */
-public class MoveTimer extends Thread{
+public class MoveTimer extends Thread implements Serializable{
 
     int t = 10;
     public static StringProperty ttText;
-    public Label tempTimer = new Label();
+   // public Label tempTimer = new Label();
     public StringProperty getTtTextProperty() {
         return ttText;
     }
@@ -60,7 +61,7 @@ public class MoveTimer extends Thread{
             }
             Integer temp = x;
             setTtText(temp.toString());
-            tempTimer.setText(getTtText());
+            //tempTimer.setText(getTtText());
             System.out.println(getTtText());
             x--;
         }

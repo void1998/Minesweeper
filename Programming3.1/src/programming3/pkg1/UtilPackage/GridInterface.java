@@ -5,12 +5,13 @@
  */
 package programming3.pkg1.UtilPackage;
 
+import java.io.Serializable;
 import programming3.pkg1.Grid;
 
 /**
  *
  * @author CEC
  */
-public interface GridInterface {
+public interface GridInterface extends Serializable{
    Grid getGrid();
 }

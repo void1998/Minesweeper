@@ -5,13 +5,14 @@
  */
 package programming3.pkg1;
 
+import java.io.Serializable;
 import programming3.pkg1.UtilPackage.Constants;
 
 /**
  *
  * @author void
  */
-public class PlayerStatue  {
+public class PlayerStatue  implements Serializable{
     private String status;
     PlayerStatue()
     {

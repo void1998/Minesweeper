@@ -1,6 +1,7 @@
 package programming3.pkg1;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.ExceptionPackage.IllegalGameMove;
@@ -20,7 +21,7 @@ import programming3.pkg1.ShieldPackage.Shield200;
 import programming3.pkg1.ShieldPackage.Shield50;
 import programming3.pkg1.Timerhelperspackage.MoveTimer;
 
-public class Grid {
+public class Grid implements Serializable {
 
     MoveTimer Time = new MoveTimer();
     private Square[][] squares/*=new Square[21][21]*/;

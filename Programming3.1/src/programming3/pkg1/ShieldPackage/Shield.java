@@ -5,13 +5,14 @@
  */
 package programming3.pkg1.ShieldPackage;
 
+import java.io.Serializable;
 import programming3.pkg1.Player;
 
 /**
  *
  * @author ASUS
  */
-public abstract class Shield 
+public abstract class Shield implements Serializable
 {
     protected static int ShieldsNumber = 0;
     protected Player player;

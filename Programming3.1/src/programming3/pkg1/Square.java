@@ -1,8 +1,9 @@
 package programming3.pkg1;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Square {
+public class Square implements Serializable{
 
     private int x;
     private int y;

@@ -1,10 +1,11 @@
 package programming3.pkg1.UtilPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Color {
+public class Color implements Serializable{
       private static int GUIplayerNumber=1;
       private final int standerdNumber=20;
       ////////////////////////////

@@ -1,6 +1,8 @@
 package programming3.pkg1.UtilPackage;
 
-public class Constants {
+import java.io.Serializable;
+
+public class Constants implements Serializable{
     public static final String CLOSED="Closed";
     public static final String OPENED_EMPTY="Opened Empty";
     public static final String OPENED_NUMBER="Opened Number";

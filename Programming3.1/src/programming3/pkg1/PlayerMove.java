@@ -1,9 +1,10 @@
 package programming3.pkg1;
 
+import java.io.Serializable;
 import programming3.pkg1.Movespackage.MoveResult;
 import programming3.pkg1.Movespackage.MoveType;
 
-public class PlayerMove {
+public class PlayerMove implements Serializable{
 
     private Player player;
 

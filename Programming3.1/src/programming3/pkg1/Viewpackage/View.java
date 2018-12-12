@@ -5,6 +5,7 @@
  */
 package programming3.pkg1.Viewpackage;
 
+import java.io.Serializable;
 import programming3.pkg1.Square;
 import programming3.pkg1.Square;
 
@@ -12,6 +13,6 @@ import programming3.pkg1.Square;
  *
  * @author void
  */
-public interface View {
+public interface View extends Serializable{
     public abstract void Draw(Square grid[][]);
 }

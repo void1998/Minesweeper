@@ -1,6 +1,8 @@
 package programming3.pkg1;
 
-public abstract class Score {
+import java.io.Serializable;
+
+public abstract class Score implements Serializable{
     int realScore;
     Object score;
     Score()

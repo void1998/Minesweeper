@@ -1,12 +1,13 @@
 package programming3.pkg1;
 
+import java.io.Serializable;
 import java.util.List;
 import programming3.pkg1.NumiricScore;
 import programming3.pkg1.Score;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.ShieldPackage.Shield;
 
-public abstract class Player {
+public abstract class Player implements Serializable{
 
     protected String name;
     protected Score currentScore;

@@ -1,9 +1,10 @@
 package programming3.pkg1;
 
+import java.io.Serializable;
 import programming3.pkg1.ExceptionPackage.IllegalGameMove;
 import java.util.List;
 import programming3.pkg1.GameTime.GameTime;
-public abstract class Game {
+public abstract class Game implements Serializable {
 
     public List<Player> players;
 
@@ -19,7 +20,7 @@ public abstract class Game {
     
     protected GameTime gameTime;
 
-    public abstract class GameRules 
+    public abstract class GameRules implements Serializable
     {
 
         public abstract int GetScoreChange(PlayerMove move);

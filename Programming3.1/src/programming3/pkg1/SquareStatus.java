@@ -1,10 +1,11 @@
 package programming3.pkg1;
 
+import java.io.Serializable;
 import programming3.pkg1.ShieldPackage.Shield;
 import programming3.pkg1.ShieldPackage.Shield0;
 import programming3.pkg1.UtilPackage.Constants;
 
-public class SquareStatus {
+public class SquareStatus implements Serializable{
 
     private String status;
     private int value;
