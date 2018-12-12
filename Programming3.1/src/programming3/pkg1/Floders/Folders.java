@@ -57,7 +57,7 @@ public class Folders implements Serializable
     
     public static int readNumber() throws IOException, ClassNotFoundException
     {
-        int number=-1;
+        int number;
         FileInputStream f = new FileInputStream("gameNumber.bin");
         ObjectInputStream objectInputStream = new ObjectInputStream(f);
         number = (int) objectInputStream.readObject();

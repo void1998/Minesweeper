@@ -30,14 +30,14 @@ public abstract class Game {
 
     public abstract String AcceptMove(PlayerMove move, Grid myGrid) throws IllegalGameMove;
 
-    public abstract void ApplyPlayerMove(List<PlayerMove> moves, Grid myGrid);
+    public abstract void ApplyPlayerMove(PlayerMove move, Grid myGrid);
     
     public abstract void Winner();
     
     public abstract void DFS(int x,int y, Grid myGrid);
     
     public abstract String checkGame(Grid myGrid);
-
+    
     public void setPlayers(List<Player> players) {
         this.players = players;
     }

@@ -12,6 +12,8 @@ public class PlayerMove {
     private MoveType move;
 
     private MoveResult result;
+    
+    protected int moveTime;
 
     public PlayerMove() {
        move = new MoveType();
@@ -42,6 +44,10 @@ public class PlayerMove {
         this.move = move;
     }
 
+    public void setMoveTime(int moveTime) {
+        this.moveTime = moveTime;
+    }
+
     public void setResult(MoveResult result) {
         this.result = result;
     }
@@ -61,6 +67,10 @@ public class PlayerMove {
 
     public MoveResult getResult() {
         return result;
+    }
+
+    public int getMoveTime() {
+        return moveTime;
     }
     
     

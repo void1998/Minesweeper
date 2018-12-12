@@ -133,16 +133,17 @@ public class Grid {
             int score = move.getPlayer().getCurrentScore().getRealScore();
             String status;
             move.square.squareStatus = this.getSquares()[move.getSquare().getX()][move.getSquare().getY()].squareStatus;
-            currentGame.moves.add(move);
-            currentGame.ApplyPlayerMove(currentGame.moves, this);
+            //currentGame.moves.add(move);
+            currentGame.ApplyPlayerMove(move, this);
             scoreChange = currentGame.getCurrentRules().GetScoreChange(move);
             //changing the score for the player
             move.getResult().setScoreChange(scoreChange);
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
+            move.getResult().setTotalScore(move.getPlayer().getCurrentScore().getRealScore());
             //changing the status of the player
             status = currentGame.getCurrentRules().ChangePlayerStatus(move);
             move.getPlayer().getCurrentStatue().setStatus(status);
-            // for the shields and using them
+            // for taking the shields from the opened squares
             if (!shieldsPlaces.isEmpty() && !getCurrentGame().getCurrentPlayer().getName().equals("Auto Player")) {
                 int x = 0, y = 0;
                 Shield shield;
