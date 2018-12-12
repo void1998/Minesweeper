@@ -63,14 +63,14 @@ public class Grid {
         this.width = width;
         this.numberOfShieldsInGired = numberOfShields;
         try {
-            this.gameNumber = folder.readNumber();
+            this.gameNumber = Folders.readNumber();
         } catch (IOException ex) {
             Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            folder.writeNumber(gameNumber+1);
+            Folders.writeNumber(gameNumber+1);
         } catch (IOException ex) {
             Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -136,10 +136,13 @@ public class Grid {
             currentGame.moves.add(move);
             currentGame.ApplyPlayerMove(currentGame.moves, this);
             scoreChange = currentGame.getCurrentRules().GetScoreChange(move);
+            //changing the score for the player
             move.getResult().setScoreChange(scoreChange);
             move.getPlayer().getCurrentScore().setRealScore(score + scoreChange);
+            //changing the status of the player
             status = currentGame.getCurrentRules().ChangePlayerStatus(move);
             move.getPlayer().getCurrentStatue().setStatus(status);
+            // for the shields and using them
             if (!shieldsPlaces.isEmpty() && !getCurrentGame().getCurrentPlayer().getName().equals("Auto Player")) {
                 int x = 0, y = 0;
                 Shield shield;

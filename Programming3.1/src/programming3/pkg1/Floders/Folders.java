@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import programming3.pkg1.Grid;
 
 /**
@@ -58,5 +62,29 @@ public class Folders implements Serializable
         ObjectInputStream objectInputStream = new ObjectInputStream(f);
         number = (int) objectInputStream.readObject();
         return number;
+    }
+    
+    public static List<Grid> getGrids() throws IOException
+    {
+        int number=0;
+        List<Grid> grids = new ArrayList<>();
+        Grid myGrid;
+        String folderPath;
+        try {
+            number = readNumber();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for(int i=0;i<number;i++)
+        {
+            try {
+                folderPath = i+".bin";
+                myGrid = readFile(folderPath);
+                grids.add(myGrid);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+        }
+        return grids;
     }
 }
