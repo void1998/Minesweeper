@@ -201,8 +201,9 @@ public class ScoreGame extends Game implements GridInterface
             }
             return "out of width exception";
         }
-        return "out of hieght eception";
+        return "out of hieght exception";
     }
+    
     @Override
     public void ApplyPlayerMove(List<PlayerMove> moves,Grid myGrid)
     {
@@ -255,6 +256,7 @@ public class ScoreGame extends Game implements GridInterface
                 }*/
             }
         }
+        
         currentGrid=myGrid;
     }
     

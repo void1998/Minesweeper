@@ -1,5 +1,6 @@
 package programming3.pkg1;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.ExceptionPackage.IllegalGameMove;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import programming3.pkg1.Floders.Folders;
 import programming3.pkg1.Game;
 import programming3.pkg1.Game;
 import programming3.pkg1.PlayerMove;
@@ -34,6 +36,10 @@ public class Grid {
     protected List<Shield> shieldsPlaces;
 
     protected int numberOfShieldsInGired;
+    
+    protected int gameNumber;
+    
+    protected Folders folder;
 
     public Grid() {
     }
@@ -56,6 +62,20 @@ public class Grid {
         this.hieght = hieght;
         this.width = width;
         this.numberOfShieldsInGired = numberOfShields;
+        try {
+            this.gameNumber = folder.readNumber();
+        } catch (IOException ex) {
+            Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            folder.writeNumber(gameNumber+1);
+        } catch (IOException ex) {
+            Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Square[][] getSquares() {
@@ -82,6 +102,14 @@ public class Grid {
         return width;
     }
 
+    public int getGameNumber() {
+        return gameNumber;
+    }
+
+    public void setGameNumber(int gameNumber) {
+        this.gameNumber = gameNumber;
+    }
+    
     public List<Shield> getShieldsPlaces() {
         return shieldsPlaces;
     }
