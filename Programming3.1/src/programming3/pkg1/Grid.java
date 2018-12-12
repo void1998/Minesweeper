@@ -39,7 +39,7 @@ public class Grid {
     
     protected int gameNumber;
     
-    protected Folders folder;
+    //protected Folders folder;
 
     public Grid() {
     }
@@ -65,9 +65,9 @@ public class Grid {
         try {
             this.gameNumber = Folders.readNumber();
         } catch (IOException ex) {
-            Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+            this.gameNumber = 0;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+            this.gameNumber = 0;
         }
         try {
             Folders.writeNumber(gameNumber+1);
