@@ -23,6 +23,7 @@ import programming3.pkg1.Grid;
  */
 public class GameTime {
 
+    private final Date actualStartDate;
     private String startTime;
     private String endTime;
     private Date startDate;
@@ -31,16 +32,14 @@ public class GameTime {
     
 
     public GameTime() {
+        actualStartDate=new Date();
     }
 
-  /*  public GameTime(String startTime, String endTime, String startDate, String endDate, String duration) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.duration = duration;
-    }*/
-
+    public Date getActualStartDate() {
+        return actualStartDate;
+    }
+    
+    
     public String getStartTime() {
         return startTime;
     }
@@ -63,7 +62,7 @@ public class GameTime {
     }
 
     public void initStartDate() {
-        this.startDate = getCurrentDate();
+        this.startDate = new Date();
         initStartTime();
     }
 
@@ -72,7 +71,7 @@ public class GameTime {
     }
 
     public void initEndDate() {
-        this.endDate = getCurrentDate();
+        this.endDate = new Date();
         initEndTime();
     }
 
@@ -94,12 +93,6 @@ public class GameTime {
     }
     
     
-       public Date getCurrentDate()
-    {
-        Date date=new Date();
-        return date;
-    }
-    
     
     public String getGameTime(String startTime,String endTime)
     {
@@ -107,10 +100,14 @@ public class GameTime {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime startDateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime endDateTime = LocalDateTime.parse(endTime, formatter);
+        ///////////////////////////////////////////////
+        LocalDateTime durationTime= LocalDateTime.parse(this.duration, formatter);
+        ///////////////////////////////////////////////
         
-        long hours = ChronoUnit.HOURS.between(startDateTime, endDateTime);
-        long minutes = ChronoUnit.MINUTES.between(startDateTime, endDateTime);
-        long seconds = ChronoUnit.SECONDS.between(startDateTime, endDateTime);
+        long hours = ChronoUnit.HOURS.between(startDateTime, endDateTime) + durationTime.getHour();
+        long minutes = ChronoUnit.MINUTES.between(startDateTime, endDateTime) + durationTime.getMinute();
+        long seconds = ChronoUnit.SECONDS.between(startDateTime, endDateTime) + durationTime.getSecond();
+        
         
         Calendar calendar=Calendar.getInstance();
         
@@ -132,8 +129,8 @@ public class GameTime {
         @Override
         public int compare(Grid one, Grid other) {
             
-            Date first=one.getCurrentGame().getGameTime().getStartDate();
-            Date second=other.getCurrentGame().getGameTime().getStartDate();
+            Date first=one.getCurrentGame().getGameTime().getActualStartDate();
+            Date second=other.getCurrentGame().getGameTime().getActualStartDate();
       
             return first.compareTo(second);
   }
