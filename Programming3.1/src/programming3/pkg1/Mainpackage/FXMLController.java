@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -107,7 +108,7 @@ public class FXMLController  {
     public void Game(ActionEvent event) throws IOException
     {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+        window.onCloseRequestProperty();
         VBox root = FXMLLoader.load(getClass().getResource("Game.fxml"));
         //
         HBox secondFather = (HBox)root.getChildren().get(1);
