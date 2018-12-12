@@ -5,6 +5,9 @@
  */
 package programming3.pkg1.Viewpackage;
 
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import programming3.pkg1.Game;
 import programming3.pkg1.Grid;
+import programming3.pkg1.Mainpackage.Programming31;
 import programming3.pkg1.NormalGame;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.ScoreGame;
@@ -31,7 +35,7 @@ import programming3.pkg1.UtilPackage.Constants;
  *
  * @author void
  */
-public class NewGUI {
+public class NewGUI implements Serializable{
     static public  MoveTimer Time = new MoveTimer();
     static public Grid grid = new Grid();
     //Game Logic initializing method
@@ -73,7 +77,7 @@ public class NewGUI {
     {
         Button[][] button = initCells();
         this.grid = InitGridLogicGUI();
-        CellsActions(button, grid,turnTimer,player1NameLabel,player2NameLabel,
+        CellsActions(button,turnTimer,player1NameLabel,player2NameLabel,
                player1ScoreLabel,player2ScoreLabel,player1ShieldsLabel,player2ShieldsLabel
                 ,GameStatus,autoPlayerScore);
         Grid.setPadding(new Insets(0, 0, 0, 0));
@@ -116,10 +120,20 @@ public class NewGUI {
         {
             myButton[i][j].getStyleClass().add("mine-opened");
         }
+        //checking if there is an open shield
+            if (squares[i + 1][j + 1].getSquareStatus().getShield() != null) {
+                if (squares[i + 1][j + 1].getSquareStatus().getShield().getType() == 50 && (squares[i + 1][j + 1].getSquareStatus().getStatus() == Constants.OPENED_EMPTY || squares[i + 1][j + 1].getSquareStatus().getStatus() == Constants.OPENED_NUMBER)) {
+                    myButton[i][j].setStyle("-fx-background-image: url('programming3/pkg1/Mainpackage/shield50.png');-fx-background-size:30px 30px;");
+                } else if (squares[i + 1][j + 1].getSquareStatus().getShield().getType() == 100 && (squares[i + 1][j + 1].getSquareStatus().getStatus() == Constants.OPENED_EMPTY || squares[i + 1][j + 1].getSquareStatus().getStatus() == Constants.OPENED_NUMBER)) {
+                    myButton[i][j].setStyle("-fx-background-image: url('programming3/pkg1/Mainpackage/shield100.jpg');-fx-background-size:30px 30px;");
+                } else if (squares[i + 1][j + 1].getSquareStatus().getShield().getType() == 200 && (squares[i + 1][j + 1].getSquareStatus().getStatus() == Constants.OPENED_EMPTY || squares[i + 1][j + 1].getSquareStatus().getStatus() == Constants.OPENED_NUMBER)) {
+                    myButton[i][j].setStyle("-fx-background-image: url('programming3/pkg1/Mainpackage/shield200.png');-fx-background-size:30px 30px;");
+                }
+            }
             }
     }
     //Cells Events Listener
-    public void CellsActions(Button myButtons[][],Grid grid,Label turnTimer,Label playerName1,Label playerName2,
+    public void CellsActions(Button myButtons[][],Label turnTimer,Label playerName1,Label playerName2,
             Label playerScore1,Label playerScore2,Label playerShields1,Label playerShields2,Label GameStatus,
             Label autoPlayerScore)
     {
@@ -213,7 +227,11 @@ public class NewGUI {
                             }
                             //
                             Time.stop();
-
+                            try {
+                                Time.join(1);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(NewGUI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             Time = new MoveTimer() {
 
                                 @Override
@@ -265,7 +283,7 @@ public class NewGUI {
                                         transition.setToX(-100);
                                         
                                         transition.play();
-                                        System.out.println("fffffff");
+                                        System.exit(0);
                                         
                                         
                                     }
@@ -283,6 +301,7 @@ public class NewGUI {
 
                                 transition.play();
                                 System.out.println("fffffff");
+                                System.exit(0);
 
                             }
                             if (grid.getCurrentGame().getCurrentPlayer().getName().equals("Auto Player")) {
@@ -326,6 +345,7 @@ public class NewGUI {
 
                                 transition.play();
                                 System.out.println("fffffff");
+                                System.exit(0);
 
                             }
 
