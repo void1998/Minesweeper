@@ -111,18 +111,33 @@ public class FXMLController  {
         VBox root = FXMLLoader.load(getClass().getResource("Game.fxml"));
         //
         HBox secondFather = (HBox)root.getChildren().get(1);
+        //Getting timer label
         HBox thirdFather = (HBox)secondFather.getChildren().get(3);
         Label TurnTimer = (Label)thirdFather.getChildren().get(1);
-        NewGUI.Time.getTtTextProperty().addListener((v,oldValue,newValue) -> {
-                TurnTimer.setText(newValue);
-                });
+        //getting player 1 labels
+        HBox player1HBox = (HBox)secondFather.getChildren().get(0);
+        VBox player1VBox = (VBox)player1HBox.getChildren().get(1);
+        Label player1NameLabel = (Label)player1VBox.getChildren().get(0);
+        Label player1ScoreLabel = (Label)player1VBox.getChildren().get(1);
+        Label player1ShieldsLabel = (Label)player1VBox.getChildren().get(2);
+        //getting player2 labels
+        HBox player2HBox = (HBox)secondFather.getChildren().get(1);
+        VBox player2VBox = (VBox)player2HBox.getChildren().get(1);
+        Label player2NameLabel = (Label)player2VBox.getChildren().get(0);
+        Label player2ScoreLabel = (Label)player2VBox.getChildren().get(1);
+        Label player2ShieldsLabel = (Label)player2VBox.getChildren().get(2);
+        //getting GameStatus Label
+        HBox GameStatusContainer = (HBox)root.getChildren().get(2); 
+        Label GameStatus = (Label)GameStatusContainer.getChildren().get(0);
         //
         HBox GridContainer = new HBox();
         GridContainer.setAlignment(Pos.CENTER);
         GridContainer.setPrefHeight(245.0);
         GridContainer.setPrefWidth(680.0);
-
-       GridPane realGrid = Helper.initGridPane();
+        GridPane realGrid = new GridPane();
+       Helper.initGridPane(realGrid,TurnTimer,player1NameLabel,player2NameLabel,
+               player1ScoreLabel,player2ScoreLabel,player1ShieldsLabel
+               ,player2ShieldsLabel,GameStatus);
        
        GridContainer.getChildren().add(realGrid);
       

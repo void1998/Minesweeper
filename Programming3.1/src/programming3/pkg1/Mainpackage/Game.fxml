@@ -65,17 +65,17 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label id="firstPlayerName" text="Player1" textFill="#33b890">
+                        <Label id="firstPlayerName" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label id="firstPlayerScore" layoutX="10.0" layoutY="10.0" text="300" textFill="#33b890">
+                        <Label id="firstPlayerScore" layoutX="10.0" layoutY="10.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label id="firstPlayerShieldsNumber" layoutX="10.0" layoutY="27.0" text="3shields" textFill="#33b890">
+                        <Label id="firstPlayerShieldsNumber" layoutX="10.0" layoutY="27.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
@@ -96,17 +96,17 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Player2" textFill="#33b890">
+                        <Label text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="200" textFill="#33b890">
+                        <Label layoutX="10.0" layoutY="10.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="4shields" textFill="#33b890">
+                        <Label layoutX="10.0" layoutY="27.0" text="----" textFill="#33b890">
                            <font>
                               <Font name="Levenim MT Bold" size="13.0" />
                            </font>
@@ -160,6 +160,11 @@
                   </Label>
                </children>
             </HBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" translateY="1000.0">
+         <children>
+            <Label text="Game finished" />
          </children>
       </HBox>
    </children>

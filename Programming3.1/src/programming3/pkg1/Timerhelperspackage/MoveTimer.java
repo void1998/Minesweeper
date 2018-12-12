@@ -9,6 +9,7 @@ import static java.lang.Thread.sleep;
 import java.util.TimerTask;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import programming3.pkg1.Grid;
 
@@ -20,7 +21,7 @@ public class MoveTimer extends Thread{
 
     int t = 10;
     public static StringProperty ttText;
-
+    public Label tempTimer = new Label();
     public StringProperty getTtTextProperty() {
         return ttText;
     }
@@ -59,6 +60,7 @@ public class MoveTimer extends Thread{
             }
             Integer temp = x;
             setTtText(temp.toString());
+            tempTimer.setText(getTtText());
             System.out.println(getTtText());
             x--;
         }

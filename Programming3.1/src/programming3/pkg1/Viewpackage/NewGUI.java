@@ -5,17 +5,21 @@
  */
 package programming3.pkg1.Viewpackage;
 
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 import programming3.pkg1.Game;
 import programming3.pkg1.Grid;
+import programming3.pkg1.NormalGame;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.ScoreGame;
 import programming3.pkg1.Square;
@@ -35,9 +39,9 @@ public class NewGUI {
     {
         //TODO maitain to take the first square then make the initializing process
         //init game
-        Game myGame = new ScoreGame();
-        myGame.initGame(1, 0, 2);
-        Grid grid = new Grid(20, 20, myGame, 10);
+        Game myGame = new NormalGame();
+        myGame.initGame(1, 0, 0);
+        Grid grid = new Grid(20, 20, myGame, 5);
         PlayerMove temp = new PlayerMove();
         grid.initGrid(temp.getSquare());
         return grid;
@@ -62,12 +66,15 @@ public class NewGUI {
     }
     
     //Init the GridPane of the minesweeper
-    public GridPane initGridPane()
+    public void initGridPane(GridPane Grid,Label turnTimer,Label player1NameLabel,Label player2NameLabel,
+               Label player1ScoreLabel,Label player2ScoreLabel,Label player1ShieldsLabel,
+               Label player2ShieldsLabel,Label GameStatus)
     {
-        GridPane Grid = new GridPane();
         Button[][] button = initCells();
         Grid grid = InitGridLogicGUI();
-        CellsActions(button, grid);
+        CellsActions(button, grid,turnTimer,player1NameLabel,player2NameLabel,
+               player1ScoreLabel,player2ScoreLabel,player1ShieldsLabel,player2ShieldsLabel
+                ,GameStatus);
         Grid.setPadding(new Insets(0, 0, 0, 0));
         Grid.setVgap(0);
         Grid.setHgap(0);
@@ -77,7 +84,6 @@ public class NewGUI {
                 Grid.getChildren().add(button[i][j]);
             }
         }
-        return Grid;
     }
     //Updating cells grphics depending on the square status
     public static void updateCells(Button[][] myButton,Square squares[][],int height,int width){
@@ -112,8 +118,31 @@ public class NewGUI {
             }
     }
     //Cells Events Listener
-    public void CellsActions(Button myButtons[][],Grid grid)
+    public void CellsActions(Button myButtons[][],Grid grid,Label turnTimer,Label playerName1,Label playerName2,
+            Label playerScore1,Label playerScore2,Label playerShields1,Label playerShields2,Label GameStatus)
     {
+        //PLayers Names Labels
+        playerName1.setText(grid.getCurrentGame().getPlayers().get(0).getName());
+        if(grid.getCurrentGame().getPlayersNumber() == 2)
+        playerName2.setText(grid.getCurrentGame().getPlayers().get(1).getName());
+        //Players Scores Labels
+        String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
+        playerScore1.setText(score1);
+        if(grid.getCurrentGame().getPlayersNumber() == 2)
+        {
+            String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+            playerScore2.setText(score2);
+        }
+
+        //playerShields Labels
+        String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
+        playerShields1.setText(shields1);
+        if(grid.getCurrentGame().getPlayersNumber() == 2)
+        {
+            String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+            playerShields2.setText(shields2);
+        }
+        //
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 final int x;
@@ -133,6 +162,38 @@ public class NewGUI {
                             grid.AcceptMove(temp2);
                             grid.getCurrentGame().getCurrentRules().DecideNextPlayer(grid.getCurrentGame()
                                     .getCurrentPlayer());
+                            //changing score & shields labels
+                                //Players Scores Labels
+                            String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
+                            playerScore1.setText(score1);
+                            if(grid.getCurrentGame().getPlayersNumber() == 2)
+                            {
+                                String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                playerScore2.setText(score2);
+                            }
+
+                                //playerShields Labels
+                            String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
+                            playerShields1.setText(shields1);
+                            if(grid.getCurrentGame().getPlayersNumber() == 2)
+                            {
+                                String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+                                playerShields2.setText(shields2);
+                            }
+                            //Checking the Game Status
+                            grid.getCurrentGame().checkGame(grid);
+                            if (grid.getCurrentGame().getGameStatus().equals(Constants.FINISHED)) {
+                                TranslateTransition transition = new TranslateTransition();
+                                transition.setDuration(Duration.ONE);
+                                transition.setNode(GameStatus);
+
+                                transition.setToY(-200);
+                                transition.setToX(-100);
+
+                                transition.play();
+                                System.out.println("fffffff");
+
+                            }
                             Time.stop();
 
                             Time = new MoveTimer() {
@@ -140,9 +201,38 @@ public class NewGUI {
                                 @Override
                                 public void check() {
                                     grid.ss();
-                                    //System.out.println(""+grid.getCurrentGame().getCurrentPlayer().getName());
-                                    //System.out.println("SCORE:"+grid.getCurrentGame().getCurrentPlayer().getCurrentScore().getRealScore());
-                                    //System.out.println("Shields number:"+grid.getCurrentGame().getCurrentPlayer().getShields().size());
+                                    //changing score & shields labels
+                                        //Players Scores Labels
+                                    String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
+                                    playerScore1.setText(score1);
+                                    if(grid.getCurrentGame().getPlayersNumber() == 2)
+                                    {
+                                        String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                        playerScore2.setText(score2);
+                                    }
+
+                                        //playerShields Labels
+                                    String shields1= grid.getCurrentGame().getPlayers().get(0).getShields().size() + "";
+                                    playerShields1.setText(shields1);
+                                    if(grid.getCurrentGame().getPlayersNumber() == 2)
+                                    {
+                                        String shields2= grid.getCurrentGame().getPlayers().get(1).getShields().size() + "";
+                                        playerShields2.setText(shields2);
+                                    }
+                                    //Checking the Game Status
+                                    grid.getCurrentGame().checkGame(grid);
+                                    if (grid.getCurrentGame().getGameStatus().equals(Constants.FINISHED)) {
+                                        TranslateTransition transition = new TranslateTransition();
+                                        transition.setDuration(Duration.ONE);
+                                        transition.setNode(GameStatus);
+                                        
+                                        transition.setToY(-200);
+                                        transition.setToX(-100);
+                                        
+                                        transition.play();
+                                        System.out.println("fffffff");
+                                        
+                                    }
                                 }
                             };
                             Time.start();
@@ -154,6 +244,28 @@ public class NewGUI {
                             temp2.setPlayer(grid.getCurrentGame().getCurrentPlayer());
                             grid.AcceptMove(temp2);
                             updateCells(myButtons,grid.getSquares(),20,20);
+                                //Players Scores Labels
+                            String score1= grid.getCurrentGame().getPlayers().get(0).getCurrentScore().getRealScore() +"";
+                            playerScore1.setText(score1);
+                            if(grid.getCurrentGame().getPlayersNumber() == 2)
+                            {
+                                String score2= grid.getCurrentGame().getPlayers().get(1).getCurrentScore().getRealScore() +"";        
+                                playerScore2.setText(score2);
+                            }
+                            //Checking the Game Status
+                            grid.getCurrentGame().checkGame(grid);
+                            if (grid.getCurrentGame().getGameStatus().equals(Constants.FINISHED)) {
+                                TranslateTransition transition = new TranslateTransition();
+                                transition.setDuration(Duration.ONE);
+                                transition.setNode(GameStatus);
+
+                                transition.setToY(-200);
+                                transition.setToX(-100);
+
+                                transition.play();
+                                System.out.println("fffffff");
+
+                            }
 
                         }
                     }
