@@ -256,7 +256,7 @@ public class NewGUI {
                                         }
                                         //
                                     //Checking the Game Status
-                                    if (grid.getCurrentGame().checkGame(grid).equals(Constants.LOSER)) {
+                                    if (grid.getCurrentGame().checkGame(grid).equals(Constants.LOSER)|| grid.getCurrentGame().getGameStatus().equals(Constants.WINNER)) {
                                         TranslateTransition transition = new TranslateTransition();
                                         transition.setDuration(Duration.ONE);
                                         transition.setNode(GameStatus);
@@ -265,6 +265,7 @@ public class NewGUI {
                                         transition.setToX(-100);
                                         
                                         transition.play();
+                                        System.out.println("fffffff");
                                         
                                         
                                     }
@@ -272,7 +273,7 @@ public class NewGUI {
                             };
                             Time.start();
                             //Checking the Game Status
-                            if (grid.getCurrentGame().checkGame(grid).equals(Constants.LOSER)) {
+                            if (grid.getCurrentGame().checkGame(grid).equals(Constants.LOSER)|| grid.getCurrentGame().getGameStatus().equals(Constants.WINNER)) {
                                 TranslateTransition transition = new TranslateTransition();
                                 transition.setDuration(Duration.ONE);
                                 transition.setNode(GameStatus);
@@ -281,7 +282,7 @@ public class NewGUI {
                                 transition.setToX(-100);
 
                                 transition.play();
-                                
+                                System.out.println("fffffff");
 
                             }
                             if (grid.getCurrentGame().getCurrentPlayer().getName().equals("Auto Player")) {
@@ -315,7 +316,7 @@ public class NewGUI {
                             }
                             //Checking the Game Status
                             grid.getCurrentGame().checkGame(grid);
-                            if (grid.getCurrentGame().getGameStatus().equals(Constants.FINISHED)) {
+                            if (grid.getCurrentGame().getGameStatus().equals(Constants.LOSER)|| grid.getCurrentGame().getGameStatus().equals(Constants.WINNER)) {
                                 TranslateTransition transition = new TranslateTransition();
                                 transition.setDuration(Duration.ONE);
                                 transition.setNode(GameStatus);
