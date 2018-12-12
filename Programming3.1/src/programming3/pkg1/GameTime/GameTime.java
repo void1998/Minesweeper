@@ -6,6 +6,7 @@
 package programming3.pkg1.GameTime;
 
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +22,7 @@ import programming3.pkg1.Grid;
  *
  * @author CEC
  */
-public class GameTime {
+public class GameTime implements Serializable{
 
     private final Date actualStartDate;
     private String startTime;
