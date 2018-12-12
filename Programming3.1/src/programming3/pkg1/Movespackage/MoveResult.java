@@ -5,6 +5,8 @@ import programming3.pkg1.SquareStatus;
 public class MoveResult {
 
     private int scoreChange;
+    
+    protected int totalScore;
 
     private SquareStatus newStatus;
 
@@ -32,6 +34,13 @@ public class MoveResult {
     public void setNewStatus(SquareStatus newStatus) {
         this.newStatus = newStatus;
     }
-    
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
     
 }

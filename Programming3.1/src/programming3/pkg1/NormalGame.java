@@ -7,6 +7,7 @@ import programming3.pkg1.UtilPackage.GridInterface;
 import java.util.ArrayList;
 import java.util.List;
 import programming3.pkg1.Game;
+import programming3.pkg1.GameTime.GameTime;
 import programming3.pkg1.PlayerMove;
 import programming3.pkg1.ShieldPackage.Shield;
 import programming3.pkg1.ShieldPackage.Shield100;
@@ -97,6 +98,7 @@ public class NormalGame extends Game implements GridInterface{
     public void initGame(int playersNumber, int isAuto, int numberOfShieldsForPlayer)
     {
         // doing the new players list
+        gameTime = new GameTime();
         players = new ArrayList<>();
         Score score;
         PlayerStatue playerStatue;
@@ -189,9 +191,9 @@ public class NormalGame extends Game implements GridInterface{
         return "out of hieght eception";
     }
     @Override
-    public void ApplyPlayerMove(List<PlayerMove> moves,Grid myGrid)
+    public void ApplyPlayerMove(PlayerMove move,Grid myGrid)
     {
-        PlayerMove move = moves.get(moves.size()-1);
+        //PlayerMove move = moves.get(moves.size()-1);
         String state = myGrid.getSquares()[move.getSquare().getX()][move.getSquare().getY()].getSquareStatus().getStatus();
         switch(move.getMove().getType())
         {
