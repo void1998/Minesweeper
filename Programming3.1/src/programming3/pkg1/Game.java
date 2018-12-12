@@ -2,6 +2,7 @@ package programming3.pkg1;
 
 import programming3.pkg1.ExceptionPackage.IllegalGameMove;
 import java.util.List;
+import programming3.pkg1.GameTime.GameTime;
 public abstract class Game {
 
     public List<Player> players;
@@ -15,6 +16,8 @@ public abstract class Game {
     private String GameStatus;
     
     private int playersNumber;
+    
+    protected GameTime gameTime;
 
     public abstract class GameRules 
     {
@@ -55,6 +58,10 @@ public abstract class Game {
         this.GameStatus = GameStatus;
     }
 
+    public void setGameTime(GameTime gameTime) {
+        this.gameTime = gameTime;
+    }
+    
     public List<Player> getPlayers() {
         return players;
     }
@@ -81,6 +88,10 @@ public abstract class Game {
 
     public void setPlayersNumber(int playersNumber) {
         this.playersNumber = playersNumber;
+    }
+
+    public GameTime getGameTime() {
+        return gameTime;
     }
     
 }
