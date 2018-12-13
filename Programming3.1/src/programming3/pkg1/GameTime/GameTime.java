@@ -34,6 +34,7 @@ public final class GameTime implements Serializable{
 
     public GameTime() {
         actualStartDate=new Date();
+        duration = "2018-04-08 00:00";
         initStartDate();
     }
 
@@ -78,7 +79,7 @@ public final class GameTime implements Serializable{
     }
 
     public String getDuration() {
-        return duration;
+        return duration.substring(11);
     }
 
     public void calculateDuration() {
@@ -90,7 +91,7 @@ public final class GameTime implements Serializable{
     public String getCurrentTime()
     {
         LocalDateTime time = LocalDateTime.now();
-        String format = time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String format = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         return format;
     }
     
@@ -99,7 +100,7 @@ public final class GameTime implements Serializable{
     public String getGameTime(String startTime,String endTime)
     {
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDateTime = LocalDateTime.parse(startTime, formatter);
         LocalDateTime endDateTime = LocalDateTime.parse(endTime, formatter);
         ///////////////////////////////////////////////
@@ -117,7 +118,7 @@ public final class GameTime implements Serializable{
         calendar.set(Calendar.MINUTE, (int)minutes);
         calendar.set(Calendar.SECOND, (int)seconds);
       
-       String formatedDuration=new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
+       String formatedDuration=new SimpleDateFormat("yyyy-MM-dd HH:mm").format(calendar.getTime());
 
         return formatedDuration;
         
