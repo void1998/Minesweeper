@@ -5,6 +5,7 @@
  */
 package programming3.pkg1.Floders;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -99,8 +100,12 @@ public class Folders implements Serializable
         {
             try {
                 folderPath = "Saved Games/Finished Games/"+i+".bin";
-                myGrid = readFile(folderPath);
-                grids.add(myGrid);
+                File f = new File(folderPath);
+                if(f.exists())
+                {
+                    myGrid = readFile(folderPath);
+                    grids.add(myGrid);
+                }
             } catch (ClassNotFoundException ex) {
                 //Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.printf("cannot get the game with number: %d",i);
@@ -126,8 +131,12 @@ public class Folders implements Serializable
         {
             try {
                 folderPath = "Saved Games/On Going Games/"+i+".bin";
-                myGrid = readFile(folderPath);
-                grids.add(myGrid);
+                File f = new File(folderPath);
+                if(f.exists())
+                {
+                    myGrid = readFile(folderPath);
+                    grids.add(myGrid);
+                }
             } catch (ClassNotFoundException ex) {
                 //Logger.getLogger(Folders.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.printf("cannot get the game with number: %d",i);
