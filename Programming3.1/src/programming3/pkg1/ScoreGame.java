@@ -354,6 +354,7 @@ public class ScoreGame extends Game /*implements GridInterface*/
         if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
         {
             myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+            myGrid.getCurrentGame().getGameTime().initEndDate();
             try 
             {
                 Folders.save(myGrid);

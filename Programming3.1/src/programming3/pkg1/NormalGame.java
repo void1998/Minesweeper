@@ -323,7 +323,6 @@ public class NormalGame extends Game /*implements GridInterface*/{
         String state;
         String gameState = Constants.WINNER;
         int value;
-        boolean check = true;
         for(int i=1;i<myGrid.getHieght();i++)
         {
             for(int j=1;j<myGrid.getWidth();j++)
@@ -332,32 +331,27 @@ public class NormalGame extends Game /*implements GridInterface*/{
                 value = myGrid.getSquares()[i][j].getSquareStatus().getValue();
                 if((state.equals(Constants.CLOSED)&& value != 9) || (state.equals(Constants.MARKED) && value != 9))
                 {
-                    check = false;
+                    gameState = Constants.ON_GOING;
                 }
             }
         }
-        if(check == false)
+        if(gameState.equals(Constants.ON_GOING))
         {
             for(int i=1;i<myGrid.getHieght();i++)
             {
                 for(int j=1;j<myGrid.getWidth();j++)
                 {
                     state = myGrid.getSquares()[i][j].getSquareStatus().getStatus();
-                    if(state.equals(Constants.OPENED_MINE))
+                    if(moves.get(moves.size()-1).getResult().getScoreChange()==-50)
                     {
                         gameState = Constants.LOSER;
-                        break;
-                    }
-                    if(state.equals(Constants.CLOSED))
-                    {
-                        gameState = Constants.ON_GOING;
                     }
                 }
-                if(gameState.equals(Constants.LOSER))
+                if(moves.get(moves.size()-1).getResult().getScoreChange()==-50)
                     break;
             }
         }
-        if(gameState.equals(Constants.WINNER) || check == true)
+        if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
         {
             myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
         }
