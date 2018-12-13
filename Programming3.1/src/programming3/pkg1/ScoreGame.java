@@ -1,30 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package programming3.pkg1;
 
+import java.io.IOException;
 import programming3.pkg1.UtilPackage.Constants;
 import programming3.pkg1.UtilPackage.GridInterface;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import programming3.pkg1.Floders.Folders;
 import programming3.pkg1.Game;
 import programming3.pkg1.GameTime.GameTime;
 import programming3.pkg1.PlayerMove;
-import static programming3.pkg1.NormalGame.currentGrid;
+//import static programming3.pkg1.NormalGame.currentGrid;
 import programming3.pkg1.ShieldPackage.Shield;
 import programming3.pkg1.ShieldPackage.Shield100;
 import programming3.pkg1.ShieldPackage.Shield200;
 import programming3.pkg1.ShieldPackage.Shield50;
 
-/**
- *
- * @author ASUS
- */
-public class ScoreGame extends Game implements GridInterface
+public class ScoreGame extends Game /*implements GridInterface*/
 {
-    Grid currentGrid=new Grid();
+    //Grid currentGrid=new Grid();
     public class DefaultRules extends GameRules 
     {
 
@@ -260,14 +255,14 @@ public class ScoreGame extends Game implements GridInterface
         }
         /*moves.remove(moves.size()-1);
         moves.add(move);*/
-        currentGrid=myGrid;
+        //currentGrid=myGrid;
     }
     
     
-      @Override
+      /*@Override
     public Grid getGrid() {
         return currentGrid;
-    }
+    }*/
     @Override
     public void Winner()
     {
@@ -355,9 +350,15 @@ public class ScoreGame extends Game implements GridInterface
                     }
                 }
             }
-            if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
+        }
+        if(gameState.equals(Constants.WINNER) || gameState.equals(Constants.LOSER))
+        {
+            myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+            try 
             {
-                myGrid.getCurrentGame().setGameStatus(Constants.FINISHED);
+                Folders.save(myGrid);
+            } catch (IOException ex) {
+                Logger.getLogger(ScoreGame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return gameState;

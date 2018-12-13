@@ -14,9 +14,9 @@ import programming3.pkg1.ShieldPackage.Shield100;
 import programming3.pkg1.ShieldPackage.Shield200;
 import programming3.pkg1.ShieldPackage.Shield50;
 
-public class NormalGame extends Game implements GridInterface{
-   static Grid currentGrid=new Grid();  
-   
+public class NormalGame extends Game /*implements GridInterface*/{
+   //static Grid currentGrid=new Grid();  
+    
     public class DefaultRules extends GameRules 
     {
 
@@ -47,16 +47,23 @@ public class NormalGame extends Game implements GridInterface{
                     }
                     else if(value ==9)
                     {
-                        int size = getCurrentPlayer().shields.size();
-                        if(size!=0)
+                        if(getCurrentPlayer().getName().equals("Auto Player"))
                         {
-                            int Change = getCurrentPlayer().shields.get(size-1).InteractWithScore(-50);
-                            getCurrentPlayer().shields.get(size-1).RemoveShield();
-                            getCurrentPlayer().shields.remove(size-1);
-                            return Change;
+                            return -50;
                         }
                         else
-                            return -50;
+                        {
+                            int size = getCurrentPlayer().shields.size();
+                            if(size!=0)
+                            {
+                                int Change = getCurrentPlayer().shields.get(size-1).InteractWithScore(-50);
+                                getCurrentPlayer().shields.get(size-1).RemoveShield();
+                                getCurrentPlayer().shields.remove(size-1);
+                                return Change;
+                            }
+                            else
+                                return -50;
+                        }
                     }
                 }
             return 0;
@@ -188,7 +195,7 @@ public class NormalGame extends Game implements GridInterface{
             }
             return "out of width exception";
         }
-        return "out of hieght eception";
+        return "out of hieght exception";
     }
     @Override
     public void ApplyPlayerMove(PlayerMove move,Grid myGrid)
@@ -242,13 +249,13 @@ public class NormalGame extends Game implements GridInterface{
                 }*/
             }
         }
-        currentGrid=myGrid;
+        //currentGrid=myGrid;
     }
     
-       @Override
+       /*@Override
     public Grid getGrid() {
         return currentGrid;
-    }
+    }*/
        
   
     @Override
